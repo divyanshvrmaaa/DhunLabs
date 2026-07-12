@@ -1,0 +1,28 @@
+.wrap {
+  background: var(--color-coral);
+  padding: 11px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.track {
+  display: inline-flex;
+  animation: scroll 28s linear infinite;
+}
+.track:hover { animation-play-state: paused; }
+.item {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+  padding: 0 0;
+}
+.dot {
+  margin: 0 28px;
+  opacity: 0.5;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

@@ -1,0 +1,120 @@
+.section {
+  background: var(--color-surface-1);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+/* ── left ── */
+.title {
+  font-size: clamp(34px, 4.5vw, 52px);
+  margin-bottom: 18px;
+}
+.sub {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+.stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-violet);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.statNum {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--color-violet);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.statLabel {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  padding-top: 4px;
+}
+
+/* ── right ── */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  position: relative;
+}
+.plCard:not(.placeholder):hover {
+  border-color: var(--color-violet);
+  background: var(--color-surface-3);
+  transform: translateX(4px);
+}
+.placeholder {
+  opacity: 0.4;
+}
+
+.plIcon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(155,110,255,0.1);
+  border: 1px solid rgba(155,110,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.plName {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 3px;
+}
+.plMood {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.plBadge {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  border: 1px solid rgba(34,211,134,0.25);
+  border-radius: 99px;
+  padding: 3px 10px;
+  background: rgba(34,211,134,0.07);
+}
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 48px; }
+}
