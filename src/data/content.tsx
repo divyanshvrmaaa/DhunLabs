@@ -113,9 +113,9 @@ export const CASE_STUDIES = [
     note: "[What made this campaign tick — your creative approach, audience insight, and execution.]",
     accent: "gold" as const,
     featured: true,
-  },
+  },*/
 ];
-*/
+
 export const PLAYLISTS = [
   {
     icon: "🌙",
@@ -142,8 +142,8 @@ export const PLAYLISTS = [
     mood: "More curated playlists coming",
     link: "",
     placeholder: true,
-  },
-];*/
+  },*/
+];
 export const VIDEOS = [
   {
     id: "A_D18IaKgPw",
