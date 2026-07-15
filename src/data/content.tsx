@@ -146,16 +146,16 @@ export const PLAYLISTS = [
 ];*/
 export const VIDEOS = [
   {
-    id: "7ujDXcgc7dE",
-    tag: "Playlist Strategy",
-    title: "Stop Buying Dead Playlists. Build Your Own.",
-    desc: "Engineer your own targeted listener pipelines for less than ₹1 per high retention follower.",
+    id: "A_D18IaKgPw",
+    tag: "Music Marketing TierList",
+    title: "Stop wasting your money on ineffective marketing strategies.",
+    desc: "Data backed tier list based on our own experience",
   },
   {
-    id: "crPmQcVElzA",
-    tag: "Meta Ads",
-    title: "Steal Our VIRAL Ads",
-    desc: "The exact visual hooks, pacing mechanics, and content formats that capture high intent listeners.",
+    id: "3nq8tMKMDwg",
+    tag: "Spotify Popularity Index",
+    title: "FORCE the algorithm to push your songs",
+    desc: "The exat framework to get algorithmic streams on spotify for FREE",
   },
 ];
 
