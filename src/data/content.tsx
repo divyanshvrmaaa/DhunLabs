@@ -9,7 +9,7 @@ export const SITE = {
   email: "contactdhunlabs@gmail.com",
   instagram: "https://instagram.com/dhunlabs",
   youtube: "https://youtube.com/@dhunlabsnetwork",
-  spotifyProfile: "https://open.spotify.com/artist/58s0k45u8t9Gc18V8Akq2x", // Replace with actual Spotify profile link
+  spotifyProfile: "https://open.spotify.com/user/31o2cneefwyomdhd3q22u3mq67fu", // Replace with actual Spotify profile link
   formLink: "https://forms.gle/gpPcddPTHNCw5Koe9",
   playlistformLink: "https://forms.gle/pobacpCdQizm8nQ29",
 };
