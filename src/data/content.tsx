@@ -79,6 +79,7 @@ export const CASE_STUDIES = [
     ],
     note: "The track's hard vocal texture became the campaign language. With an AI creative to bring people in, we crossed 10K+ streams in less than a month",
     accent: "coral" as const,
+    featured: false,
   },
   {
     id: "kaaj",
@@ -96,24 +97,8 @@ export const CASE_STUDIES = [
     ],
     note: "Compounding platform signals over a 3 week window turned stagnant catalog into an active discovery funnel.",
     accent: "violet" as const,
+    featured: false,
   },
-  /*{
-    id: "featured",
-    index: "03",
-    artist: "Divyansh Verma",
-    image: "/artists/divyansh.jpg",
-    spotify: "https://open.spotify.com/artist/58s0k45u8t9Gc18V8Akq2x",
-    genre: "DhunLabs Signature Campaign",
-    description:
-      "[Description of your featured campaign — the artist, the challenge, the strategy DhunLabs deployed, and what made this campaign unique. This slot is reserved for your most impressive result.]",
-    tactics: ["[Tactic 1]", "[Tactic 2]", "[Tactic 3]"],
-    metrics: [
-      { label: "streams", value: "100k+", note: "100k+ streams on spotify" },
-    ],
-    note: "[What made this campaign tick — your creative approach, audience insight, and execution.]",
-    accent: "gold" as const,
-    featured: true,
-  },*/
 ];
 
 export const PLAYLISTS = [
@@ -122,28 +107,17 @@ export const PLAYLISTS = [
     name: "everything feels a little too much",
     mood: "Late-night indie · Soft vocal pop · Lofi discoveries",
     link: "https://open.spotify.com/playlist/1DW0cAxjba9Qaq2GR2ZXXr",
+    placeholder: false,
   },
   {
     icon: "🚗",
     name: "Ki Scene Aa?",
     mood: "Punjabi bangers · High energy · Car drives",
     link: "https://open.spotify.com/playlist/6Tfy76YzQlMr3VeaKdAN0V",
+    placeholder: false,
   },
-  /*{
-    icon: "🔥",
-    name: "[Playlist Name]",
-    mood: "More curated playlists coming",
-    link: "",
-    placeholder: true,
-  },
-  {
-    icon: "✨",
-    name: "[Playlist Name]",
-    mood: "More curated playlists coming",
-    link: "",
-    placeholder: true,
-  },*/
 ];
+
 export const VIDEOS = [
   {
     id: "A_D18IaKgPw",
@@ -155,7 +129,7 @@ export const VIDEOS = [
     id: "3nq8tMKMDwg",
     tag: "Spotify Popularity Index",
     title: "FORCE the algorithm to push your songs",
-    desc: "The exat framework to get algorithmic streams on spotify for FREE",
+    desc: "The exact framework to get algorithmic streams on spotify for FREE",
   },
 ];
 
