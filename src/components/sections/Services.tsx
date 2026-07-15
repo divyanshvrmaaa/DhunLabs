@@ -4,9 +4,9 @@ import { useInView } from "../../hooks/useInView";
 import styles from "./Services.module.css";
 
 const ACCENT_MAP = {
-  coral:  { color: "var(--color-coral)",  glow: "var(--color-coral-glow)",  soft: "var(--color-coral-soft)" },
-  violet: { color: "var(--color-violet)", glow: "var(--color-violet-glow)", soft: "rgba(155,110,255,0.06)" },
-  gold:   { color: "var(--color-gold)",   glow: "var(--color-gold-glow)",   soft: "rgba(245,200,66,0.06)" },
+  coral: { color: "#1877F2", glow: "rgba(24,119,242,0.4)", soft: "rgba(24,119,242,0.06)" }, // Meta Blue
+  violet: { color: "#1DB954", glow: "rgba(29,185,84,0.4)",  soft: "rgba(29,185,84,0.06)" },  // Spotify Green
+  gold:  { color: "#FF0000", glow: "rgba(255,0,0,0.4)",     soft: "rgba(255,0,0,0.06)" },     // YouTube Red
 };
 
 export function Services() {
