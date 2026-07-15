@@ -30,8 +30,8 @@ export const PILLARS = [
     title: "Meta Promotions",
     subtitle: "For Artists Who Want Real Listeners",
     description:
-      "We don't run generic music video boosts. DhunLabs builds precision Meta ad campaigns built around your track's emotional hooks — targeting high-intent listeners who save, replay, and stream consistently. Every rupee justified by data.",
-    metric: "30×",
+      "We don't run generic music video boosts. DhunLabs builds precision Meta ad campaigns built around your track's emotional hooks targeting high intent listeners who save, replay, and stream consistently. Every rupee justified by data.",
+    metric: "78×",
     metricLabel: "Average Reach",
     link: SITE.formLink,
   },
@@ -43,9 +43,9 @@ export const PILLARS = [
     title: "Spotify Playlisting",
     subtitle: "A Closed Network Built on Taste",
     description:
-      "Our high-intent listener ecosystem is structured around mood profiles and regional scenes — not volume. Real listeners who save and return. That saves-to-stream ratio forces algorithms to push your music further without paid play.",
-    metric: "12M+",
-    metricLabel: "Streams Generated",
+      "Our high intent listener ecosystem is structured around mood profiles and regional scenes and not only volume. Real listeners who save and return. That saves to stream ratio forces algorithms to push your music further without paid play.",
+    metric: "500K+",
+    metricLabel: "Streams Managed",
     link: SITE.spotifyProfile,
   },
   {
@@ -56,9 +56,9 @@ export const PILLARS = [
     title: "DhunLabs YouTube",
     subtitle: "Free Education. No Gatekeeping.",
     description:
-      "Every strategy we run for clients is documented publicly on our channel — campaign breakdowns, Spotify algorithm deep-dives, Meta ad frameworks. Learn the exact systems, or let us run them for you. Either way, you win.",
-    metric: "100K+",
-    metricLabel: "Community Views",
+      "Every strategy we run for clients is documented publicly on our channel including campaign breakdowns, Spotify algorithm deep dives, Meta ad frameworks. Learn the exact systems, or let us run them for you. Either way, you win.",
+    metric: "5000+",
+    metricLabel: "Monthly Viewers",
     link: SITE.youtube,
   },
 ];
@@ -70,14 +70,14 @@ export const CASE_STUDIES = [
     artist: "Kaash",
     image: "/artists/kaash.jpg",
     spotify: "https://open.spotify.com/artist/15QpDzPrlwKtuxs9fW4HgO",
-    genre: "Canadian Hip-Hop",
+    genre: "Canadian Hip Hop",
     description:
-      "DhunLabs built a campaign around emotional recall — soft launching through targeted Meta advertising, micro playlists, and production-led storytelling. Every creative decision amplified the moments listeners save and return to.",
-    tactics: ["Meta Advertising", "Playlist Seeding", "Visual Edits"],
+      "DhunLabs built a campaign around energetic recall soft launching through targeted Meta advertising, micro playlists, and production led storytelling. Every creative decision amplified the moments listeners save and return to.",
+    tactics: ["Meta Advertising", "Playlist Seeding"],
     metrics: [
       { label: "Monthly Listener Lift", value: "135×", note: "Within the first 7 days of campaign activation" },
     ],
-    note: "The track's hard vocal texture became the campaign language — performer clips, Punjabi playlist placement, and visual edits that felt discovered, not pushed.",
+    note: "The track's hard vocal texture became the campaign language. With an AI creative to bring people in, we crossed 10K+ streams in less than a month",
     accent: "coral" as const,
   },
   {
@@ -86,18 +86,18 @@ export const CASE_STUDIES = [
     artist: "Kaaj",
     image: "/artists/kaaj.jpg",
     spotify: "https://open.spotify.com/artist/2WssPruJGD6K6tmg9lmSGk",
-    genre: "Catalog Optimization",
+    genre: "Increased Momentum",
     description:
-      "Kaaj had hit a listener ceiling. DhunLabs layered cross-platform optimization and amplified UGC signals to push deeper algorithmic indexing — sustaining momentum and routing top tracks into active recommendation loops.",
-    tactics: ["Meta Advertising", "Signal Amplification", "Catalog Growth"],
+      "Kaaj had hit a listener ceiling. DhunLabs layered cross platform optimization and brought in new audience to break his listeners ceiling bagging a monthly listener growth on 2.7X",
+    tactics: ["Meta Advertising", "Catalog Growth"],
     metrics: [
-      { label: "Listener Expansion", value: "+56%", note: "Net monthly baseline growth" },
-      { label: "Stream Acceleration", value: "2×", note: "Velocity on primary focus singles" },
+      { label: "Listener Expansion", value: "+156%", note: "Net monthly baseline growth" },
+      { label: "Stream Acceleration", value: "17×", note: "Velocity on primary focus singles" },
     ],
-    note: "Compounding platform signals over a 3-week window turned stagnant catalog into an active discovery funnel.",
+    note: "Compounding platform signals over a 3 week window turned stagnant catalog into an active discovery funnel.",
     accent: "violet" as const,
   },
-  {
+  /*{
     id: "featured",
     index: "03",
     artist: "Divyansh Verma",
@@ -115,7 +115,7 @@ export const CASE_STUDIES = [
     featured: true,
   },
 ];
-
+*/
 export const PLAYLISTS = [
   {
     icon: "🌙",
@@ -129,7 +129,7 @@ export const PLAYLISTS = [
     mood: "Punjabi bangers · High energy · Car drives",
     link: "https://open.spotify.com/playlist/6Tfy76YzQlMr3VeaKdAN0V",
   },
-  {
+  /*{
     icon: "🔥",
     name: "[Playlist Name]",
     mood: "More curated playlists coming",
@@ -143,19 +143,19 @@ export const PLAYLISTS = [
     link: "",
     placeholder: true,
   },
-];
+];*/
 export const VIDEOS = [
   {
     id: "7ujDXcgc7dE",
     tag: "Playlist Strategy",
     title: "Stop Buying Dead Playlists. Build Your Own.",
-    desc: "Engineer your own targeted listener pipelines for less than ₹1 per high-retention follower.",
+    desc: "Engineer your own targeted listener pipelines for less than ₹1 per high retention follower.",
   },
   {
     id: "crPmQcVElzA",
     tag: "Meta Ads",
     title: "Steal Our VIRAL Ads",
-    desc: "The exact visual hooks, pacing mechanics, and content formats that capture high-intent listeners.",
+    desc: "The exact visual hooks, pacing mechanics, and content formats that capture high intent listeners.",
   },
 ];
 
