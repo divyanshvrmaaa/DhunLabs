@@ -116,6 +116,13 @@ export const PLAYLISTS = [
     link: "https://open.spotify.com/playlist/6Tfy76YzQlMr3VeaKdAN0V",
     placeholder: false,
   },
+  {
+    icon: "🎙️",
+    name: "Asli DHH | Best of Hindi Rap",
+    mood: "असली देसी हिप-हॉप · Heavy 808s · Underground heat · Street anthems",
+    link: "https://open.spotify.com/playlist/22P74epP4Yhf71eftCqgVp", // Replace with your actual live playlist link later
+    placeholder: false,
+  },
 ];
 
 export const VIDEOS = [
