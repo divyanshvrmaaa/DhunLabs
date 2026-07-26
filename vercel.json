@@ -3,3 +3,11 @@
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
+{
+  "rewrites": [
+    {
+      "source": "/casestudy",
+      "destination": "https://slow-turquoise-bda.notion.site/DhunLabs-Building-a-Music-Marketing-Agency-From-Scratch-Solo-in-60-Days-3a9585b041c780cf8002c5ec182bb6ee"
+    }
+  ]
+}
