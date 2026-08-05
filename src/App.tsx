@@ -1,4 +1,5 @@
 import { Routes, Route, Outlet } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Navbar } from "./components/ui/Navbar";
 import { Footer } from "./components/sections/Footer";
@@ -44,12 +45,15 @@ function Layout() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/playlists" element={<Playlists />} />
-        <Route path="/about" element={<About />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/playlists" element={<Playlists />} />
+          <Route path="/about" element={<About />} />
+        </Route>
+      </Routes>
+      <Analytics />
+    </>
   );
 }
