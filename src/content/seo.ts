@@ -8,7 +8,7 @@ export interface PageSeo {
 }
 
 export const SITE_URL = "https://dhunlabs.studio";
-export const OG_IMAGE = "/og-image.png";
+export const OG_IMAGE = "/og-image.jpg";
 
 export const pages: PageSeo[] = [
   {
@@ -27,7 +27,7 @@ export const pages: PageSeo[] = [
     path: "/planner",
     title: "Free Campaign Planner for Independent Artists | DhunLabs",
     description:
-      "Enter your promotion budget and get an honest campaign plan with an estimated stream range, based on our recent campaigns. Free, instant, no sign-up.",
+      "Enter your promotion budget and get an honest campaign plan with an estimated stream range, based on our recent campaigns. Free, instant and no sign-up.",
   },
   {
     path: "/estimator",
@@ -51,7 +51,7 @@ export const pages: PageSeo[] = [
     path: "/tools/playlist-readiness",
     title: "Is Your Song Playlist-Ready? Free Checker | DhunLabs",
     description:
-      "Answer 10 quick questions and get a playlist-readiness score out of 10, a verdict and specific fixes before you pitch your song to Spotify playlists.",
+      "Answer 10 quick questions and get a playlist-readiness score out of 10, a clear verdict and specific fixes before you pitch your song to Spotify playlists.",
   },
   {
     path: "/tools/cost-per-stream",

@@ -32,10 +32,10 @@ export function ToolShell({ badge, title, sub, children, cta, sources }: Props) 
         {sources && sources.length > 0 && (
           <div className="mt-10 border-t border-line pt-6 text-xs leading-relaxed text-muted">
             <p>Sources (checked Oct 2026):</p>
-            <ul className="mt-1 space-y-1">
+            <ul className="mt-1">
               {sources.map((s) => (
                 <li key={s.url}>
-                  <SmartLink href={s.url} className="underline decoration-line-strong underline-offset-2 hover:text-ink">
+                  <SmartLink href={s.url} className="inline-flex min-h-8 items-center underline decoration-line-strong underline-offset-2 hover:text-ink">
                     {s.label}
                   </SmartLink>
                 </li>

@@ -17,7 +17,10 @@ export function scrollToId(id: string, immediate = false) {
   const el = document.getElementById(id);
   if (!el) return false;
   if (lenis) {
-    lenis.scrollTo(el, { offset: -navOffset(), immediate, duration: 1.2 });
+    // Re-measure first: after a page change Lenis still knows the old page's height
+    lenis.resize();
+    // Lenis already respects the page's scroll-padding-top (nav height), so no extra offset here
+    lenis.scrollTo(el, { immediate, force: true, duration: 1.2 });
   } else {
     const top = el.getBoundingClientRect().top + window.scrollY - navOffset();
     window.scrollTo({ top, behavior: immediate ? "auto" : "smooth" });

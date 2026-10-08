@@ -10,7 +10,8 @@ const icons: Record<string, string> = {
   "/tools/pitch-writer": "M4 20h4L19 9l-4-4L4 16v4Zm10-14 4 4",
 };
 
-export function ToolCardLink({ t, featured }: { t: ToolCard; featured?: boolean }) {
+export function ToolCardLink({ t, featured, headingLevel = "h3" }: { t: ToolCard; featured?: boolean; headingLevel?: "h2" | "h3" }) {
+  const H = headingLevel;
   return (
     <SmartLink
       href={t.href}
@@ -26,7 +27,7 @@ export function ToolCardLink({ t, featured }: { t: ToolCard; featured?: boolean 
         </span>
         <span className="rounded-full border border-line px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-wider text-muted">{t.tag}</span>
       </div>
-      <h3 className="mt-8 font-heading text-xl font-semibold tracking-tight md:text-[1.4rem]">{t.title}</h3>
+      <H className="mt-8 font-heading text-xl font-semibold tracking-tight md:text-[1.4rem]">{t.title}</H>
       <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{t.benefit}</p>
       <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-ink">
         Open <span aria-hidden className="text-accent transition-transform duration-300 group-hover:translate-x-1">→</span>

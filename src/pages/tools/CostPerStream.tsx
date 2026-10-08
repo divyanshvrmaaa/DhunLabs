@@ -102,7 +102,7 @@ export default function CostPerStream() {
             {ready ? (
               <AnimatedNumber value={cps} format={(n) => formatINR2(n)} />
             ) : (
-              <span className="text-dim">₹0.00</span>
+              <span className="text-muted">₹0.00</span>
             )}
           </p>
 

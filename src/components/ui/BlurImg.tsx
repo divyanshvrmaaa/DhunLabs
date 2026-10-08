@@ -1,4 +1,4 @@
-import { useState, type ImgHTMLAttributes } from "react";
+import { useEffect, useRef, useState, type ImgHTMLAttributes } from "react";
 
 interface Props extends ImgHTMLAttributes<HTMLImageElement> {
   placeholder?: string;
@@ -8,6 +8,14 @@ interface Props extends ImgHTMLAttributes<HTMLImageElement> {
 /** Image with a blurred preview behind it until it loads. Width/height should be set to avoid layout shift. */
 export function BlurImg({ placeholder, wrapperClassName = "", className = "", onLoad, loading = "lazy", ...rest }: Props) {
   const [loaded, setLoaded] = useState(false);
+  const ref = useRef<HTMLImageElement>(null);
+
+  // Pre-rendered pages: the image may finish loading before React attaches onLoad.
+  useEffect(() => {
+    const img = ref.current;
+    if (img?.complete && img.naturalWidth > 0) setLoaded(true);
+  }, []);
+
   return (
     <span
       className={`relative block overflow-hidden ${wrapperClassName}`}
@@ -15,6 +23,7 @@ export function BlurImg({ placeholder, wrapperClassName = "", className = "", on
     >
       <img
         {...rest}
+        ref={ref}
         loading={loading}
         decoding="async"
         onLoad={(e) => {

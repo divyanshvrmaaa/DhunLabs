@@ -54,7 +54,7 @@ export default function Playlists() {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <PlaylistCard p={p} large />
+                  <PlaylistCard p={p} large headingLevel="h2" />
                 </motion.li>
               ))}
             </AnimatePresence>

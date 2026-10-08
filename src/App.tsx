@@ -48,10 +48,13 @@ function ScrollManager() {
       // Wait a frame (or a few) for the section to exist
       let tries = 0;
       const attempt = () => {
-        if (scrollToId(id, tries === 0) || tries++ > 20) return;
+        if (scrollToId(id, true) || tries++ > 20) return;
         requestAnimationFrame(attempt);
       };
       requestAnimationFrame(attempt);
+      // Correct once more after fonts/images settle
+      const t = window.setTimeout(() => scrollToId(id, true), 450);
+      return () => window.clearTimeout(t);
     } else {
       scrollToTop();
     }
@@ -76,11 +79,10 @@ function Layout() {
   );
 }
 
-export default function App() {
-  useSmoothScroll();
+/** All routes. Shared by the browser app and the build-time pre-renderer. */
+export function AppRoutes() {
   return (
     <MotionConfig reducedMotion="user">
-      <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
@@ -95,8 +97,18 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+    </MotionConfig>
+  );
+}
+
+export default function App() {
+  useSmoothScroll();
+  return (
+    <>
+      <BrowserRouter>
+        <AppRoutes />
       </BrowserRouter>
       <Analytics />
-    </MotionConfig>
+    </>
   );
 }

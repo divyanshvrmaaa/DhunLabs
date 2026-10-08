@@ -110,7 +110,10 @@ export default function ReleaseRoadmap() {
           </div>
         </section>
 
-        <section aria-label="Your roadmap">
+        <section aria-labelledby="roadmap-title">
+          <h2 id="roadmap-title" className="sr-only">
+            Your roadmap
+          </h2>
           {release ? (
             <ol className="relative">
               <span aria-hidden className="absolute bottom-3 left-[7px] top-3 w-px bg-line-strong" />

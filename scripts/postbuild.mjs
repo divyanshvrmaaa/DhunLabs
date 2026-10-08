@@ -1,17 +1,25 @@
-// Runs after `vite build`.
-// 1. Writes a copy of index.html for every page with that page's own title,
-//    description and share tags (WhatsApp/Google read these without running JS).
-// 2. Writes sitemap.xml.
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+// Runs after `vite build` (browser) and `vite build --ssr` (pre-renderer).
+// 1. Writes an HTML file for every page with that page's own title,
+//    description and share tags (WhatsApp/Google read these without running JS)
+//    and the page's content pre-rendered, so text appears before JavaScript loads.
+// 2. Writes shell.html (no pre-rendered content) for unknown URLs → 404 page.
+// 3. Writes sitemap.xml.
+import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
-import { pages, SITE_URL } from "../src/content/seo.ts";
+import { pathToFileURL } from "node:url";
+import { pages, notFoundSeo, SITE_URL } from "../src/content/seo.ts";
 
-const dist = path.resolve(import.meta.dirname, "..", "dist");
+const root = path.resolve(import.meta.dirname, "..");
+const dist = path.join(root, "dist");
 const template = await readFile(path.join(dist, "index.html"), "utf8");
+const { render } = await import(pathToFileURL(path.join(root, "dist-ssr", "entry-server.js")).href);
+
+/** Pages whose content depends on today's date are rendered in the browser only. */
+const NO_PRERENDER = new Set(["/tools/release-roadmap"]);
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-function render(page) {
+function renderMeta(page) {
   const url = page.path === "/" ? `${SITE_URL}/` : `${SITE_URL}${page.path}`;
   let html = template
     .replace(/<title>.*?<\/title>/s, `<title>${esc(page.title)}</title>`)
@@ -42,15 +50,20 @@ function render(page) {
 }
 
 for (const page of pages) {
-  const html = render(page);
-  if (page.path === "/") {
-    await writeFile(path.join(dist, "index.html"), html);
-  } else {
-    const dir = path.join(dist, page.path);
-    await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, "index.html"), html);
+  let html = renderMeta(page);
+  if (!NO_PRERENDER.has(page.path)) {
+    const body = await render(page.path);
+    html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
   }
+  // "/" → index.html, "/tools/pitch-writer" → tools/pitch-writer.html (Vercel cleanUrls serves it at /tools/pitch-writer)
+  const file = page.path === "/" ? path.join(dist, "index.html") : path.join(dist, `${page.path}.html`);
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, html);
 }
+
+// Fallback for unknown URLs (Vercel rewrites them here): no pre-rendered content.
+await writeFile(path.join(dist, "shell.html"), renderMeta({ ...notFoundSeo, path: "/" }).replace(/<link rel="canonical"[^>]*>\n?\s*/, "").replace("<head>", '<head>\n    <meta name="robots" content="noindex" />'));
+await rm(path.join(root, "dist-ssr"), { recursive: true, force: true });
 
 const today = new Date().toISOString().slice(0, 10);
 const sitemap =
@@ -61,4 +74,4 @@ const sitemap =
   `\n</urlset>\n`;
 await writeFile(path.join(dist, "sitemap.xml"), sitemap);
 
-console.log(`postbuild: ${pages.length} pages + sitemap.xml`);
+console.log(`postbuild: ${pages.length} pages (${pages.length - NO_PRERENDER.size} pre-rendered) + shell.html + sitemap.xml`);

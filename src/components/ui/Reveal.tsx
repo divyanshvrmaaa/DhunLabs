@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface Props {
@@ -9,11 +9,14 @@ interface Props {
   as?: "div" | "li" | "section" | "article";
 }
 
-/** Fade-and-rise once when scrolled into view. */
+/**
+ * Fade-and-rise once when scrolled into view.
+ * Reduced-motion visitors get a plain fade: <MotionConfig reducedMotion="user"> in App.tsx
+ * switches off the movement. (Don't branch on reduced motion here: the pre-rendered HTML
+ * starts hidden, and only the animation reveals it.)
+ */
 export function Reveal({ children, delay = 0, y = 24, className, as = "div" }: Props) {
-  const reduce = useReducedMotion();
   const Comp = motion[as];
-  if (reduce) return <Comp className={className}>{children}</Comp>;
   return (
     <Comp
       className={className}

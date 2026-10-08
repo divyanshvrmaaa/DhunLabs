@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "../ui/Button";
 import { SmartLink } from "../ui/SmartLink";
 import { Waveform } from "./Waveform";
@@ -14,11 +14,8 @@ const headline: { word: string; accent?: boolean }[] = [
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
-  const reduce = useReducedMotion();
-  const rise = (delay: number) =>
-    reduce
-      ? {}
-      : { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease } };
+  // Always pass the animation props (the pre-rendered HTML starts hidden); MotionConfig turns movement into a fade for reduced motion.
+  const rise = (delay: number) => ({ initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease } });
 
   return (
     <section aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-[88px]">
@@ -45,7 +42,7 @@ export function Hero() {
               <span key={w.word} className="inline-block overflow-hidden pb-[0.08em] -mb-[0.08em]">
                 <motion.span
                   className={`inline-block ${w.accent ? "text-accent" : ""}`}
-                  initial={reduce ? false : { y: "105%", rotate: 4 }}
+                  initial={{ y: "105%", rotate: 4 }}
                   animate={{ y: "0%", rotate: 0 }}
                   transition={{ duration: 1.1, delay: 0.12 + i * 0.07, ease }}
                 >
@@ -56,13 +53,13 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="mt-8 grid gap-8 md:mt-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-          <motion.p {...rise(0.55)} className="max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-muted md:text-lg">
+        <div className="mt-8 grid gap-8 md:mt-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+          <p className="max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-muted md:text-lg">
             DhunLabs maps platform data, listener behavior and targeted ads into precision growth systems. No vanity metrics. No
             ghost listeners. Just your music reaching the right people at scale.
-          </motion.p>
+          </p>
 
-          <motion.div {...rise(0.68)} className="flex flex-col gap-4 md:items-end">
+          <motion.div {...rise(0.45)} className="flex flex-col gap-4 lg:items-end">
             <div className="flex flex-wrap gap-3">
               <Button form="onboarding" location="hero" size="lg" arrow>
                 Book a Strategy Audit
@@ -89,7 +86,7 @@ export function Hero() {
       <motion.div
         aria-hidden
         className="relative h-[20vh] min-h-[120px] max-h-[240px] w-full"
-        initial={reduce ? false : { opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.6, delay: 0.4 }}
       >
