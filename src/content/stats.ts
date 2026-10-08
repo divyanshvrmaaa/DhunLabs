@@ -1,0 +1,44 @@
+// ─── PROOF STRIP NUMBERS (home page, under the hero) ────────────────────────
+// All values as of Oct 2026. "value" is the number that counts up;
+// "prefix"/"suffix" wrap it (e.g. "~" and "K").
+
+export interface Stat {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  /** If set, shown instead of a counting number (e.g. "100%"). */
+  label: string;
+  note: string;
+}
+
+export const stats: Stat[] = [
+  {
+    value: 25,
+    prefix: "~",
+    suffix: "K",
+    label: "monthly listeners reached by a Punjabi artist in 30 days, from zero",
+    note: "Harman Sohi campaign · as of Oct 2026",
+  },
+  {
+    // 20,955 + 19,844 + 16,318 + 3,699 = 60,816 followers (7 Oct 2026)
+    value: 60,
+    suffix: "K+",
+    label: "combined followers across our 4 Spotify playlists",
+    note: "20,955 + 19,844 + 16,318 + 3,699 · as of 7 Oct 2026",
+  },
+  {
+    value: 500,
+    suffix: "K+",
+    label: "streams managed",
+    note: "as of Oct 2026",
+  },
+  {
+    value: 100,
+    suffix: "%",
+    label: "bot-free: no botted playlists, ever",
+    note: "as of Oct 2026",
+  },
+];
+
+/** Words that scroll in the marquee under the proof strip (playlist names are added automatically). */
+export const marqueeExtras = ["Meta Ads", "Spotify", "YouTube", "Conversion Tracking"];

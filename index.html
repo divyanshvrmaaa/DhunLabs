@@ -2,14 +2,81 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="DhunLabs — Music Growth Agency. Meta promotions, Spotify playlisting network, and free music marketing education for independent artists." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>DhunLabs — Music Growth Agency for Independent Artists</title>
+    <meta name="description" content="We make streams hit different. Meta ads, a bot-free Spotify playlist network and free education that grow real listeners for independent artists in India." />
+    <link rel="canonical" href="https://dhunlabs.studio/" />
     <meta name="theme-color" content="#080808" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>DhunLabs — Music Growth Engine</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DhunLabs" />
+    <meta property="og:title" content="DhunLabs — Music Growth Agency for Independent Artists" />
+    <meta property="og:description" content="We make streams hit different. Meta ads, a bot-free Spotify playlist network and free education that grow real listeners for independent artists in India." />
+    <meta property="og:url" content="https://dhunlabs.studio/" />
+    <meta property="og:image" content="https://dhunlabs.studio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DhunLabs — We Make Streams Hit Different." />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DhunLabs — Music Growth Agency for Independent Artists" />
+    <meta name="twitter:description" content="We make streams hit different. Meta ads, a bot-free Spotify playlist network and free education that grow real listeners for independent artists in India." />
+    <meta name="twitter:image" content="https://dhunlabs.studio/og-image.png" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" href="/fonts/syne-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://dhunlabs.studio/#org",
+            "name": "DhunLabs",
+            "url": "https://dhunlabs.studio",
+            "logo": "https://dhunlabs.studio/icon-512.png",
+            "email": "contactdhunlabs@gmail.com",
+            "description": "Music growth agency for independent artists: Meta ad campaigns, a bot-free Spotify playlist network and free music marketing education.",
+            "address": { "@type": "PostalAddress", "addressLocality": "Delhi", "addressCountry": "IN" },
+            "founder": { "@id": "https://dhunlabs.studio/#founder" },
+            "sameAs": [
+              "https://instagram.com/dhunlabs",
+              "https://youtube.com/@dhunlabsnetwork",
+              "https://open.spotify.com/user/31o2cneefwyomdhd3q22u3mq67fu"
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://dhunlabs.studio/#founder",
+            "name": "Divyansh Verma",
+            "jobTitle": "Founder",
+            "worksFor": { "@id": "https://dhunlabs.studio/#org" },
+            "alumniOf": "Delhi Technological University",
+            "image": "https://dhunlabs.studio/images/divyansh-portrait-900.webp"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://dhunlabs.studio/#website",
+            "url": "https://dhunlabs.studio",
+            "name": "DhunLabs",
+            "publisher": { "@id": "https://dhunlabs.studio/#org" }
+          }
+        ]
+      }
+    </script>
   </head>
-  <body>
+  <body class="grain">
     <div id="root"></div>
+    <noscript>
+      <p style="padding:24px;font-family:sans-serif;color:#f2efe9">DhunLabs is a music growth agency for independent artists. Please enable JavaScript to use this site, or email contactdhunlabs@gmail.com.</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

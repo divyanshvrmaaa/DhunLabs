@@ -1,143 +1,296 @@
-@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+@import "tailwindcss";
 
-/* ─── TOKENS ─── */
-:root {
-  /* Palette — warm black base, Spotify green accent, violet secondary, gold highlight */
-  --color-bg:          #080808;
-  --color-surface-1:   #0f0f0f;
-  --color-surface-2:   #161616;
-  --color-surface-3:   #1e1e1e;
-  --color-border:      rgba(255,255,255,0.07);
-  --color-border-mid:  rgba(255,255,255,0.12);
+/* ─── Fonts (self-hosted in /public/fonts) ─────────────────────────────── */
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/syne-latin.woff2") format("woff2");
+  font-weight: 500 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/dm-sans-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/dm-sans-latin-ext.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
-  --color-text:        #F2EFE9;
-  --color-text-muted:  #8A8680;
-  --color-text-dim:    #4A4744;
+/* ─── Brand tokens ─────────────────────────────────────────────────────── */
+@theme {
+  --color-bg: #080808;
+  --color-surface: #0f0f0f;
+  --color-surface-2: #161616;
+  --color-surface-3: #1e1e1e;
+  --color-line: rgba(255, 255, 255, 0.07);
+  --color-line-strong: rgba(255, 255, 255, 0.12);
+  --color-ink: #f2efe9;
+  --color-muted: #8a8680;
+  --color-dim: #4a4744;
+  --color-accent: #1db954;
+  --color-accent-glow: rgba(29, 185, 84, 0.18);
+  --color-violet: #9b6eff;
+  --color-gold: #f5c842;
+  --color-success: #22d386;
 
-  /* Accent triad (Names kept as 'coral' temporarily to prevent breaking other files) */
-  --color-coral:       #1DB954; 
-  --color-coral-glow:  rgba(29, 185, 84, 0.18);
-  --color-coral-soft:  rgba(29, 185, 84, 0.08);
-  
-  --color-violet:      #9B6EFF;
-  --color-violet-glow: rgba(155,110,255,0.18);
-  --color-gold:        #F5C842;
-  --color-gold-glow:   rgba(245,200,66,0.15);
-  --color-green:       #22D386; /* Your secondary, slightly brighter green */
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Clash Display", "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Type */
-  --font-display: 'Syne', sans-serif;
-  --font-heading: 'Clash Display', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
-
-  /* Spacing */
-  --section-px: clamp(32px, 8vw, 120px);
-  --section-py: clamp(72px, 10vh, 120px);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 32px;
 
-  /* Easing */
-  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
-  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ─── RESET ─── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Note: "dim" (#4a4744) is too low-contrast for text; use it only for
+   decorative lines and large numerals. Small text uses "muted". */
+:root {
+  --nav-h: 72px;
+  color-scheme: dark;
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: calc(var(--nav-h) + 16px);
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  body {
+    min-height: 100dvh;
+    background: var(--color-bg);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #050505;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+  img {
+    max-width: 100%;
+  }
 }
 
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
+/* Lenis smooth scrolling */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; border: none; background: none; font: inherit; }
-img { max-width: 100%; display: block; }
-ul, ol { list-style: none; }
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 32px;
+    }
+  }
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-surface-3); border-radius: 99px; }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
 
-/* ─── SELECTION ─── */
-::selection {
-  background: var(--color-coral); /* Now pulls the green */
-  color: #fff;
+  .h-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+  .h-section {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+  }
+
+  .num {
+    font-family: var(--font-heading);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    letter-spacing: -0.02em;
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+
+  .hairline {
+    border-color: var(--color-line);
+  }
+
+  .glass {
+    background: rgba(8, 8, 8, 0.62);
+    backdrop-filter: saturate(160%) blur(18px);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+  }
 }
 
-/* ─── NOISE OVERLAY ─── */
-body::before {
-  content: '';
+/* Very faint film grain over the whole page */
+.grain::after {
+  content: "";
   position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  inset: -50%;
+  z-index: 60;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ─── UTILITIES ─── */
-.section-wrap {
-  padding: var(--section-py) var(--section-px);
-  max-width: 1280px;
-  margin: 0 auto;
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.animate-marquee {
+  animation: marquee 48s linear infinite;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 20px;
+/* Custom range slider (planner) */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
 }
-.eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--color-coral); /* Now pulls the green */
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) 0%,
+    var(--color-accent) var(--fill, 0%),
+    rgba(255, 255, 255, 0.1) var(--fill, 0%)
+  );
+}
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  margin-top: -11px;
+  border-radius: 999px;
+  background: #f2efe9;
+  border: 6px solid var(--color-accent);
+  box-shadow: 0 0 0 8px rgba(29, 185, 84, 0.16), 0 0 28px rgba(29, 185, 84, 0.55);
+  transition: box-shadow 0.25s var(--ease-brand), transform 0.25s var(--ease-brand);
+}
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #f2efe9;
+  border: 6px solid var(--color-accent);
+  box-shadow: 0 0 0 8px rgba(29, 185, 84, 0.16), 0 0 28px rgba(29, 185, 84, 0.55);
+}
+.range:active::-webkit-slider-thumb {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 12px rgba(29, 185, 84, 0.2), 0 0 40px rgba(29, 185, 84, 0.7);
+}
+.range:focus-visible {
+  outline: none;
+}
+.range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #f2efe9;
+  outline-offset: 3px;
 }
 
-.display-heading {
-  font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--color-text);
+/* Hide number input spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-.section-heading {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: var(--color-text);
-}
-
-/* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
