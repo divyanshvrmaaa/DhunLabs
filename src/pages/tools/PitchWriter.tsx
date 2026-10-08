@@ -19,15 +19,15 @@ interface Fields {
 
 const empty: Fields = { title: "", genre: "", mood: "", instruments: "", language: "", story: "", location: "", similar: "" };
 
-const fieldDefs: { key: keyof Fields; label: string; placeholder: string; long?: boolean; optional?: boolean }[] = [
-  { key: "title", label: "Song title", placeholder: "e.g. Raatan" },
+const fieldDefs: { key: keyof Fields; label: string; placeholder: string; long?: boolean; optional?: boolean; wide?: boolean }[] = [
+  { key: "title", label: "Song title", placeholder: "e.g. Midnight Drive" },
   { key: "genre", label: "Genre", placeholder: "e.g. Punjabi pop" },
   { key: "mood", label: "Mood", placeholder: "e.g. late-night, bittersweet" },
-  { key: "instruments", label: "Instruments & sound", placeholder: "e.g. tumbi, 808s and a warm Rhodes" },
   { key: "language", label: "Language", placeholder: "e.g. Punjabi" },
+  { key: "instruments", label: "Instruments & sound", placeholder: "e.g. tumbi, 808s and a warm Rhodes", wide: true },
+  { key: "story", label: "The story behind the song", placeholder: "e.g. writing to a friend who moved abroad", long: true, wide: true },
   { key: "location", label: "Where you're from", placeholder: "e.g. Ludhiana" },
-  { key: "story", label: "The story behind the song", placeholder: "e.g. writing to a friend who moved to Canada", long: true },
-  { key: "similar", label: "For fans of", placeholder: "e.g. two or three similar artists", optional: true },
+  { key: "similar", label: "For fans of", placeholder: "e.g. similar artists", optional: true },
 ];
 
 const clean = (s: string) => s.trim().replace(/\s+/g, " ").replace(/[.\s]+$/, "");
@@ -55,7 +55,8 @@ export function buildPitch(f: Fields): string {
     parts.push(s + ".");
   }
   if (instruments) parts.push(`The production is built on ${instruments}.`);
-  if (story) parts.push(`${cap(story)}.`);
+  // "writing to a friend…" → "It's about writing to a friend…"; a full sentence stays as written.
+  if (story) parts.push(/^[a-z]/.test(story) ? `It's about ${story}.` : `${cap(story)}.`);
   if (similar) parts.push(`For fans of ${similar}.`);
   return parts.join(" ");
 }
@@ -101,7 +102,7 @@ export default function PitchWriter() {
       <div className="grid gap-5 lg:grid-cols-[1fr_1fr] lg:gap-8">
         <section aria-label="About your song" className="card grid gap-5 self-start p-6 sm:grid-cols-2 md:p-8">
           {fieldDefs.map((d) => (
-            <div key={d.key} className={d.long || d.key === "instruments" || d.key === "similar" ? "sm:col-span-2" : ""}>
+            <div key={d.key} className={d.wide ? "sm:col-span-2" : ""}>
               <label htmlFor={`pw-${d.key}`} className="block text-sm font-medium text-muted">
                 {d.label} {d.optional && <span className="font-normal">(optional)</span>}
               </label>
