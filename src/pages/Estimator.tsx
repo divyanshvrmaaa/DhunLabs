@@ -7,6 +7,7 @@ import { PlanCard } from "../components/planner/PlanCard";
 import { PlanForms } from "../components/planner/PlanForms";
 import { ShareActions } from "../components/planner/ShareActions";
 import { EstimateNote, FOOTNOTE } from "../components/planner/EstimateNote";
+import { MobileResultBar } from "../components/planner/MobileResultBar";
 import { ESTIMATOR_DEFAULT_STREAMS, ESTIMATOR_MIN_STREAMS, STREAM_CHIPS, VIEW_CHIPS } from "../content/pricing";
 import { otherPlatformsNote, plans, youtubeSeparateNote } from "../content/plans";
 import { budgetBucket, estimate, type Range } from "../lib/estimate";
@@ -126,7 +127,7 @@ export default function Estimator() {
             <p className="mt-8 rounded-xl border border-line bg-surface-2 px-4 py-3 text-sm leading-relaxed text-muted">{otherPlatformsNote}</p>
           </section>
 
-          <section aria-label="Estimated budget" className="lg:sticky lg:top-24 lg:self-start">
+          <section id="estimator-result" aria-label="Estimated budget" className="scroll-mt-24 lg:sticky lg:top-24 lg:self-start">
             <PlanCard
               plan={plan}
               extra={
@@ -171,6 +172,7 @@ export default function Estimator() {
         </div>
 
         <PlanForms plan={plan} location="estimator" />
+        <MobileResultBar targetId="estimator-result" title={plans[plan].name} value={`${formatRange(result.total.low, result.total.high, true)} est. budget`} />
       </div>
     </>
   );

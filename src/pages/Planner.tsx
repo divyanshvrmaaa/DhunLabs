@@ -7,6 +7,7 @@ import { PlanCard } from "../components/planner/PlanCard";
 import { PlanForms } from "../components/planner/PlanForms";
 import { ShareActions } from "../components/planner/ShareActions";
 import { EstimateNote, FOOTNOTE } from "../components/planner/EstimateNote";
+import { MobileResultBar } from "../components/planner/MobileResultBar";
 import {
   CUSTOM_PLAN_ABOVE,
   PLANNER_CHIPS,
@@ -126,7 +127,7 @@ export default function Planner() {
           </section>
 
           {/* Result */}
-          <section aria-label="Your plan" className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <section id="planner-result" aria-label="Your plan" className="scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
             <div className="lg:sticky lg:top-24">
             <PlanCard
               plan={plan}
@@ -145,39 +146,29 @@ export default function Planner() {
                 </div>
               }
             >
-              <div className="mt-6 grid gap-6 border-t border-line pt-6 sm:grid-cols-[1.4fr_1fr]">
-                <div>
-                  <p className="text-sm text-muted">Estimated streams</p>
-                  <p className="num mt-2 text-[clamp(2.4rem,6.5vw,3.6rem)] font-semibold leading-none" aria-live="polite">
-                    {single ? (
-                      <>
-                        <span className="text-muted">~</span>
-                        <AnimatedNumber value={streams.low} format={formatNumber} />
-                      </>
-                    ) : (
-                      <>
-                        <AnimatedNumber value={streams.low} format={formatNumber} />
-                        <span className="text-muted">–</span>
-                        <br className="sm:hidden" />
-                        <AnimatedNumber value={streams.high} format={formatNumber} />
-                      </>
-                    )}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted">Est. cost per stream</p>
-                  <p className="num mt-2 text-2xl font-semibold leading-tight md:text-[1.75rem]">
-                    {Math.abs(cps.low - cps.high) < 0.005 ? (
-                      formatINR2(cps.low)
-                    ) : (
-                      <>
-                        {formatINR2(cps.low)}
-                        <span className="text-muted">–</span>
-                        {formatINR2(cps.high)}
-                      </>
-                    )}
-                  </p>
-                </div>
+              <div className="mt-6 border-t border-line pt-6">
+                <p className="text-sm text-muted">Estimated streams</p>
+                <p className="num mt-2 text-[clamp(2.4rem,4.6vw,3.4rem)] font-semibold leading-[1.02] sm:whitespace-nowrap" aria-live="polite">
+                  {single ? (
+                    <>
+                      <span className="text-muted">~</span>
+                      <AnimatedNumber value={streams.low} format={formatNumber} />
+                    </>
+                  ) : (
+                    <>
+                      <AnimatedNumber value={streams.low} format={formatNumber} />
+                      <span className="text-muted">–</span>
+                      <br className="sm:hidden" />
+                      <AnimatedNumber value={streams.high} format={formatNumber} />
+                    </>
+                  )}
+                </p>
+                <p className="mt-4 flex flex-wrap items-baseline gap-x-2 text-sm text-muted">
+                  Est. cost per stream
+                  <span className="num text-lg font-semibold text-ink">
+                    {Math.abs(cps.low - cps.high) < 0.005 ? formatINR2(cps.low) : `${formatINR2(cps.low)}–${formatINR2(cps.high)}`}
+                  </span>
+                </p>
               </div>
             </PlanCard>
             <p className="mt-5 text-center text-sm text-muted lg:text-left">
@@ -190,6 +181,11 @@ export default function Planner() {
         </div>
 
         <PlanForms plan={plan} location="planner" />
+        <MobileResultBar
+          targetId="planner-result"
+          title={plans[plan].name}
+          value={`${single ? "~" + formatNumber(streams.low) : formatRange(streams.low, streams.high)} streams`}
+        />
       </div>
     </>
   );

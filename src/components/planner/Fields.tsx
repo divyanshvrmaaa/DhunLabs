@@ -53,8 +53,7 @@ export function NumberField({ id, label, value, onChange, min = 0, max = Infinit
           placeholder={placeholder}
           onFocus={(e) => {
             setFocused(true);
-            setText(value ? String(value) : "");
-            requestAnimationFrame(() => e.target.select());
+            e.target.select();
           }}
           onBlur={() => {
             setFocused(false);
