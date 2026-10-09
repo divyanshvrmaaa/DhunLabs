@@ -4,7 +4,6 @@ import { SmartLink } from "./ui/SmartLink";
 const icons: Record<string, string> = {
   "/planner": "M4 18h16M7 15V9m5 6V5m5 10v-4",
   "/estimator": "M5 19 19 5M7 7h.01M17 17h.01M5 5h4v4H5zM15 15h4v4h-4z",
-  "/tools/playlist-readiness": "M9 12l2 2 4-4M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z",
   "/tools/cost-per-stream": "M7 5h10M7 9h10M7 5c4 0 6 1.5 6 4s-2 4-6 4l7 6",
   "/tools/revenue-calculator": "M3 17l5-5 4 4 8-8M15 8h5v5",
 };

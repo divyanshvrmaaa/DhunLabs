@@ -40,5 +40,16 @@ export const stats: Stat[] = [
   },
 ];
 
-/** Words that scroll in the marquee under the proof strip (playlist names are added automatically). */
-export const marqueeExtras = ["Meta Ads", "Spotify", "YouTube", "Conversion Tracking"];
+/** Keywords that scroll in the bar under the proof strip. */
+export const marqueeExtras = [
+  "Meta Ads",
+  "Spotify Playlisting",
+  "YouTube Growth",
+  "Hook-First Ad Creatives",
+  "Conversion Tracking",
+  "Bot-Free Playlists",
+  "Algorithmic Streams",
+  "Release Campaigns",
+  "Punjabi · Desi Hip Hop · Indie · Pop",
+  "Independent Artists",
+];

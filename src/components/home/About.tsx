@@ -5,13 +5,6 @@ import { Reveal } from "../ui/Reveal";
 import { BlurImg } from "../ui/BlurImg";
 import { placeholderFor } from "../../lib/placeholder";
 
-/** Renders *text* as italics (used for the album name in a chip). */
-function withItalics(s: string) {
-  return s.split(/(\*[^*]+\*)/).map((part, i) =>
-    part.startsWith("*") && part.endsWith("*") ? <em key={i}>{part.slice(1, -1)}</em> : <span key={i}>{part}</span>,
-  );
-}
-
 export function About() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -65,13 +58,6 @@ export function About() {
           </div>
           <Reveal>
             <p className="mt-10 font-display text-sm font-semibold tracking-[0.14em] text-ink">{founder.signature}</p>
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {founder.chips.map((c) => (
-                <li key={c} className="rounded-full border border-line-strong bg-white/[0.03] px-4 py-2 text-sm text-ink/85">
-                  {withItalics(c)}
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </div>
       </div>

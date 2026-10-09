@@ -39,13 +39,7 @@ export const pages: PageSeo[] = [
     path: "/tools",
     title: "Free Music Marketing Tools for Independent Artists | DhunLabs",
     description:
-      "Free tools for independent artists: campaign planner, stream estimator, streaming revenue calculator, playlist-readiness checker and cost-per-stream checker.",
-  },
-  {
-    path: "/tools/playlist-readiness",
-    title: "Is Your Song Playlist-Ready? Free Checker | DhunLabs",
-    description:
-      "Answer 10 quick questions and get a playlist-readiness score out of 10, a clear verdict and specific fixes before you pitch your song to Spotify playlists.",
+      "Free tools for independent artists: a campaign planner, a stream estimator, a streaming revenue calculator for India and global, and a cost-per-stream checker.",
   },
   {
     path: "/tools/cost-per-stream",

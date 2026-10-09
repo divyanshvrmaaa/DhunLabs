@@ -35,7 +35,6 @@ export const faqs: FaqItem[] = [
   {
     q: "What do I need before we start?",
     a: "A finished, release-ready song (mixed and mastered) and its Spotify link or release date. For Meta ad campaigns, have 3 to 5 vertical clips of your song ready: they become your ads.",
-    links: [{ label: "Check if your song is ready", href: "/tools/playlist-readiness" }],
   },
   {
     q: "Can you promote a song that isn't out yet?",

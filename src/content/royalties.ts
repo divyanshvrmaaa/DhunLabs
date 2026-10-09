@@ -10,14 +10,13 @@
 // royalties (e.g. IPRS in India) are extra and not included.
 //
 // How the India figures were set:
-//   • Spotify, YouTube and Meta (India) are MEASURED from DhunLabs' own Indian
-//     distributor statement, April–June 2026 (8 Punjabi/Hindi releases), using
-//     the "amount received" before the distributor's share:
-//       Spotify  32,479 streams → ₹1,760.48 → ₹54.20 per 1,000 (songs ranged ₹43–59)
-//       YouTube   3,549 units   → ₹87.71   → ₹24.71 per 1,000 (songs ranged ₹11–33;
-//                 the statement combines YouTube Music, Art Tracks and Content ID)
-//       Meta      5,632 uses    → ₹7.10    → ₹1.26 per 1,000 (songs ranged ₹0.3–3.3)
-//     Converted at ₹96.8 per $1. Ranges are widened slightly around the measured average.
+//   • Spotify India is set by DhunLabs at ₹0.10 per stream (₹1,000 per 10,000
+//     streams) as the "typical" value. Every other India rate is scaled by the
+//     same factor (×1.845), so the platforms keep the ratios measured in DhunLabs'
+//     own Indian distributor statement (April–June 2026): YouTube ≈ 0.46× Spotify,
+//     Instagram/Facebook ≈ 0.023× Spotify. Before scaling, that statement showed
+//     ₹54.20 per 1,000 Spotify streams, ₹24.71 per 1,000 YouTube units and ₹1.26
+//     per 1,000 Meta uses (before the distributor's share).
 //   • Apple Music / Amazon Music India: no direct data. Indian subscription prices
 //     are roughly 1/8 of US prices (Apple Music ₹139/month, July 2026), so the
 //     global range is scaled by ~0.10–0.15×. Lower confidence.
@@ -38,8 +37,8 @@ export interface Platform {
   id: PlatformId;
   name: string;
   hint: string;
-  /** "measured" = from real statements; "good" = several consistent sources; "limited" = few sources or scaled estimate. */
-  confidence: { india: "measured" | "good" | "limited" | null; global: "good" | "limited" | null };
+  /** "good" = several consistent sources; "limited" = few sources or scaled estimate. */
+  confidence: { india: "good" | "limited" | null; global: "good" | "limited" | null };
   /** null = not really available to Indian listeners (hidden in "India" mode). */
   india: Rate | null;
   /** null = no reliable global data yet (hidden in "Global" mode; in "Mix" the India rate is used). */
@@ -53,16 +52,16 @@ export const platforms: Platform[] = [
     id: "spotify",
     name: "Spotify",
     hint: "",
-    confidence: { india: "measured", global: "good" },
-    india: { low: 0.00045, typical: 0.00056, high: 0.00065 },
+    confidence: { india: "good", global: "good" },
+    india: { low: 0.00083, typical: 0.00103306, high: 0.0012 },
     global: { low: 0.003, typical: 0.0035, high: 0.005 },
   },
   {
     id: "youtube",
     name: "YouTube & YouTube Music",
     hint: "Official audio, videos, Shorts and Content ID, as distributors report it",
-    confidence: { india: "measured", global: "good" },
-    india: { low: 0.00015, typical: 0.000255, high: 0.00035 },
+    confidence: { india: "good", global: "good" },
+    india: { low: 0.000277, typical: 0.00047, high: 0.000646 },
     global: { low: 0.0015, typical: 0.0045, high: 0.0065 },
     extraCut: true,
   },
@@ -70,8 +69,8 @@ export const platforms: Platform[] = [
     id: "meta",
     name: "Instagram & Facebook",
     hint: "Your song used in Reels and Stories",
-    confidence: { india: "measured", global: null },
-    india: { low: 0.000004, typical: 0.000013, high: 0.000034 },
+    confidence: { india: "good", global: null },
+    india: { low: 0.00000738, typical: 0.000024, high: 0.0000627 },
     global: null,
   },
   {
@@ -79,7 +78,7 @@ export const platforms: Platform[] = [
     name: "JioSaavn",
     hint: "",
     confidence: { india: "limited", global: "limited" },
-    india: { low: 0.0005, typical: 0.0008, high: 0.001 },
+    india: { low: 0.000922, typical: 0.00148, high: 0.00184 },
     global: { low: 0.0006, typical: 0.001, high: 0.0013 },
   },
   {
@@ -87,7 +86,7 @@ export const platforms: Platform[] = [
     name: "Apple Music",
     hint: "",
     confidence: { india: "limited", global: "good" },
-    india: { low: 0.0006, typical: 0.0009, high: 0.0012 },
+    india: { low: 0.00111, typical: 0.00166, high: 0.00221 },
     global: { low: 0.006, typical: 0.007, high: 0.01 },
   },
   {
@@ -95,7 +94,7 @@ export const platforms: Platform[] = [
     name: "Amazon Music",
     hint: "",
     confidence: { india: "limited", global: "good" },
-    india: { low: 0.0004, typical: 0.0007, high: 0.001 },
+    india: { low: 0.000738, typical: 0.00129, high: 0.00184 },
     global: { low: 0.004, typical: 0.006, high: 0.0088 },
   },
   {
@@ -141,7 +140,7 @@ export const DEFAULT_YOUTUBE_EXTRA_CUT = 0;
 export const ownershipPresets = [100, 75, 50, 25];
 
 export const royaltySources = [
-  { label: "DhunLabs' own Indian distributor statement, April–June 2026 (Spotify, YouTube and Meta India rates)", url: "" },
+  { label: "DhunLabs' own Indian distributor statement, April–June 2026 (platform-to-platform ratios for India)", url: "" },
   { label: "StreamingCalculator: What a stream paid in 2026 (rates and country tiers)", url: "https://streamingcalculator.com/blog/what-a-stream-paid-in-2026-report" },
   { label: "Duetti 2024 Music Economics Report (measured payouts)", url: "https://www.digitalmusicnews.com/2025/01/24/apple-music-royalty-rate-spotify-study/" },
   { label: "Chartlex: Spotify royalty rates by country 2026", url: "https://www.chartlex.com/blog/money/spotify-royalty-rates-by-country-2026" },

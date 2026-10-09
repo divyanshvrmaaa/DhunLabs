@@ -197,7 +197,7 @@ export default function RevenueCalculator() {
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               {visible.map((p) => {
                 const r = rateFor(p, audience, indiaShare);
-                const conf = audience === "global" ? p.confidence.global : audience === "india" ? p.confidence.india : p.confidence.india === "limited" || p.confidence.global === "limited" ? "limited" : p.confidence.india;
+                const conf = audience === "global" ? p.confidence.global : audience === "india" ? p.confidence.india : p.confidence.india === "limited" || p.confidence.global === "limited" ? "limited" : "good";
                 const indiaOnlyInMix = audience === "mix" && !p.global;
                 return (
                   <NumberField
@@ -216,10 +216,9 @@ export default function RevenueCalculator() {
                     }
                     hint={
                       <>
-                        ≈ {per1000(r.low, currency)}–{per1000(r.high, currency)} per 1,000 streams
-                        {conf === "measured" && <span className="ml-1.5 rounded-full border border-accent/40 px-1.5 py-px text-[0.65rem] text-accent">from real statements</span>}
-                        {conf === "limited" && <span className="ml-1.5 rounded-full border border-line-strong px-1.5 py-px text-[0.65rem] text-muted">limited data</span>}
-                        {indiaOnlyInMix && <span className="ml-1.5 text-[0.65rem] text-muted">(India rate; no global data yet)</span>}
+                        <span className="whitespace-nowrap">≈ {per1000(r.low, currency)}–{per1000(r.high, currency)} per 1,000 streams</span>
+                        {conf === "limited" && <span className="ml-1.5 inline-block whitespace-nowrap rounded-full border border-line-strong px-1.5 py-px text-[0.65rem] text-muted">limited data</span>}
+                        {indiaOnlyInMix && <span className="ml-1.5 inline-block whitespace-nowrap text-[0.65rem] text-muted">(India rate only)</span>}
                       </>
                     }
                   />

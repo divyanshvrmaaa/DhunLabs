@@ -1,4 +1,4 @@
-import { featuredCase as fc, receipts, receiptsAsOf, workIntro, type Receipt } from "../../content/caseStudies";
+import { experiment as ex, featuredCase as fc, receipts, receiptsAsOf, workIntro, type Receipt } from "../../content/caseStudies";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Reveal } from "../ui/Reveal";
 import { SmartLink } from "../ui/SmartLink";
@@ -98,6 +98,55 @@ function Featured() {
   );
 }
 
+function Experiment() {
+  return (
+    <article className="card group relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute -right-40 top-0 h-[26rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(29,185,84,0.14),transparent)] blur-3xl" />
+      <div className="relative grid items-center lg:grid-cols-[1.1fr_1fr]">
+        <SmartLink href={ex.video.url} className="block p-3 sm:p-4 lg:p-5" aria-label={`${ex.video.label} on YouTube`}>
+          <div className="relative overflow-hidden rounded-[var(--radius-md)] border border-line">
+            <BlurImg
+              src={`/thumbs/${ex.video.id}.webp`}
+              placeholder={placeholderFor(`/thumbs/${ex.video.id}.webp`)}
+              alt=""
+              width={640}
+              height={360}
+              wrapperClassName="aspect-video"
+              className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-brand)] group-hover:scale-[1.03]"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/5">
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-ink/95 text-bg shadow-2xl transition-transform duration-500 group-hover:scale-110">
+                <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6" aria-hidden>
+                  <path d="M8 5v14l11-7z" fill="currentColor" />
+                </svg>
+              </span>
+            </span>
+          </div>
+        </SmartLink>
+        <div className="p-6 pt-3 sm:p-8 lg:p-10 lg:pl-6">
+          <p className="eyebrow text-accent">{ex.label}</p>
+          <h3 className="mt-4 font-heading text-[1.75rem] font-semibold leading-[1.1] tracking-tight md:text-[2.25rem]">{ex.title}</h3>
+          <p className="mt-4 text-[1rem] leading-relaxed text-muted">{ex.body}</p>
+          <ul className="mt-6 space-y-2.5">
+            {ex.points.map((pt) => (
+              <li key={pt} className="flex gap-3 text-[0.98rem]">
+                <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {pt}
+              </li>
+            ))}
+          </ul>
+          <SmartLink
+            href={ex.video.url}
+            className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-bg transition-colors hover:bg-accent"
+          >
+            {ex.video.label} <span aria-hidden>↗</span>
+          </SmartLink>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 const toneText: Record<Receipt["tone"], string> = { meta: "text-meta", youtube: "text-gold", playlist: "text-accent" };
 const toneBorder: Record<Receipt["tone"], string> = { meta: "hover:border-meta/40", youtube: "hover:border-gold/40", playlist: "hover:border-accent/40" };
 
@@ -132,13 +181,15 @@ function ReceiptCard({ r }: { r: Receipt }) {
 
 export function Work() {
   const large = receipts.filter((r) => r.size === "large");
-  const small = receipts.filter((r) => r.size === "small");
   return (
     <section id="work" aria-labelledby="work-title" className="border-t border-line py-24 md:py-36">
       <div className="container-x">
         <SectionHeader id="work-title" eyebrow={workIntro.eyebrow} title={workIntro.title} />
         <Reveal className="mt-14 md:mt-20">
           <Featured />
+        </Reveal>
+        <Reveal className="mt-5">
+          <Experiment />
         </Reveal>
 
         <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -149,31 +200,6 @@ export function Work() {
           ))}
         </div>
 
-        {small.map((r) => (
-          <Reveal key={r.id} className="mt-5">
-            <article className="card flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-8">
-              <div>
-                <p className={`eyebrow ${toneText[r.tone]}`}>{r.tag} · YouTube</p>
-                <h3 className="mt-3 font-heading text-xl font-semibold tracking-tight md:text-2xl">{r.title}</h3>
-                <p className="mt-2 text-[0.95rem] text-muted">{r.context}</p>
-              </div>
-              <dl className="flex flex-wrap gap-x-10 gap-y-4">
-                <div>
-                  <dt className="sr-only">{r.bigLabel}</dt>
-                  <dd className={`num text-3xl font-semibold ${toneText[r.tone]}`}>{r.big}</dd>
-                  <dd className="text-xs text-muted">{r.bigLabel}</dd>
-                </div>
-                {r.facts.map((f) => (
-                  <div key={f.label}>
-                    <dt className="sr-only">{f.label}</dt>
-                    <dd className="num text-3xl font-semibold">{f.value}</dd>
-                    <dd className="text-xs text-muted">{f.label}</dd>
-                  </div>
-                ))}
-              </dl>
-            </article>
-          </Reveal>
-        ))}
 
         <Reveal className="mt-10">
           <p className="max-w-2xl text-sm text-muted">{workIntro.footer}</p>

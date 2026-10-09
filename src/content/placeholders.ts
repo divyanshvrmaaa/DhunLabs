@@ -8,5 +8,6 @@ export const placeholders: Record<string, string> = {
   "thumb:3FinJRARyTI": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQAgCdASoQAAkAA4BaJQBOiP/wQLqzhIZsAP7mhfW93bwnRCNjMQCMFgpHGtVWCEMsFPT/Vtmczr7BmK2zi8UcUY2ukYEctmx8Pb91ZfFMd4S3fKWL92RRgf5wALQSa3DT9LeNnj2/W25oYAA=",
   "thumb:3nq8tMKMDwg": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAwAgCdASoQAAkAA4BaJZAC7AEVYm35SD76AAD+8jVr7poRk4wsYivYtUY3e4+EePRQHwNIPAs2wbYap8FocXAy1Qj7gP8/45VYYjB3zdOha4BHRDkB+si5zQHAAAAA",
   "thumb:A_D18IaKgPw": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAQCdASoQAAkAA4BaJYgCdADHmPZlsgD+volic8q0xBoM6R6r7yxcpP7Z752TvNdSOHF/NkuyUJpN4C10gvC7Lb7AAtFr/GzHeHlDu0aNUSAWet8MqR0sIeW85PabT/FrdnggAAA=",
-  "thumb:VA5XiZy0GCw": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQAAkAA4BaJZACdADpLDxdICQAAP7useXmml2YEIxwGEFDkiZ5kLwdtNakAnkzDjgZKBg9jSVwmwGhlun+tNwGBiRzct+t2/Xwrvc8GR/FHSwA"
+  "thumb:VA5XiZy0GCw": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQAAkAA4BaJZACdADpLDxdICQAAP7useXmml2YEIxwGEFDkiZ5kLwdtNakAnkzDjgZKBg9jSVwmwGhlun+tNwGBiRzct+t2/Xwrvc8GR/FHSwA",
+  "thumb:_buZHdVwI1E": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABwAgCdASoQAAkAA4BaJZgCdAYrn25r88MeAaVAAP7vjxZvNoOUQO5aTsseh0SBQ24iKfxA+LYpMK/sf9TomTO609GZyd4k/nu/X2c3BNzlYjK8Y6O9LtS9noQS+6GqV0Kre0IeyMI4KmeoAAA="
 };

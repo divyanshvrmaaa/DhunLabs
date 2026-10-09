@@ -1,6 +1,5 @@
 import { useId, useState } from "react";
 import { stats, marqueeExtras } from "../../content/stats";
-import { playlists } from "../../content/playlists";
 import { AnimatedNumber } from "../ui/AnimatedNumber";
 import { Reveal } from "../ui/Reveal";
 
@@ -38,7 +37,7 @@ function StatNote({ note }: { note: string }) {
 }
 
 export function ProofStrip() {
-  const items = [...playlists.map((p) => p.name), ...marqueeExtras.map((m) => m)];
+  const items = marqueeExtras;
   return (
     <section aria-label="Results at a glance" className="relative border-y border-line">
       <div className="container-x grid grid-cols-2 lg:grid-cols-4">
@@ -71,7 +70,7 @@ export function ProofStrip() {
         ))}
       </div>
 
-      <div className="relative overflow-hidden border-t border-line py-5" aria-label="Our playlists and channels">
+      <div className="relative overflow-hidden border-t border-line py-5" aria-label="What we do">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-bg to-transparent md:w-40" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-bg to-transparent md:w-40" />
         <div className="animate-marquee flex w-max motion-reduce:animate-none">

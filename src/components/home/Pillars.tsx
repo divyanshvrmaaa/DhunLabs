@@ -12,6 +12,45 @@ const tone: Record<Pillar["id"], { text: string; glow: string; ring: string }> =
   youtube: { text: "text-gold", glow: "rgba(245,200,66,0.16)", ring: "group-hover:border-gold/40" },
 };
 
+function Metric({ p, big }: { p: Pillar; big?: boolean }) {
+  const t = tone[p.id];
+  return (
+    <div>
+      <p className={`num font-semibold leading-none ${big ? "text-[clamp(4rem,10vw,7.5rem)]" : "text-5xl"} ${t.text}`}>{p.metric}</p>
+      <p className="mt-2 text-sm text-muted">{p.metricLabel}</p>
+    </div>
+  );
+}
+
+function Cta({ p }: { p: Pillar }) {
+  return (
+    <SmartLink
+      href={p.cta.href}
+      className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line-strong px-4 text-sm font-medium transition-colors hover:border-white/30 hover:bg-white/5"
+    >
+      {p.cta.label} <span aria-hidden>→</span>
+    </SmartLink>
+  );
+}
+
+function MetaFlow() {
+  return (
+    <ol className="mt-8 hidden gap-2 sm:grid sm:grid-cols-4" aria-label="How a campaign flows">
+      {["Your track's hook", "Targeted Meta ad", "Tracked visit", "Save & replay"].map((step, i) => (
+        <li key={step} className="relative rounded-xl border border-line bg-white/[0.02] p-4 transition-colors duration-500 group-hover:border-meta/30">
+          <span className="num text-xs text-meta">{String(i + 1).padStart(2, "0")}</span>
+          <p className="mt-3 text-sm font-medium leading-snug">{step}</p>
+          {i < 3 && (
+            <span aria-hidden className="absolute -right-2 top-1/2 z-10 -translate-y-1/2 text-xs text-meta">
+              →
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
   const t = tone[p.id];
   return (
@@ -28,28 +67,27 @@ function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
         <span className={`eyebrow ${t.text}`}>{p.title}</span>
       </div>
 
-      <h3 className={`relative mt-6 font-heading font-semibold tracking-tight ${big ? "text-3xl md:text-[2.6rem] md:leading-[1.05]" : "text-2xl md:text-[1.75rem] md:leading-tight"}`}>
-        {p.subtitle}
-      </h3>
-      <p className="relative mt-4 max-w-xl text-pretty leading-relaxed text-muted">{p.body}</p>
-
-      {p.id === "meta" && big && (
-        <ol className="relative mt-10 hidden gap-2 sm:grid sm:grid-cols-4" aria-label="How a campaign flows">
-          {["Your track's hook", "Targeted Meta ad", "Tracked visit", "Save & replay"].map((step, i) => (
-            <li key={step} className="relative rounded-xl border border-line bg-white/[0.02] p-4 transition-colors duration-500 group-hover:border-meta/30">
-              <span className="num text-xs text-meta">{String(i + 1).padStart(2, "0")}</span>
-              <p className="mt-3 text-sm font-medium leading-snug">{step}</p>
-              {i < 3 && (
-                <span aria-hidden className="absolute -right-2 top-1/2 z-10 -translate-y-1/2 text-xs text-meta">
-                  →
-                </span>
-              )}
-            </li>
-          ))}
-        </ol>
+      {big ? (
+        <div className="relative mt-6 grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-end lg:gap-14">
+          <div>
+            <h3 className="font-heading text-3xl font-semibold tracking-tight md:text-[2.6rem] md:leading-[1.05]">{p.subtitle}</h3>
+            <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted">{p.body}</p>
+            {p.id === "meta" && <MetaFlow />}
+          </div>
+          <div className="flex flex-wrap items-end justify-between gap-4 lg:flex-col lg:items-end lg:text-right">
+            <Metric p={p} big />
+            <Cta p={p} />
+          </div>
+        </div>
+      ) : (
+        <>
+          <h3 className="relative mt-6 font-heading text-2xl font-semibold tracking-tight md:text-[1.75rem] md:leading-tight">{p.subtitle}</h3>
+          <p className="relative mt-4 max-w-xl text-pretty leading-relaxed text-muted">{p.body}</p>
+        </>
       )}
+
       {p.id === "spotify" && (
-        <div className="relative mt-6 flex -space-x-3" aria-hidden>
+        <div className="relative mt-6 flex -space-x-4" aria-hidden>
           {playlists.map((pl) =>
             pl.cover ? (
               <img
@@ -59,7 +97,7 @@ function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
                 width={56}
                 height={56}
                 loading="lazy"
-                className="h-14 w-14 rounded-lg border-2 border-surface object-cover shadow-lg transition-transform duration-500 group-hover:-translate-y-1"
+                className="h-20 w-20 rounded-xl border-2 border-surface object-cover shadow-lg transition-transform duration-500 group-hover:-translate-y-1 md:h-24 md:w-24"
                 style={phStyle(pl.cover)}
               />
             ) : null,
@@ -83,18 +121,12 @@ function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
         </div>
       )}
 
-      <div className={`relative mt-auto flex flex-wrap items-end justify-between gap-4 ${big ? "pt-12" : "pt-8"}`}>
-        <div>
-          <p className={`num font-semibold leading-none ${big ? "text-[clamp(4rem,10vw,7.5rem)]" : "text-5xl"} ${t.text}`}>{p.metric}</p>
-          <p className="mt-2 text-sm text-muted">{p.metricLabel}</p>
+      {!big && (
+        <div className="relative mt-auto flex flex-wrap items-end justify-between gap-4 pt-8">
+          <Metric p={p} />
+          <Cta p={p} />
         </div>
-        <SmartLink
-          href={p.cta.href}
-          className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line-strong px-4 text-sm font-medium transition-colors hover:border-white/30 hover:bg-white/5"
-        >
-          {p.cta.label} <span aria-hidden>→</span>
-        </SmartLink>
-      </div>
+      )}
     </article>
   );
 }
@@ -105,14 +137,14 @@ export function Pillars() {
     <section id="services" aria-labelledby="services-title" className="py-24 md:py-36">
       <div className="container-x">
         <SectionHeader id="services-title" eyebrow={pillarsIntro.eyebrow} title={pillarsIntro.title} body={pillarsIntro.body} />
-        <div className="mt-14 grid gap-4 md:mt-20 md:gap-5 lg:grid-cols-5 lg:grid-rows-2">
-          <Reveal className="lg:col-span-3 lg:row-span-2">
+        <div className="mt-14 grid gap-4 md:mt-20 md:grid-cols-2 md:gap-5">
+          <Reveal className="md:col-span-2">
             <PillarCard p={meta} big />
           </Reveal>
-          <Reveal delay={0.08} className="lg:col-span-2">
+          <Reveal delay={0.08}>
             <PillarCard p={spotify} />
           </Reveal>
-          <Reveal delay={0.16} className="lg:col-span-2">
+          <Reveal delay={0.16}>
             <PillarCard p={youtube} />
           </Reveal>
         </div>

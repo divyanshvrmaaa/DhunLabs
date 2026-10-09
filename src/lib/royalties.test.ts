@@ -6,18 +6,17 @@ const base = { audience: "india" as const, indiaShare: 70, distributorKeep: 100,
 const get = (id: string) => platforms.find((p) => p.id === id)!;
 
 describe("streaming revenue calculator", () => {
-  it("matches the measured Indian statement (Apr–Jun 2026) within rounding", () => {
-    // 32,479 Spotify streams paid ₹1,760.48 before the distributor's share
-    const r = calculateRevenue({ ...base, streams: { spotify: 32479 } });
-    expect(r.totals.gross.typical).toBeGreaterThan(1760.48 * 0.97);
-    expect(r.totals.gross.typical).toBeLessThan(1760.48 * 1.03);
-    // 3,549 YouTube units paid ₹87.71
-    const y = calculateRevenue({ ...base, streams: { youtube: 3549 } });
-    expect(y.totals.gross.typical).toBeGreaterThan(87.71 * 0.95);
-    expect(y.totals.gross.typical).toBeLessThan(87.71 * 1.05);
+  it("Spotify India: ₹0.10 per stream typical (₹1,000 per 10,000 streams)", () => {
+    const r = calculateRevenue({ ...base, streams: { spotify: 10000 } });
+    expect(Math.round(r.totals.gross.typical)).toBe(1000);
     // With an 85% split, take-home is 85% of gross
-    const k = calculateRevenue({ ...base, distributorKeep: 85, streams: { spotify: 32479 } });
+    const k = calculateRevenue({ ...base, distributorKeep: 85, streams: { spotify: 10000 } });
     expect(k.totals.you.typical).toBeCloseTo(r.totals.gross.typical * 0.85, 6);
+  });
+
+  it("other India platforms keep their ratio to Spotify from the statement", () => {
+    const sp = get("spotify").india!.typical;
+    expect(get("youtube").india!.typical / sp).toBeCloseTo(24.71 / 54.2, 1);
   });
 
   it("distributor keep %, ownership and the extra YouTube cut", () => {
@@ -50,7 +49,7 @@ describe("streaming revenue calculator", () => {
     expect(formatMoney(67.76, "INR")).toBe("₹67.76");
     expect(formatMoney(USD_TO_INR * 2500, "USD")).toBe("$2,500");
     expect(formatMoney(0, "INR")).toBe("₹0");
-    expect(per1000(0.00056, "INR")).toBe("₹54");
+    expect(per1000(0.00103306, "INR")).toBe("₹100");
     expect(per1000(0.0035, "USD")).toBe("$3.50");
   });
 });

@@ -80,12 +80,12 @@ Open `src/content/pricing.ts`. **Visitors never see these numbers.** They only s
 Open `src/content/faq.ts`. Each question is a block with `q` (question) and `a` (answer). `links` adds optional buttons under the answer. Google also reads these automatically.
 
 ### Update the Streaming Revenue Calculator rates
-Open `src/content/royalties.ts`. Spotify, YouTube and Instagram/Facebook for Indian listeners come from your own distributor statement (April–June 2026); when a new statement arrives, ask Claude "update the revenue calculator from this statement" and attach it. Each platform has an `india` and a `global` rate in **US dollars per stream**, with a `low`, `typical` and `high` value (e.g. `typical: 0.0007` = $0.0007 = about ₹0.07 per stream).
+Open `src/content/royalties.ts`. Spotify for Indian listeners is set at ₹0.10 per stream (typical); the other India rates keep the platform ratios from your April–June 2026 distributor statement. To change the level, ask Claude "set Spotify India to ₹X per stream and scale the others". Each platform has an `india` and a `global` rate in **US dollars per stream**, with a `low`, `typical` and `high` value (e.g. `typical: 0.0007` = $0.0007 = about ₹0.07 per stream).
 - No platform publishes official rates; these come from the industry sources listed at the bottom of that file (and on the page). Your own distributor statements are the best data: if your Spotify India statements show ₹60 per 1,000 streams, that's `60 / 96.8 / 1000 ≈ 0.00062`.
 - `confidence: "limited"` shows a small "limited data" tag next to that platform.
 - `india: null` hides a platform when "India" is selected (Deezer and Tidal); `global: null` hides it when "Global" is selected (Instagram & Facebook, until there's global data).
 - `USD_TO_INR` is the exchange rate (₹96.8 on 8 Oct 2026). Update it now and then.
-- After changing rates, run `npm test`. One test checks the calculator still reproduces the April–June 2026 statement, so update `src/lib/royalties.test.ts` if you change those rates (or ask Claude).
+- After changing rates, run `npm test`. One test checks Spotify India is ₹0.10 per stream, so update `src/lib/royalties.test.ts` if you change those rates (or ask Claude).
 
 ---
 

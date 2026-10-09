@@ -14,7 +14,6 @@ const Playlists = lazy(() => import("./pages/Playlists"));
 const Planner = lazy(() => import("./pages/Planner"));
 const Estimator = lazy(() => import("./pages/Estimator"));
 const ToolsHub = lazy(() => import("./pages/ToolsHub"));
-const PlaylistReadiness = lazy(() => import("./pages/tools/PlaylistReadiness"));
 const CostPerStream = lazy(() => import("./pages/tools/CostPerStream"));
 const RevenueCalculator = lazy(() => import("./pages/tools/RevenueCalculator"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -89,7 +88,6 @@ export function AppRoutes() {
             <Route path="planner" element={<Planner />} />
             <Route path="estimator" element={<Estimator />} />
             <Route path="tools" element={<ToolsHub />} />
-            <Route path="tools/playlist-readiness" element={<PlaylistReadiness />} />
             <Route path="tools/cost-per-stream" element={<CostPerStream />} />
             <Route path="tools/revenue-calculator" element={<RevenueCalculator />} />
             <Route path="*" element={<NotFound />} />
