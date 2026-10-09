@@ -8,6 +8,7 @@ const icons: Record<string, string> = {
   "/tools/playlist-readiness": "M9 12l2 2 4-4M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z",
   "/tools/cost-per-stream": "M7 5h10M7 9h10M7 5c4 0 6 1.5 6 4s-2 4-6 4l7 6",
   "/tools/pitch-writer": "M4 20h4L19 9l-4-4L4 16v4Zm10-14 4 4",
+  "/tools/revenue-calculator": "M3 17l5-5 4 4 8-8M15 8h5v5",
 };
 
 export function ToolCardLink({ t, featured, headingLevel = "h3" }: { t: ToolCard; featured?: boolean; headingLevel?: "h2" | "h3" }) {

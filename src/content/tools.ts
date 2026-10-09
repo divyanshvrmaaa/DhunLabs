@@ -30,15 +30,18 @@ export interface ToolCard {
   title: string;
   benefit: string;
   tag: string;
+  /** Spans two columns on the tools hub (desktop). */
+  wide?: boolean;
 }
 
 export const toolsHub = {
   badge: "FREE TOOLS",
   title: "Free tools for independent artists.",
-  sub: "Plan a release, check a song, sanity-check your ad results and write your Spotify pitch. Everything runs in your browser: no sign-up, nothing stored.",
+  sub: "Plan a release, check a song, see what your streams earn, sanity-check your ad results and write your Spotify pitch. Everything runs in your browser: no sign-up, nothing stored.",
   cards: [
-    { href: "/planner", title: "Campaign Planner", benefit: "Enter a budget, get an honest plan and a stream estimate.", tag: "Budget → plan" },
+    { href: "/planner", title: "Campaign Planner", benefit: "Enter a budget, get an honest plan and a stream estimate.", tag: "Budget → plan", wide: true },
     { href: "/estimator", title: "Stream Estimator", benefit: "Enter a stream goal, see the budget it takes.", tag: "Goal → budget" },
+    { href: "/tools/revenue-calculator", title: "Streaming Revenue Calculator", benefit: "What your streams earn on each platform, for Indian or global listeners, after your distributor's cut.", tag: "Streams → ₹", wide: true },
     { href: "/tools/release-roadmap", title: "Release Roadmap", benefit: "A dated checklist from 6 weeks before release to 4 weeks after.", tag: "Calendar" },
     { href: "/tools/playlist-readiness", title: "Playlist-Readiness Checker", benefit: "10 quick questions. Find out if your song is ready to pitch.", tag: "Score /10" },
     { href: "/tools/cost-per-stream", title: "Cost-Per-Stream Checker", benefit: "Check if a past campaign paid a fair price per stream.", tag: "₹ per stream" },
@@ -49,7 +52,7 @@ export const toolsHub = {
 /** Home page strip: four of the hub cards. */
 export const homeToolsStrip = {
   title: "Free tools for independent artists",
-  hrefs: ["/planner", "/estimator", "/tools/release-roadmap", "/tools/pitch-writer"],
+  hrefs: ["/planner", "/estimator", "/tools/revenue-calculator", "/tools/release-roadmap"],
 };
 
 // ── Release Roadmap ──

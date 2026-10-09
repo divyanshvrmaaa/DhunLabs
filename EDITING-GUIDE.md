@@ -25,6 +25,7 @@ You have two options for every change below:
 | Plan names and what each plan includes | `src/content/plans.ts` |
 | **Pricing model** (planner and estimator maths) | `src/content/pricing.ts` |
 | Free tools text (roadmap tasks, readiness questions, pitch limit) | `src/content/tools.ts` |
+| Streaming Revenue Calculator rates (per platform, India/global), ₹–$ rate, distributor presets | `src/content/royalties.ts` |
 | Page titles and Google descriptions | `src/content/seo.ts` |
 
 ---
@@ -73,6 +74,14 @@ Open `src/content/pricing.ts`. **Visitors never see these numbers.** They only s
 - `TYPICAL_CPS_LOW` / `TYPICAL_CPS_HIGH` / `SUSPICIOUS_CPS_BELOW`: used by the Cost-Per-Stream Checker.
 
 **After changing the model**, the automated tests (which check your section 11 table) will fail on purpose if the numbers move. Ask Claude to "update the pricing tests to the new model", or edit `src/lib/estimate.test.ts`. Run the tests with `npm test`.
+
+### Update the Streaming Revenue Calculator rates
+Open `src/content/royalties.ts`. Each platform has an `india` and a `global` rate in **US dollars per stream**, with a `low`, `typical` and `high` value (e.g. `typical: 0.0007` = $0.0007 = about ₹0.07 per stream).
+- No platform publishes official rates; these come from the industry sources listed at the bottom of that file (and on the page). Your own distributor statements are the best data: if your Spotify India statements show ₹60 per 1,000 streams, that's `60 / 96.8 / 1000 ≈ 0.00062`.
+- `confidence: "limited"` shows a small "limited data" tag next to that platform.
+- `india: null` hides a platform when "India" is selected (Deezer and Tidal).
+- `USD_TO_INR` is the exchange rate (₹96.8 on 8 Oct 2026). Update it now and then.
+- After changing rates, run `npm test`. Two tests check the Spotify India maths, so update `src/lib/royalties.test.ts` if you change those rates (or ask Claude).
 
 ### Change the Spotify pitch character limit
 `src/content/tools.ts` → `PITCH_CHAR_LIMIT = 500`. (500 is widely cited; Spotify's help article doesn't state it, so check the pitch form itself.)

@@ -65,6 +65,12 @@ export const pages: PageSeo[] = [
     description:
       "Fill in a few short fields and get a clean Spotify for Artists editorial pitch with a live character counter. Copy it straight into your pitch form. Free.",
   },
+  {
+    path: "/tools/revenue-calculator",
+    title: "Streaming Revenue Calculator (India & Global) | DhunLabs",
+    description:
+      "Estimate what your Spotify, YouTube, JioSaavn, Apple Music and Amazon streams earn for Indian or global listeners, after your distributor's cut and splits.",
+  },
 ];
 
 export const notFoundSeo: PageSeo = {
