@@ -24,8 +24,9 @@ You have two options for every change below:
 | "My Story" text, chips, photo | `src/content/founder.ts` |
 | Plan names and what each plan includes | `src/content/plans.ts` |
 | **Pricing model** (planner and estimator maths) | `src/content/pricing.ts` |
-| Free tools text (roadmap tasks, readiness questions, pitch limit) | `src/content/tools.ts` |
+| Free tools text (tools hub cards, readiness questions) | `src/content/tools.ts` |
 | Streaming Revenue Calculator rates (per platform, India/global), ₹–$ rate, distributor presets | `src/content/royalties.ts` |
+| FAQ questions and answers | `src/content/faq.ts` |
 | Page titles and Google descriptions | `src/content/seo.ts` |
 
 ---
@@ -75,16 +76,16 @@ Open `src/content/pricing.ts`. **Visitors never see these numbers.** They only s
 
 **After changing the model**, the automated tests (which check your section 11 table) will fail on purpose if the numbers move. Ask Claude to "update the pricing tests to the new model", or edit `src/lib/estimate.test.ts`. Run the tests with `npm test`.
 
+### Add or edit an FAQ
+Open `src/content/faq.ts`. Each question is a block with `q` (question) and `a` (answer). `links` adds optional buttons under the answer. Google also reads these automatically.
+
 ### Update the Streaming Revenue Calculator rates
-Open `src/content/royalties.ts`. Each platform has an `india` and a `global` rate in **US dollars per stream**, with a `low`, `typical` and `high` value (e.g. `typical: 0.0007` = $0.0007 = about ₹0.07 per stream).
+Open `src/content/royalties.ts`. Spotify, YouTube and Instagram/Facebook for Indian listeners come from your own distributor statement (April–June 2026); when a new statement arrives, ask Claude "update the revenue calculator from this statement" and attach it. Each platform has an `india` and a `global` rate in **US dollars per stream**, with a `low`, `typical` and `high` value (e.g. `typical: 0.0007` = $0.0007 = about ₹0.07 per stream).
 - No platform publishes official rates; these come from the industry sources listed at the bottom of that file (and on the page). Your own distributor statements are the best data: if your Spotify India statements show ₹60 per 1,000 streams, that's `60 / 96.8 / 1000 ≈ 0.00062`.
 - `confidence: "limited"` shows a small "limited data" tag next to that platform.
-- `india: null` hides a platform when "India" is selected (Deezer and Tidal).
+- `india: null` hides a platform when "India" is selected (Deezer and Tidal); `global: null` hides it when "Global" is selected (Instagram & Facebook, until there's global data).
 - `USD_TO_INR` is the exchange rate (₹96.8 on 8 Oct 2026). Update it now and then.
-- After changing rates, run `npm test`. Two tests check the Spotify India maths, so update `src/lib/royalties.test.ts` if you change those rates (or ask Claude).
-
-### Change the Spotify pitch character limit
-`src/content/tools.ts` → `PITCH_CHAR_LIMIT = 500`. (500 is widely cited; Spotify's help article doesn't state it, so check the pitch form itself.)
+- After changing rates, run `npm test`. One test checks the calculator still reproduces the April–June 2026 statement, so update `src/lib/royalties.test.ts` if you change those rates (or ask Claude).
 
 ---
 
@@ -104,7 +105,7 @@ Or simply tell Claude: "Change X, show me the preview, then deploy."
 
 ## Good to know
 
-- **Pre-rendering:** when the site is built, every page (except the Release Roadmap, which depends on today's date) is turned into ready-made HTML, so text appears instantly on slow phones and Google can read it. You don't need to do anything for this; it happens on every build.
+- **Pre-rendering:** when the site is built, every page is turned into ready-made HTML, so text appears instantly on slow phones and Google can read it. You don't need to do anything for this; it happens on every build.
 
 - **Images:** originals live in `assets-src/`; `npm run images` makes the small WebP versions in `public/`. Don't put huge photos straight into `public/`.
 - **Analytics:** Vercel Analytics only (privacy-friendly). Custom events record form-button clicks, planner/estimator results (plan name and a budget bucket only, never the exact amount) and tool usage. No Meta Pixel or other trackers.

@@ -7,8 +7,8 @@ import { SmartLink } from "../ui/SmartLink";
 import { phStyle } from "../../lib/placeholder";
 
 const tone: Record<Pillar["id"], { text: string; glow: string; ring: string }> = {
-  meta: { text: "text-accent", glow: "rgba(29,185,84,0.20)", ring: "group-hover:border-accent/40" },
-  spotify: { text: "text-violet", glow: "rgba(155,110,255,0.20)", ring: "group-hover:border-violet/40" },
+  meta: { text: "text-meta", glow: "rgba(76,141,255,0.22)", ring: "group-hover:border-meta/40" },
+  spotify: { text: "text-accent", glow: "rgba(29,185,84,0.20)", ring: "group-hover:border-accent/40" },
   youtube: { text: "text-gold", glow: "rgba(245,200,66,0.16)", ring: "group-hover:border-gold/40" },
 };
 
@@ -36,11 +36,11 @@ function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
       {p.id === "meta" && big && (
         <ol className="relative mt-10 hidden gap-2 sm:grid sm:grid-cols-4" aria-label="How a campaign flows">
           {["Your track's hook", "Targeted Meta ad", "Tracked visit", "Save & replay"].map((step, i) => (
-            <li key={step} className="relative rounded-xl border border-line bg-white/[0.02] p-4 transition-colors duration-500 group-hover:border-accent/25">
-              <span className="num text-xs text-accent">{String(i + 1).padStart(2, "0")}</span>
+            <li key={step} className="relative rounded-xl border border-line bg-white/[0.02] p-4 transition-colors duration-500 group-hover:border-meta/30">
+              <span className="num text-xs text-meta">{String(i + 1).padStart(2, "0")}</span>
               <p className="mt-3 text-sm font-medium leading-snug">{step}</p>
               {i < 3 && (
-                <span aria-hidden className="absolute -right-2 top-1/2 z-10 -translate-y-1/2 text-xs text-accent">
+                <span aria-hidden className="absolute -right-2 top-1/2 z-10 -translate-y-1/2 text-xs text-meta">
                   →
                 </span>
               )}

@@ -16,7 +16,7 @@ export const stats: Stat[] = [
     value: 25,
     prefix: "~",
     suffix: "K",
-    label: "monthly listeners reached by a Punjabi artist in 30 days, from zero",
+    label: "monthly listeners for a Punjabi artist in 30 days, starting from zero",
     note: "Harman Sohi campaign · as of Oct 2026",
   },
   {

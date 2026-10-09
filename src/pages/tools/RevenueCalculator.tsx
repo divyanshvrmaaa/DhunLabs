@@ -7,8 +7,8 @@ import { MobileResultBar } from "../../components/planner/MobileResultBar";
 import { AnimatedNumber } from "../../components/ui/AnimatedNumber";
 import { Button } from "../../components/ui/Button";
 import {
-  contentIdCutPresets,
-  DEFAULT_CONTENT_ID_CUT,
+  youtubeExtraCutPresets,
+  DEFAULT_YOUTUBE_EXTRA_CUT,
   DEFAULT_INDIA_SHARE,
   distributorPresets,
   ownershipPresets,
@@ -54,17 +54,17 @@ function Toggle<T extends string>({ label, value, options, onChange }: { label: 
 export default function RevenueCalculator() {
   const [audience, setAudience] = useState<Audience>("india");
   const [indiaShare, setIndiaShare] = useState(DEFAULT_INDIA_SHARE);
-  const [streams, setStreams] = useState<Partial<Record<PlatformId, number>>>({ spotify: 100000, youtubeMusic: 20000, jiosaavn: 10000 });
+  const [streams, setStreams] = useState<Partial<Record<PlatformId, number>>>({ spotify: 100000, youtube: 20000, meta: 10000 });
   const [keep, setKeep] = useState(100);
-  const [contentIdCut, setContentIdCut] = useState(DEFAULT_CONTENT_ID_CUT);
+  const [youtubeExtraCut, setYoutubeExtraCut] = useState(DEFAULT_YOUTUBE_EXTRA_CUT);
   const [ownership, setOwnership] = useState(100);
   const [currency, setCurrency] = useState<Currency>("INR");
   const [period, setPeriod] = useState<Period>("total");
 
   const visible = platformsFor(audience);
   const result = useMemo(
-    () => calculateRevenue({ audience, indiaShare, streams, distributorKeep: keep, contentIdCut, ownership }),
-    [audience, indiaShare, streams, keep, contentIdCut, ownership],
+    () => calculateRevenue({ audience, indiaShare, streams, distributorKeep: keep, youtubeExtraCut, ownership }),
+    [audience, indiaShare, streams, keep, youtubeExtraCut, ownership],
   );
   const t = result.totals;
   const money = (n: number) => formatMoney(n, currency);
@@ -197,7 +197,8 @@ export default function RevenueCalculator() {
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               {visible.map((p) => {
                 const r = rateFor(p, audience, indiaShare);
-                const conf = audience === "global" || !p.india ? p.confidence.global : audience === "india" ? p.confidence.india : p.confidence.india === "good" && p.confidence.global === "good" ? "good" : "limited";
+                const conf = audience === "global" ? p.confidence.global : audience === "india" ? p.confidence.india : p.confidence.india === "limited" || p.confidence.global === "limited" ? "limited" : p.confidence.india;
+                const indiaOnlyInMix = audience === "mix" && !p.global;
                 return (
                   <NumberField
                     key={p.id}
@@ -216,7 +217,9 @@ export default function RevenueCalculator() {
                     hint={
                       <>
                         ≈ {per1000(r.low, currency)}–{per1000(r.high, currency)} per 1,000 streams
-                        {conf === "limited" && <span className="ml-1.5 rounded-full border border-gold/30 px-1.5 py-px text-[0.65rem] text-gold">limited data</span>}
+                        {conf === "measured" && <span className="ml-1.5 rounded-full border border-accent/40 px-1.5 py-px text-[0.65rem] text-accent">from real statements</span>}
+                        {conf === "limited" && <span className="ml-1.5 rounded-full border border-line-strong px-1.5 py-px text-[0.65rem] text-muted">limited data</span>}
+                        {indiaOnlyInMix && <span className="ml-1.5 text-[0.65rem] text-muted">(India rate; no global data yet)</span>}
                       </>
                     }
                   />
@@ -263,12 +266,12 @@ export default function RevenueCalculator() {
               </div>
             </div>
 
-            {visible.some((p) => p.contentId) && (
+            {visible.some((p) => p.extraCut) && (
               <div className="mt-7 border-t border-line pt-6">
-                <p className="text-sm font-medium text-ink">YouTube Content ID cut</p>
-                <p className="mt-0.5 text-xs text-muted">Many distributors take 10–20% of Content ID, even on "keep 100%" plans.</p>
+                <p className="text-sm font-medium text-ink">Extra cut on YouTube</p>
+                <p className="mt-0.5 text-xs text-muted">Some distributors take an extra 10–20% of YouTube Content ID, even on "keep 100%" plans. Leave at 0% if yours doesn't.</p>
                 <div className="mt-3">
-                  <Chips label="Content ID cut" values={contentIdCutPresets} current={contentIdCut} onPick={setContentIdCut} format={(n) => `${n}%`} />
+                  <Chips label="Extra YouTube cut" values={youtubeExtraCutPresets} current={youtubeExtraCut} onPick={setYoutubeExtraCut} format={(n) => `${n}%`} />
                 </div>
               </div>
             )}
@@ -321,8 +324,8 @@ export default function RevenueCalculator() {
             <div className="relative mt-7">
               <div className="flex h-3 overflow-hidden rounded-full bg-white/10" aria-hidden>
                 <motion.div className="h-full bg-accent" animate={{ width: `${shares.you * 100}%` }} transition={{ duration: 0.5 }} />
-                <motion.div className="h-full bg-violet" animate={{ width: `${shares.others * 100}%` }} transition={{ duration: 0.5 }} />
-                <motion.div className="h-full bg-gold" animate={{ width: `${shares.dist * 100}%` }} transition={{ duration: 0.5 }} />
+                <motion.div className="h-full bg-ink/50" animate={{ width: `${shares.others * 100}%` }} transition={{ duration: 0.5 }} />
+                <motion.div className="h-full bg-dim" animate={{ width: `${shares.dist * 100}%` }} transition={{ duration: 0.5 }} />
               </div>
               <dl className="mt-4 grid grid-cols-3 gap-3 text-sm">
                 <div>
@@ -333,13 +336,13 @@ export default function RevenueCalculator() {
                 </div>
                 <div>
                   <dt className="flex items-center gap-1.5 text-xs text-muted">
-                    <span className="h-2 w-2 rounded-full bg-violet" /> Co-owners / label
+                    <span className="h-2 w-2 rounded-full bg-ink/50" /> Co-owners / label
                   </dt>
                   <dd className="num font-semibold">{money(t.others.typical)}</dd>
                 </div>
                 <div>
                   <dt className="flex items-center gap-1.5 text-xs text-muted">
-                    <span className="h-2 w-2 rounded-full bg-gold" /> Distributor
+                    <span className="h-2 w-2 rounded-full bg-dim" /> Distributor
                   </dt>
                   <dd className="num font-semibold">{money(t.distributor.typical)}</dd>
                 </div>

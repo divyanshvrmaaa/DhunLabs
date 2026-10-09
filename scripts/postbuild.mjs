@@ -8,14 +8,15 @@ import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { pages, notFoundSeo, SITE_URL } from "../src/content/seo.ts";
+import { faqs } from "../src/content/faq.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
 const dist = path.join(root, "dist");
 const template = await readFile(path.join(dist, "index.html"), "utf8");
 const { render } = await import(pathToFileURL(path.join(root, "dist-ssr", "entry-server.js")).href);
 
-/** Pages whose content depends on today's date are rendered in the browser only. */
-const NO_PRERENDER = new Set(["/tools/release-roadmap"]);
+/** Pages whose content depends on today's date (or similar) are rendered in the browser only. Add paths here if needed. */
+const NO_PRERENDER = new Set([]);
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
@@ -46,6 +47,15 @@ function renderMeta(page) {
     };
     html = html.replace("</head>", `    <script type="application/ld+json">${JSON.stringify(ld)}</script>\n  </head>`);
   }
+  // Home page: tell Google about the FAQ
+  if (page.path === "/") {
+    const faqLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    };
+    html = html.replace("</head>", `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`);
+  }
   return html;
 }
 
@@ -55,7 +65,7 @@ for (const page of pages) {
     const body = await render(page.path);
     html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
   }
-  // "/" → index.html, "/tools/pitch-writer" → tools/pitch-writer.html (Vercel cleanUrls serves it at /tools/pitch-writer)
+  // "/" → index.html, "/tools/cost-per-stream" → tools/cost-per-stream.html (Vercel cleanUrls serves it at /tools/cost-per-stream)
   const file = page.path === "/" ? path.join(dist, "index.html") : path.join(dist, `${page.path}.html`);
   await mkdir(path.dirname(file), { recursive: true });
   await writeFile(file, html);

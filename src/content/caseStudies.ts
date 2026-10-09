@@ -5,7 +5,7 @@
 export const workIntro = {
   eyebrow: "Work",
   title: "The Numbers Don't Lie.",
-  footer: "More campaigns are running right now. We don't publish client rosters; we protect client data.",
+  footer: "More campaigns are live right now. We don't publish client lists, to protect our artists' data.",
 };
 
 export const featuredCase = {
@@ -45,6 +45,8 @@ export interface Receipt {
   context: string;
   metricNote: string | null;
   size: "large" | "small";
+  /** Service colour: meta = blue, youtube = yellow, playlist = green. */
+  tone: "meta" | "youtube" | "playlist";
 }
 
 const META_METRIC = "Metric: tracked visits (Meta Pixel ViewContent)";
@@ -62,23 +64,25 @@ export const receipts: Receipt[] = [
       { value: "1.82M", label: "reach" },
       { value: "~20.9K", label: "playlist followers now" },
     ],
-    context: "Ki Scene Aa? (Punjabi playlist): about ₹45,200 of Meta spend.",
+    context: "How we grew our Punjabi playlist Ki Scene Aa? with about ₹45,200 of Meta ads.",
     metricNote: META_METRIC,
     size: "large",
+    tone: "meta",
   },
   {
     id: "ad-cost",
     tag: "Receipt B",
-    title: "Ad cost that doesn't bleed",
+    title: "Ads that don't burn money",
     big: "₹0.79",
     bigLabel: "per result",
     facts: [
       { value: "31,558", label: "results at ₹0.79 (₹24,964 spent)" },
       { value: "16,244", label: "results at ₹1.11 (₹18,088 spent)" },
     ],
-    context: "Playlist-promotion campaigns on Meta.",
+    context: "Two playlist-promotion campaigns on Meta.",
     metricNote: META_METRIC,
     size: "large",
+    tone: "meta",
   },
   {
     id: "youtube-views",
@@ -91,23 +95,25 @@ export const receipts: Receipt[] = [
       { value: "₹31,057", label: "spent" },
       { value: "1.15M", label: "impressions" },
     ],
-    context: "Google Ads, 11 Aug to 7 Oct 2026.",
+    context: "Google Ads campaigns, 11 Aug to 7 Oct 2026.",
     metricNote: null,
     size: "large",
+    tone: "youtube",
   },
   {
     id: "education",
     tag: "Receipt D",
-    title: "Education that sells",
+    title: "Education that brings clients",
     big: "5.8K",
     bigLabel: "views in the last 28 days",
     facts: [
       { value: "261", label: "watch hours" },
       { value: "280", label: "subscribers" },
     ],
-    context: "YouTube @DhunLabsNetwork, mostly inbound leads.",
+    context: "Our YouTube channel, @DhunLabsNetwork. Most of our inbound leads start here.",
     metricNote: null,
     size: "small",
+    tone: "youtube",
   },
 ];
 

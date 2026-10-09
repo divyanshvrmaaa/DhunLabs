@@ -6,6 +6,7 @@ const more = [
   { label: "Playlists", href: "/playlists" },
   { label: "Campaign Planner", href: "/planner" },
   { label: "Stream Estimator", href: "/estimator" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export function Footer() {

@@ -17,8 +17,8 @@ export function FinalCta() {
         </Reveal>
         <Reveal delay={0.08}>
           <p className="mx-auto mt-8 max-w-2xl text-pretty text-[1.0625rem] leading-relaxed text-muted md:text-lg">
-            We don't sell vanity metrics, fake playlist slots, or empty promises. DhunLabs builds dedicated growth infrastructure designed to
-            force platform recommendation engines to work for your music.
+            We don&apos;t sell fake playlist slots or vanity numbers. We build campaigns that get Spotify, YouTube and Instagram recommending
+            your music to real listeners, and we track every step so you can see the results for yourself.
           </p>
         </Reveal>
         <Reveal delay={0.14}>

@@ -11,7 +11,7 @@ export function PlanCard({ plan, children, extra }: { plan: PlanId; children?: R
       <div
         aria-hidden
         className={`pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl transition-colors duration-700 ${
-          plan === "combined" ? "bg-[radial-gradient(closest-side,rgba(155,110,255,0.28),transparent)]" : "bg-[radial-gradient(closest-side,rgba(29,185,84,0.28),transparent)]"
+          plan === "combined" ? "bg-[radial-gradient(closest-side,rgba(76,141,255,0.3),transparent)]" : "bg-[radial-gradient(closest-side,rgba(29,185,84,0.28),transparent)]"
         }`}
       />
       <p className="eyebrow relative">Recommended plan</p>
@@ -25,7 +25,7 @@ export function PlanCard({ plan, children, extra }: { plan: PlanId; children?: R
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="font-heading text-[1.75rem] font-semibold leading-tight tracking-tight md:text-[2.1rem]">
-              <span className={plan === "combined" ? "text-violet" : "text-accent"}>●</span> {p.name}
+              <span className={plan === "combined" ? "text-meta" : "text-accent"}>●</span> {p.name}
             </h2>
             <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{p.reason}</p>
           </motion.div>

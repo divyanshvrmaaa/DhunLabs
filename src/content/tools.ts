@@ -3,17 +3,9 @@
 // Facts checked against Spotify's help pages on 9 Oct 2026 (sources below).
 
 export const sources = {
-  pitching: {
-    label: "Spotify for Artists: Pitching music to playlist editors",
-    url: "https://support.spotify.com/us/artists/article/pitching-music-to-playlist-editors/",
-  },
   releaseRadar: {
     label: "Spotify for Artists: Getting music on Release Radar",
     url: "https://support.spotify.com/us/artists/article/getting-music-on-release-radar/",
-  },
-  releaseGuide: {
-    label: "Spotify for Artists release guide: Preparing for release day",
-    url: "https://artists.spotify.com/en/blog/release-guide-preparing-for-release-day",
   },
   streams: {
     label: "Spotify for Artists: How your streams are counted",
@@ -37,55 +29,21 @@ export interface ToolCard {
 export const toolsHub = {
   badge: "FREE TOOLS",
   title: "Free tools for independent artists.",
-  sub: "Plan a release, check a song, see what your streams earn, sanity-check your ad results and write your Spotify pitch. Everything runs in your browser: no sign-up, nothing stored.",
+  sub: "Plan a campaign, see what your streams earn, check if a song is ready and sanity-check past ad results. Everything runs in your browser, with no sign-up and nothing stored.",
   cards: [
-    { href: "/planner", title: "Campaign Planner", benefit: "Enter a budget, get an honest plan and a stream estimate.", tag: "Budget → plan", wide: true },
-    { href: "/estimator", title: "Stream Estimator", benefit: "Enter a stream goal, see the budget it takes.", tag: "Goal → budget" },
+    { href: "/planner", title: "Campaign Planner", benefit: "Enter a budget. Get an honest plan and a stream estimate.", tag: "Budget → plan" },
+    { href: "/estimator", title: "Stream Estimator", benefit: "Enter a stream goal. See the budget it takes.", tag: "Goal → budget" },
     { href: "/tools/revenue-calculator", title: "Streaming Revenue Calculator", benefit: "What your streams earn on each platform, for Indian or global listeners, after your distributor's cut.", tag: "Streams → ₹", wide: true },
-    { href: "/tools/release-roadmap", title: "Release Roadmap", benefit: "A dated checklist from 6 weeks before release to 4 weeks after.", tag: "Calendar" },
-    { href: "/tools/playlist-readiness", title: "Playlist-Readiness Checker", benefit: "10 quick questions. Find out if your song is ready to pitch.", tag: "Score /10" },
-    { href: "/tools/cost-per-stream", title: "Cost-Per-Stream Checker", benefit: "Check if a past campaign paid a fair price per stream.", tag: "₹ per stream" },
-    { href: "/tools/pitch-writer", title: "Spotify Pitch Writer", benefit: "Turn a few answers into a clean editorial pitch.", tag: "Copy & paste" },
+    { href: "/tools/playlist-readiness", title: "Playlist-Readiness Checker", benefit: "Answer 10 quick questions to find out if your song is ready to pitch.", tag: "Score /10" },
+    { href: "/tools/cost-per-stream", title: "Cost-Per-Stream Checker", benefit: "Find out if a past campaign paid a fair price per stream.", tag: "₹ per stream" },
   ] as ToolCard[],
 };
 
 /** Home page strip: four of the hub cards. */
 export const homeToolsStrip = {
   title: "Free tools for independent artists",
-  hrefs: ["/planner", "/estimator", "/tools/revenue-calculator", "/tools/release-roadmap"],
+  hrefs: ["/planner", "/estimator", "/tools/revenue-calculator", "/tools/playlist-readiness"],
 };
-
-// ── Release Roadmap ──
-export type ReleaseType = "single" | "ep" | "album";
-
-export interface RoadmapTask {
-  /** Days relative to release day (negative = before). */
-  day: number;
-  title: string;
-  detail: string;
-  /** Only for these release types (default: all). */
-  only?: ReleaseType[];
-  key?: boolean;
-}
-
-export const roadmapTasks: RoadmapTask[] = [
-  { day: -42, title: "Lock the final master", detail: "Final mix and master signed off. Confirm writer, producer and feature credits and any splits." },
-  { day: -42, title: "Choose your focus track", detail: "Spotify lets you pitch only one song at a time, so pick the track you'll pitch and promote first.", only: ["ep", "album"] },
-  { day: -35, title: "Cover art and metadata check", detail: "Square cover art (3000×3000 px is the safe target), titles and artist names spelled exactly as they should appear, explicit flag set correctly." },
-  { day: -28, title: "Upload to your distributor", detail: "Uploading about four weeks out leaves time for the release to reach Spotify for Artists so you can pitch it.", key: true },
-  { day: -21, title: "Set up your pre-save link", detail: "Create a pre-save link and add it to your bio and stories." },
-  { day: -21, title: "Shoot teaser content", detail: "Film 3 to 5 vertical clips around the song's hook. These double as ad creatives later." },
-  { day: -14, title: "Pitch to Spotify's editors", detail: "Pitch the song in Spotify for Artists. Spotify recommends pitching at least two weeks before release.", key: true },
-  { day: -10, title: "Start posting teasers", detail: "Post the hook clips. Watch which one gets the most saves and shares." },
-  { day: -7, title: "Release Radar cutoff", detail: "A pitch submitted at least 7 days before release day gets the song on your followers' Release Radar. Make sure your pitch is in.", key: true },
-  { day: -3, title: "Announce the date", detail: "Final teaser with the release date and pre-save link." },
-  { day: 0, title: "Release day post", detail: "Post the song everywhere, update every bio link and share it in stories.", key: true },
-  { day: 1, title: "Ads start", detail: "Start ads with the clip that performed best as a teaser, sending people straight to the song." },
-  { day: 7, title: "Post-release playlist outreach", detail: "Submit the song to independent playlist curators that match its sound." },
-  { day: 14, title: "Review the data", detail: "Check Spotify for Artists: saves, listeners and where streams come from. Move ad budget to what's working." },
-  { day: 21, title: "Second wave of content", detail: "Behind-the-scenes, lyric or live clips to keep the song moving." },
-  { day: 28, title: "Plan the follow-up release", detail: "Set the date for your next release while this audience is warm." },
-];
 
 // ── Playlist-Readiness Checker ──
 export interface ReadinessQuestion {
@@ -114,7 +72,3 @@ export const readinessVerdicts = {
 };
 
 // ── Cost-Per-Stream Checker ── (thresholds live in pricing.ts)
-
-// ── Spotify Pitch Writer ──
-/** Spotify for Artists pitch limit. Widely cited as 500 characters; not stated in Spotify's help article, so check the form itself. */
-export const PITCH_CHAR_LIMIT = 500;

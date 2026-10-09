@@ -3,7 +3,7 @@
 export const pillarsIntro = {
   eyebrow: "What we do",
   title: "Three Pillars. One Growth Engine.",
-  body: "Every tool DhunLabs deploys feeds the same objective: making platforms recommend your music to the right listeners, organically and at scale.",
+  body: "Everything we run has one goal: getting Spotify, YouTube and Instagram to recommend your music to listeners who will keep coming back to it.",
 };
 
 export interface Pillar {
@@ -23,7 +23,7 @@ export const pillars: Pillar[] = [
     number: "01",
     title: "Meta Promotions",
     subtitle: "For Artists Who Want Real Listeners.",
-    body: "Precision Meta campaigns built around your track's emotional hooks, targeting high-intent listeners who save, replay and stream consistently. Every rupee justified by data.",
+    body: "Instagram and Facebook ad campaigns built around the strongest hook in your song, aimed at people likely to save it, replay it and keep streaming. Every rupee is tracked, so you can see exactly what worked.",
     metric: "78×",
     metricLabel: "average reach",
     cta: { label: "Plan your campaign", href: "/planner" },
@@ -33,7 +33,7 @@ export const pillars: Pillar[] = [
     number: "02",
     title: "Spotify Playlisting",
     subtitle: "A Closed Network Built on Taste.",
-    body: "A high-intent listener ecosystem structured around mood profiles and regional scenes, built on saves, not volume. Real listeners who save and return.",
+    body: "Our playlists are organised by mood and regional scene, and grown with real listeners who save songs and come back. If your track fits, it reaches people already looking for that sound.",
     metric: "500K+",
     metricLabel: "streams managed",
     cta: { label: "Explore playlists", href: "/playlists" },
@@ -43,7 +43,7 @@ export const pillars: Pillar[] = [
     number: "03",
     title: "DhunLabs YouTube",
     subtitle: "Free Education. No Gatekeeping.",
-    body: "Every strategy we run for clients is documented publicly: campaign breakdowns, Spotify algorithm deep dives, Meta ad frameworks.",
+    body: "What we do for clients, we teach for free on our channel: campaign breakdowns, how Spotify's algorithm works and the exact Meta ad setups we use.",
     metric: "5,000+",
     metricLabel: "monthly viewers",
     cta: { label: "Visit the channel", href: "https://youtube.com/@dhunlabsnetwork" },
@@ -54,10 +54,10 @@ export const howItWorks = {
   eyebrow: "How it works",
   title: "From first message to launch.",
   steps: [
-    { title: "Tell us your goal or budget", body: "Use the free Campaign Planner to see what fits.", link: { label: "Open the planner", href: "/planner" } },
-    { title: "Submit your track", body: "We listen first and only move forward with release-ready songs." },
-    { title: "Short strategy call", body: "We map the hooks, the audience and the plan together." },
-    { title: "We launch and track it", body: "Campaigns run with conversion tracking, end to end." },
+    { title: "Tell us your goal or budget", body: "The free Campaign Planner shows what fits your budget in 30 seconds.", link: { label: "Open the planner", href: "/planner" } },
+    { title: "Send us your track", body: "We listen to every song first and only take on tracks that are ready for release." },
+    { title: "Have a short strategy call", body: "Together we pick the hook, the audience and the plan." },
+    { title: "We launch and track it", body: "We run the campaign and track every step, so you can see what's working." },
   ],
   banner: { title: "Not sure what you need? Try the free Campaign Planner.", cta: "Open the Campaign Planner" },
 };

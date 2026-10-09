@@ -34,10 +34,14 @@ export function ToolShell({ badge, title, sub, children, cta, sources }: Props) 
             <p>Sources (checked Oct 2026):</p>
             <ul className="mt-1">
               {sources.map((s) => (
-                <li key={s.url}>
-                  <SmartLink href={s.url} className="inline-flex min-h-8 items-center underline decoration-line-strong underline-offset-2 hover:text-ink">
-                    {s.label}
-                  </SmartLink>
+                <li key={s.label} className="flex min-h-8 items-center">
+                  {s.url ? (
+                    <SmartLink href={s.url} className="inline-flex min-h-8 items-center underline decoration-line-strong underline-offset-2 hover:text-ink">
+                      {s.label}
+                    </SmartLink>
+                  ) : (
+                    <span>{s.label}</span>
+                  )}
                 </li>
               ))}
             </ul>

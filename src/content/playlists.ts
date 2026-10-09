@@ -53,7 +53,7 @@ export const playlists: Playlist[] = [
     followers: 16318,
     category: "Indie",
     cover: "/covers/everything-feels.webp",
-    glow: "rgba(155,110,255,0.24)",
+    glow: "rgba(76,141,255,0.22)",
   },
   {
     id: "22P74epP4Yhf71eftCqgVp",
@@ -73,16 +73,16 @@ export const playlistFilters: ("All" | PlaylistCategory)[] = ["All", "Punjabi", 
 export const networkIntro = {
   eyebrow: "Network",
   title: "Built on Taste, Not Volume.",
-  body: "DhunLabs operates closed, high-intent listener ecosystems across targeted mood profiles and regional scenes. No botted lists. No dead streams. Just real ears on your music.",
+  body: "Our playlists are closed, hand-curated networks built around specific moods and regional scenes. Every follower is a real listener, and nothing is ever botted.",
 };
 
 export const playlistsPage = {
   badge: "DHUNLABS PLAYLIST NETWORK",
   title: "Explore Our Spotify Playlists.",
-  sub: "Every playlist is carefully curated around a specific mood and audience. Discover new music, find your vibe, and if your track belongs here, submit it for review.",
+  sub: "Each playlist is curated around one mood and one audience. Find your vibe, discover new music and, if your track belongs here, send it to us for review.",
   submit: {
     title: "Want Your Music Here?",
-    body: "Submit your track and our team will personally review it for playlist consideration.",
+    body: "Send us your track and we'll personally review it for our playlists.",
     trust: ["Every track is personally reviewed", "Bot-free, always", "Placement is considered, not guaranteed"],
   },
 };

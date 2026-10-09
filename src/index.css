@@ -55,7 +55,9 @@
   --color-dim: #4a4744;
   --color-accent: #1db954;
   --color-accent-glow: rgba(29, 185, 84, 0.18);
-  --color-violet: #9b6eff;
+  /* Service colours: Meta = blue, Playlisting = green (accent), YouTube = gold */
+  --color-meta: #4c8dff;
+  --color-meta-glow: rgba(76, 141, 255, 0.2);
   --color-gold: #f5c842;
   --color-success: #22d386;
 

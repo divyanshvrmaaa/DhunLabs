@@ -39,13 +39,7 @@ export const pages: PageSeo[] = [
     path: "/tools",
     title: "Free Music Marketing Tools for Independent Artists | DhunLabs",
     description:
-      "Free tools for independent artists: campaign planner, stream estimator, release roadmap, playlist-readiness checker, cost-per-stream checker and pitch writer.",
-  },
-  {
-    path: "/tools/release-roadmap",
-    title: "Free Music Release Roadmap & Checklist | DhunLabs",
-    description:
-      "Pick your release date and get a dated checklist from six weeks before release to four weeks after, including your Spotify pitch. Add it to your calendar.",
+      "Free tools for independent artists: campaign planner, stream estimator, streaming revenue calculator, playlist-readiness checker and cost-per-stream checker.",
   },
   {
     path: "/tools/playlist-readiness",
@@ -58,12 +52,6 @@ export const pages: PageSeo[] = [
     title: "Cost Per Stream Calculator for Music Ads | DhunLabs",
     description:
       "Enter what you spent and the streams you got to see your cost per stream, how it compares with typical campaign results, and when cheap streams are a red flag.",
-  },
-  {
-    path: "/tools/pitch-writer",
-    title: "Free Spotify Pitch Writer for Artists | DhunLabs",
-    description:
-      "Fill in a few short fields and get a clean Spotify for Artists editorial pitch with a live character counter. Copy it straight into your pitch form. Free.",
   },
   {
     path: "/tools/revenue-calculator",

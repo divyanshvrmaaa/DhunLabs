@@ -6,7 +6,7 @@
 export const learnIntro = {
   eyebrow: "Learn",
   title: "Learn Our Systems. For Free.",
-  body: "Every strategy we run for clients is documented publicly on our channel. Campaign breakdowns, Spotify algorithm deep-dives, Meta ad frameworks. No fluff, just data.",
+  body: "We document the strategies we run for clients on our YouTube channel: campaign breakdowns, Spotify algorithm deep dives and the Meta ad setups we use. Watch, learn and use what works."
 };
 
 export interface Video {
@@ -19,22 +19,22 @@ export const videos: Video[] = [
   {
     id: "A_D18IaKgPw",
     title: "Music Marketing Tierlist",
-    hook: "Stop wasting your money on ineffective marketing strategies. Data-backed tier list based on our own experience.",
+    hook: "Stop spending money on promotion that doesn't work. A tier list of promotion methods, ranked from our own campaign data.",
   },
   {
     id: "3nq8tMKMDwg",
     title: "Spotify Popularity Index",
-    hook: "FORCE the algorithm to push your songs. The exact framework to get algorithmic streams on Spotify for free.",
+    hook: "Get Spotify's algorithm to push your songs. The exact framework we use to earn algorithmic streams for free.",
   },
   {
     id: "3FinJRARyTI",
     title: "FULL GUIDE: Meta Ads For Music Promotion",
-    hook: "The complete walkthrough of how we set up Meta ads for a song, step by step.",
+    hook: "A complete, step-by-step walkthrough of how we set up Meta ads for a song.",
   },
   {
     id: "VA5XiZy0GCw",
     title: "I Took a Punjabi Artist From Zero to 25K Listeners in 30 Days",
-    hook: "The full breakdown of the Harman Sohi campaign.",
+    hook: "The full breakdown of how Harman Sohi went from zero to about 25K monthly listeners.",
   },
 ];
 

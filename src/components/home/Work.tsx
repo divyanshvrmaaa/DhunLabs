@@ -98,16 +98,20 @@ function Featured() {
   );
 }
 
+const toneText: Record<Receipt["tone"], string> = { meta: "text-meta", youtube: "text-gold", playlist: "text-accent" };
+const toneBorder: Record<Receipt["tone"], string> = { meta: "hover:border-meta/40", youtube: "hover:border-gold/40", playlist: "hover:border-accent/40" };
+
 function ReceiptCard({ r }: { r: Receipt }) {
   return (
-    <article className="card group relative flex h-full flex-col p-6 transition-colors duration-500 hover:border-line-strong md:p-8">
+    <article className={`card group relative flex h-full flex-col p-6 transition-colors duration-500 md:p-8 ${toneBorder[r.tone]}`}>
       <div className="flex items-center justify-between gap-3">
-        <p className="eyebrow">{r.tag}</p>
+        <p className={`eyebrow ${toneText[r.tone]}`}>{r.tag}</p>
         <span aria-hidden className="h-px flex-1 bg-line" />
+        <span className={`text-[0.7rem] font-semibold uppercase tracking-wider ${toneText[r.tone]}`}>{r.tone === "meta" ? "Meta" : r.tone === "youtube" ? "YouTube" : "Playlisting"}</span>
       </div>
       <h3 className="mt-4 font-heading text-xl font-semibold tracking-tight md:text-2xl">{r.title}</h3>
       <p className="num mt-8 text-[clamp(3rem,7vw,4.75rem)] font-semibold leading-none text-ink">{r.big}</p>
-      <p className="mt-2 text-sm text-accent">{r.bigLabel}</p>
+      <p className={`mt-2 text-sm ${toneText[r.tone]}`}>{r.bigLabel}</p>
       <dl className="mt-8 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-line pt-6">
         {r.facts.map((f) => (
           <div key={f.label}>
@@ -149,14 +153,14 @@ export function Work() {
           <Reveal key={r.id} className="mt-5">
             <article className="card flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-8">
               <div>
-                <p className="eyebrow">{r.tag}</p>
+                <p className={`eyebrow ${toneText[r.tone]}`}>{r.tag} · YouTube</p>
                 <h3 className="mt-3 font-heading text-xl font-semibold tracking-tight md:text-2xl">{r.title}</h3>
                 <p className="mt-2 text-[0.95rem] text-muted">{r.context}</p>
               </div>
               <dl className="flex flex-wrap gap-x-10 gap-y-4">
                 <div>
                   <dt className="sr-only">{r.bigLabel}</dt>
-                  <dd className="num text-3xl font-semibold text-gold">{r.big}</dd>
+                  <dd className={`num text-3xl font-semibold ${toneText[r.tone]}`}>{r.big}</dd>
                   <dd className="text-xs text-muted">{r.bigLabel}</dd>
                 </div>
                 {r.facts.map((f) => (

@@ -22,7 +22,7 @@ export function Hero() {
       {/* Soft glow */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-[58%] h-[46vh] w-[90vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(29,185,84,0.22),transparent)] blur-2xl" />
-        <div className="absolute right-[6%] top-[62%] h-[30vh] w-[40vw] rounded-full bg-[radial-gradient(closest-side,rgba(155,110,255,0.16),transparent)] blur-2xl" />
+        <div className="absolute right-[6%] top-[62%] h-[30vh] w-[40vw] rounded-full bg-[radial-gradient(closest-side,rgba(76,141,255,0.16),transparent)] blur-2xl" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_70%,#080808)]" />
       </div>
 
@@ -55,8 +55,8 @@ export function Hero() {
 
         <div className="mt-8 grid gap-8 md:mt-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <p className="max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-muted md:text-lg">
-            DhunLabs maps platform data, listener behavior and targeted ads into precision growth systems. No vanity metrics. No
-            ghost listeners. Just your music reaching the right people at scale.
+            DhunLabs grows independent artists with Meta ads built around your song&apos;s hook and a bot-free Spotify playlist network,
+            tracked at every step. You get real listeners who save, replay and get the algorithm working for you.
           </p>
 
           <motion.div {...rise(0.45)} className="flex flex-col gap-4 lg:items-end">

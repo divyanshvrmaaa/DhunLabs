@@ -40,8 +40,8 @@ export function Waveform({ className = "" }: { className?: string }) {
       gradient.addColorStop(0, "rgba(29,185,84,0.05)");
       gradient.addColorStop(0.22, "rgba(29,185,84,0.85)");
       gradient.addColorStop(0.55, "rgba(52,211,120,0.95)");
-      gradient.addColorStop(0.8, "rgba(155,110,255,0.85)");
-      gradient.addColorStop(1, "rgba(155,110,255,0.05)");
+      gradient.addColorStop(0.8, "rgba(76,141,255,0.85)");
+      gradient.addColorStop(1, "rgba(76,141,255,0.05)");
     };
 
     // Smooth pseudo-noise from layered sines (cheap and stable)

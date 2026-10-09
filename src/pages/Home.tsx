@@ -8,6 +8,7 @@ import { ToolsStrip } from "../components/home/ToolsStrip";
 import { Learn } from "../components/home/Learn";
 import { About } from "../components/home/About";
 import { FinalCta } from "../components/home/FinalCta";
+import { Faq } from "../components/home/Faq";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <ToolsStrip />
       <Learn />
       <About />
+      <Faq />
       <FinalCta />
     </>
   );

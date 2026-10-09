@@ -121,7 +121,7 @@ export function Nav() {
         </nav>
         <motion.div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-px origin-left bg-gradient-to-r from-accent via-accent to-violet"
+          className="absolute inset-x-0 bottom-0 h-px origin-left bg-gradient-to-r from-accent via-accent to-meta"
           style={{ scaleX: progress }}
         />
       </header>
