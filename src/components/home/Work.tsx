@@ -4,6 +4,7 @@ import { Reveal } from "../ui/Reveal";
 import { SmartLink } from "../ui/SmartLink";
 import { BlurImg } from "../ui/BlurImg";
 import { placeholderFor } from "../../lib/placeholder";
+import { SpotifyIcon } from "../PlaylistCard";
 
 const breakdownId = new URL(fc.breakdown.url).searchParams.get("v");
 
@@ -49,19 +50,38 @@ function Featured() {
             </blockquote>
           )}
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-            {fc.spotifyArtistUrl && (
-              <SmartLink href={fc.spotifyArtistUrl} className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium hover:text-accent">
-                {fc.artist} on Spotify <span aria-hidden>↗</span>
-              </SmartLink>
-            )}
-            <p className="text-xs text-muted">{fc.asOf}</p>
-          </div>
+          <p className="mt-8 text-xs text-muted">{fc.asOf}</p>
         </div>
 
         <div className="relative border-t border-line p-6 sm:p-8 md:p-12 lg:border-l lg:border-t-0">
-          {fc.artistPhoto && (
-            <BlurImg src={fc.artistPhoto} alt={fc.artist} width={600} height={600} wrapperClassName="mb-6 aspect-square rounded-[var(--radius-md)]" className="h-full w-full object-cover" />
+          {(fc.artistPhoto || fc.spotifyArtistUrl) && (
+            <div className="relative mb-6 overflow-hidden rounded-[var(--radius-md)] border border-line">
+              {fc.artistPhoto && (
+                <BlurImg
+                  src={fc.artistPhoto}
+                  placeholder={placeholderFor(fc.artistPhoto)}
+                  alt={`${fc.artist}, ${fc.descriptor}`}
+                  width={640}
+                  height={747}
+                  wrapperClassName="aspect-[4/3]"
+                  className="h-full w-full object-cover object-[50%_22%]"
+                />
+              )}
+              <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-3 bg-[linear-gradient(to_top,rgba(8,8,8,0.92),rgba(8,8,8,0.55)_55%,transparent)] p-4 pt-16 sm:p-5 sm:pt-20">
+                <div>
+                  <p className="font-heading text-xl font-semibold tracking-tight">{fc.artist}</p>
+                  <p className="text-xs text-ink/75">{fc.descriptor}</p>
+                </div>
+                {fc.spotifyArtistUrl && (
+                  <SmartLink
+                    href={fc.spotifyArtistUrl}
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-4 text-sm font-semibold text-[#04110a] transition-colors hover:bg-[#21cc5d]"
+                  >
+                    <SpotifyIcon /> Listen on Spotify
+                  </SmartLink>
+                )}
+              </div>
+            </div>
           )}
           <SmartLink href={fc.breakdown.url} className="group block" aria-label={`${fc.breakdown.label} on YouTube`}>
             <div className="relative overflow-hidden rounded-[var(--radius-md)] border border-line">

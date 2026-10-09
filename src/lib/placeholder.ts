@@ -7,6 +7,7 @@ export function placeholderFor(src: string | null | undefined): string | undefin
   if (src.startsWith("/covers/")) return placeholders[`cover:${name}`];
   if (src.startsWith("/thumbs/")) return placeholders[`thumb:${name}`];
   if (src.includes("divyansh-portrait")) return placeholders.portrait;
+  if (src.startsWith("/images/")) return placeholders[`artist:${name}`];
   return undefined;
 }
 

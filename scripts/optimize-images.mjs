@@ -27,6 +27,13 @@ async function run() {
   }
   await blur(src("divyansh-portrait.png"), "portrait");
 
+  // Artist photos (case studies): assets-src/artists/<name>.jpg → /images/<name>.webp
+  for (const f of await readdir(src("artists"))) {
+    const name = f.replace(/\.\w+$/, "");
+    await sharp(src("artists", f)).resize(640).webp({ quality: 80 }).toFile(out("images", `${name}.webp`));
+    await blur(src("artists", f), `artist:${name}`);
+  }
+
   // Playlist covers (Spotify only gives ~300px, so keep native size, crop square)
   for (const f of await readdir(src("covers"))) {
     const name = f.replace(/\.\w+$/, "");

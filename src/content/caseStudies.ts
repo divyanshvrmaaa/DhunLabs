@@ -21,9 +21,9 @@ export const featuredCase = {
     "Placement in our playlist network",
   ],
   /** Path to a photo in /public/images, e.g. "/images/harman.webp". null = hidden. */
-  artistPhoto: null as string | null,
+  artistPhoto: "/images/harman-sohi.webp" as string | null,
   /** Harman's Spotify artist link. null = hidden. */
-  spotifyArtistUrl: null as string | null,
+  spotifyArtistUrl: "https://open.spotify.com/artist/122Lfw8OKRD099oLm11Xds" as string | null,
   /** A short quote from Harman. null = hidden. */
   quote: null as string | null,
   breakdown: {
