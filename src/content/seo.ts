@@ -41,7 +41,7 @@ export const crumbs = {
 const staticPages: PageSeo[] = [
   {
     path: "/",
-    title: "DhunLabs — Music Growth Agency for Independent Artists",
+    title: "DhunLabs | Music Growth Agency for Independent Artists",
     description:
       "We make streams hit different. Meta ads, a bot-free Spotify playlist network and free education that grow real listeners for independent artists in India.",
   },

@@ -13,7 +13,7 @@
 //   • Spotify India is set by DhunLabs at ₹0.10 per stream (₹1,000 per 10,000
 //     streams) as the "typical" value. Every other India rate is scaled by the
 //     same factor (×1.845), so the platforms keep the ratios measured in DhunLabs'
-//     own Indian distributor statement (April–June 2026): YouTube ≈ 0.46× Spotify,
+//     own Indian distributor statement (April to June 2026): YouTube ≈ 0.46× Spotify,
 //     Instagram/Facebook ≈ 0.023× Spotify. Before scaling, that statement showed
 //     ₹54.20 per 1,000 Spotify streams, ₹24.71 per 1,000 YouTube units and ₹1.26
 //     per 1,000 Meta uses (before the distributor's share).
@@ -116,12 +116,12 @@ export const platforms: Platform[] = [
 ];
 
 /**
- * DhunLabs' own Indian distributor statement (April–June 2026): ₹ earned per
+ * DhunLabs' own Indian distributor statement (April to June 2026): ₹ earned per
  * 1,000 streams/uses, before the distributor's share. Shown on the revenue
  * calculator page as a real-world benchmark.
  */
 export const ownStatement = {
-  period: "April–June 2026",
+  period: "April to June 2026",
   per1000: { spotify: 54.2, youtube: 24.71, meta: 1.26 },
 };
 
@@ -150,7 +150,7 @@ export const DEFAULT_YOUTUBE_EXTRA_CUT = 0;
 export const ownershipPresets = [100, 75, 50, 25];
 
 export const royaltySources = [
-  { label: "DhunLabs' own Indian distributor statement, April–June 2026 (platform-to-platform ratios for India)", url: "" },
+  { label: "DhunLabs' own Indian distributor statement, April to June 2026 (platform-to-platform ratios for India)", url: "" },
   { label: "StreamingCalculator: What a stream paid in 2026 (rates and country tiers)", url: "https://streamingcalculator.com/blog/what-a-stream-paid-in-2026-report" },
   { label: "Duetti 2024 Music Economics Report (measured payouts)", url: "https://www.digitalmusicnews.com/2025/01/24/apple-music-royalty-rate-spotify-study/" },
   { label: "Chartlex: Spotify royalty rates by country 2026", url: "https://www.chartlex.com/blog/money/spotify-royalty-rates-by-country-2026" },

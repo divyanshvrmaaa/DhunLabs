@@ -81,7 +81,7 @@ export const revenueGuide: ToolGuideContent = {
     table: {
       caption: "Typical earnings per 1,000 streams used by the calculator",
       head: ["Platform", "Indian listeners", "Listeners abroad"],
-      rows: platforms.map((x) => [x.name, x.india ? k(x.india.typical) : "—", x.global ? k(x.global.typical) : "—"]),
+      rows: platforms.map((x) => [x.name, x.india ? k(x.india.typical) : "Not available", x.global ? k(x.global.typical) : "No data yet"]),
     },
   },
   benchmarks: {

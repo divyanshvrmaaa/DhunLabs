@@ -124,7 +124,7 @@ export default function Planner() {
             </div>
           </section>
 
-          {/* Inputs (details) — below the result on phones */}
+          {/* Inputs (details): below the result on phones */}
           <section aria-label="Details" className="card order-last self-start p-6 md:p-8 lg:order-none lg:col-start-1 lg:row-start-2">
             <div className="grid gap-6">
               <NumberField
