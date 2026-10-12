@@ -36,23 +36,30 @@ function StatNote({ note }: { note: string }) {
   );
 }
 
-export function ProofStrip() {
+/** The results strip. On the Work page it appears without the scrolling keywords (showMarquee={false}). */
+export function ProofStrip({ showMarquee = true }: { showMarquee?: boolean }) {
   const items = marqueeExtras;
   return (
     <section aria-label="Results at a glance" className="relative border-y border-line">
-      <div className="container-x grid grid-cols-2 lg:grid-cols-4">
+      <div className={`container-x grid grid-cols-2 ${stats.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
         {stats.map((s, i) => (
           <Reveal
             key={s.label}
             delay={i * 0.06}
-            className={`relative py-9 pr-4 md:py-12 ${i % 2 === 1 ? "pl-5 border-l border-line" : ""} ${
-              i >= 2 ? "border-t border-line lg:border-t-0" : ""
-            } ${i === 2 ? "lg:border-l lg:pl-5" : ""} ${i === 3 ? "lg:pl-5" : ""}`}
+            className={[
+              "relative py-9 pr-4 md:py-12",
+              // Phones: two per row; an odd last item spans the full row
+              i % 2 === 1 ? "border-l border-line pl-5" : "",
+              i >= 2 ? "border-t border-line lg:border-t-0" : "",
+              i === stats.length - 1 && stats.length % 2 === 1 ? "col-span-2 lg:col-span-1" : "",
+              // Laptops: one row, a line between each
+              i > 0 ? "lg:border-l lg:pl-5" : "",
+            ].join(" ")}
           >
             <div className="flex items-start justify-between gap-2">
-              <p className="num text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-none">
+              <p className={`num font-semibold leading-none ${stats.length === 5 ? "text-[clamp(2.4rem,6vw,3.6rem)]" : "text-[clamp(2.4rem,6vw,4.25rem)]"}`}>
                 {s.prefix && <span className="text-muted">{s.prefix}</span>}
-                <AnimatedNumber value={s.value} format={(n) => Math.round(n).toString()} countUpOnView />
+                <AnimatedNumber value={s.value} format={(n) => n.toFixed(s.decimals ?? 0)} countUpOnView />
                 <span className="text-accent">{s.suffix}</span>
               </p>
               <StatNote note={s.note} />
@@ -70,6 +77,7 @@ export function ProofStrip() {
         ))}
       </div>
 
+      {showMarquee && (
       <div className="relative overflow-hidden border-t border-line py-5" aria-label="What we do">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-bg to-transparent md:w-40" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-bg to-transparent md:w-40" />
@@ -88,6 +96,7 @@ export function ProofStrip() {
           ))}
         </div>
       </div>
+      )}
     </section>
   );
 }

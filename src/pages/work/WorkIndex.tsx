@@ -3,6 +3,7 @@ import { Reveal } from "../../components/ui/Reveal";
 import { Button } from "../../components/ui/Button";
 import { BlurImg } from "../../components/ui/BlurImg";
 import { ReceiptCard } from "../../components/home/Work";
+import { ProofStrip } from "../../components/home/ProofStrip";
 import { CtaPanel, RelatedLinks, Section, Prose } from "../../components/content/Blocks";
 import { experiment, featuredCase as fc, receipts, receiptsAsOf, workPage } from "../../content/caseStudies";
 import { videos } from "../../content/videos";
@@ -14,6 +15,7 @@ export default function WorkIndex() {
   return (
     <>
       <PageHeader badge={workPage.badge} lines={workPage.h1Lines} kicker={workPage.kicker} sub={workPage.sub} />
+      <ProofStrip showMarquee={false} />
 
       <Section id="featured-case" eyebrow="Featured case study" title={fc.title}>
         <Reveal>

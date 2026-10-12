@@ -41,8 +41,10 @@ export function AnimatedNumber({ value, format, countUpOnView, duration = 0.6, c
   }, [value, inView, countUpOnView, reduce, duration, format]);
 
   return (
+    // The real number is in the HTML (what Google and no-JS visitors see); the count-up
+    // from 0 starts in the browser once the number scrolls into view.
     <span ref={ref} className={className}>
-      {format(countUpOnView ? 0 : value)}
+      {format(value)}
     </span>
   );
 }

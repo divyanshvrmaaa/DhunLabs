@@ -6,7 +6,8 @@ export interface Stat {
   value: number;
   prefix?: string;
   suffix?: string;
-  /** If set, shown instead of a counting number (e.g. "100%"). */
+  /** Decimal places while counting (e.g. 1 for "1.5"). */
+  decimals?: number;
   label: string;
   note: string;
 }
@@ -31,6 +32,15 @@ export const stats: Stat[] = [
     suffix: "K+",
     label: "streams managed",
     note: "as of Oct 2026",
+  },
+  {
+    // Total Meta + Google ad spend across all campaigns (Divyansh, Oct 2026)
+    value: 1.5,
+    decimals: 1,
+    prefix: "₹",
+    suffix: "L+",
+    label: "ad spend managed across our campaigns",
+    note: "Meta and Google ads, all campaigns · as of Oct 2026",
   },
   {
     value: 100,
