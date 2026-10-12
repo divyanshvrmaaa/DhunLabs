@@ -139,7 +139,7 @@ export function Pillars() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeader id="services-title" eyebrow={pillarsIntro.eyebrow} title={pillarsIntro.title} body={pillarsIntro.body} />
           <Reveal className="shrink-0">
-            <SmartLink href="/services" className="inline-flex min-h-11 items-center gap-1.5 text-[0.95rem] font-medium text-muted hover:text-ink">
+            <SmartLink href="/services" className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap text-[0.95rem] font-medium text-muted hover:text-ink">
               See all services <span aria-hidden>→</span>
             </SmartLink>
           </Reveal>

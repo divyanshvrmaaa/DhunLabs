@@ -18,16 +18,21 @@ You have two options for every change below:
 | Email, Instagram, YouTube, Google Form links | `src/content/site.ts` |
 | The four numbers under the hero (~25K, 60K+, 500K+, 100%) | `src/content/stats.ts` |
 | The "Three Pillars" text and "How it works" steps | `src/content/pillars.ts` |
-| Case studies (Harman Sohi + the receipts) | `src/content/caseStudies.ts` |
-| Playlists (names, vibe lines, follower counts) | `src/content/playlists.ts` |
-| YouTube videos in "Learn" | `src/content/videos.ts` |
+| Case studies (Harman Sohi + the receipts), the /work and /work/harman-sohi pages | `src/content/caseStudies.ts` |
+| Playlists (names, vibe lines, follower counts, each playlist's own page) | `src/content/playlists.ts` |
+| YouTube videos: /learn, each video's page, the home "Learn" section | `src/content/videos.ts` |
+| Video transcripts (optional) | `src/content/transcripts/` (see the README inside) |
+| Services pages (/services, /services/meta-ads, /services/spotify-playlisting) | `src/content/services.ts` (plus `pillars.ts`, `plans.ts`) |
+| The written guide under each tool (how to use, FAQ…) | `src/content/guides/` (one file per tool) |
 | "My Story" text, chips, photo | `src/content/founder.ts` |
 | Plan names and what each plan includes | `src/content/plans.ts` |
 | **Pricing model** (planner and estimator maths) | `src/content/pricing.ts` |
-| Free tools text (tools hub cards, readiness questions) | `src/content/tools.ts` |
+| Free tools text (tools hub cards, footer tool list, home tools section) | `src/content/tools.ts` |
 | Streaming Revenue Calculator rates (per platform, India/global), ₹–$ rate, distributor presets | `src/content/royalties.ts` |
 | FAQ questions and answers | `src/content/faq.ts` |
-| Page titles and Google descriptions | `src/content/seo.ts` |
+| Page titles, Google descriptions, share images, breadcrumbs (every page) | `src/content/seo.ts` |
+| Main menu | `nav` in `src/content/site.ts` |
+| Hook Finder scoring (how much energy / rhythm / repetition count) | `WEIGHTS` in `src/lib/hook/analysis.ts` |
 
 ---
 
@@ -60,8 +65,20 @@ Open `src/content/caseStudies.ts`. Harman's empty fields are set to `null` and a
 To add a new **receipt**, copy one block in `receipts` and change the text. `size: "large"` makes a big card; `"small"` makes a wide strip.
 
 ### Add a YouTube video
-1. In `src/content/videos.ts`, copy a block and paste the video's 11-character ID (the part after `watch?v=` in the link).
-2. Save the thumbnail from `https://i.ytimg.com/vi/<ID>/maxresdefault.jpg` into `assets-src/thumbs/<ID>.jpg`, then run `npm run images`. (Or just ask Claude to "add this video: <link>".)
+Easiest: tell Claude "add this video: <YouTube link>". To do it yourself:
+
+1. Open `src/content/videos.ts`. Copy one whole block, from its `{` down to its `},`, and paste it at the top of the list (just under `export const videos: Video[] = [`).
+2. Change the fields in your copy:
+   - `id`: the 11 characters after `watch?v=` in the YouTube link.
+   - `slug`: the page's web address, in lowercase words joined by `-` (e.g. `"how-to-pitch-to-playlists"` becomes dhunlabs.studio/learn/how-to-pitch-to-playlists). Must be different from the others.
+   - `title`, `published` (upload date as `"2026-11-02"`), `duration` (as YouTube shows it, e.g. `"12:41"`).
+   - `hook`: one line for the cards. `summary`: the English summary (one string per paragraph). `takeaways`: 4 to 6 short points.
+   - `related`: 2 or 3 links to matching tools or services (copy the format from another video).
+   - Optional: `seoTitle` (under 60 characters) and `seoDescription` (under 155) for Google.
+   - Leave `summaryNeedsReview: true` until you've read the summary, then delete that line (it removes the "[TODO: review summary]" note).
+3. Thumbnail: save `https://i.ytimg.com/vi/<ID>/maxresdefault.jpg` as `assets-src/thumbs/<ID>.jpg`, then run `npm run images` and `npm run og` (the second one makes the WhatsApp preview image).
+4. Optional transcript: save it as `src/content/transcripts/<ID>.txt` (or `.srt` subtitles). It shows on the video's page exactly as written.
+5. Check and publish (see "Put your change live"). The video's page, the /learn grid, the home page section, the sitemap and Google's video data all update by themselves.
 
 ### Change the pricing model
 Open `src/content/pricing.ts`. **Visitors never see these numbers.** They only see the estimates the planner and estimator produce.
@@ -92,7 +109,7 @@ Open `src/content/royalties.ts`. Spotify for Indian listeners is set at ₹0.10 
 ## Put your change live
 
 1. **See it locally first:** open Terminal in this folder and run `npm run dev`, then open http://localhost:5173.
-2. **Check nothing broke:** `npm test` (pricing tests) and `npm run build` (should end with "postbuild: 9 pages (8 pre-rendered) + shell.html + sitemap.xml").
+2. **Check nothing broke:** `npm test` (automatic tests), `npm run build` (ends with "postbuild: 23 pages (23 pre-rendered) + shell.html + sitemap.xml", and lists any pages that still have `[TODO` notes), then `npm run check` (checks every page's heading, title, description, Google data and links; should say "No problems found.").
 3. **Save a version:** `git add -A` then `git commit -m "Describe your change"`.
 4. **Publish:** `git push`. Vercel deploys automatically:
    - pushing to a **branch** (like `redesign-v2`) creates a **preview link** you can check first;
@@ -109,5 +126,8 @@ Or simply tell Claude: "Change X, show me the preview, then deploy."
 
 - **Images:** originals live in `assets-src/`; `npm run images` makes the small WebP versions in `public/`. Don't put huge photos straight into `public/`.
 - **Analytics:** Vercel Analytics only (privacy-friendly). Custom events record form-button clicks, planner/estimator results (plan name and a budget bucket only, never the exact amount) and tool usage. No Meta Pixel or other trackers.
-- **Forms:** the Google Forms are embedded on the planner and estimator, and there's always an "Open form in a new tab" button for phones where embeds misbehave.
-- **The share image** (`public/og-image.jpg`) is what WhatsApp/Instagram show when someone pastes your link. Ask Claude to regenerate it if the headline changes.
+- **Forms:** the Google Forms are embedded on the planner and estimator, and each one also has a button that opens it in a new tab ("Submit your track for playlist review", "Book a strategy audit") for phones where embeds misbehave. The form links themselves live in `src/content/site.ts`.
+- **Share images:** `public/og-image.jpg` is what WhatsApp/Instagram show for most pages. Each tool and each video has its own image in `public/og/`; run `npm run og` to remake them (needs Google Chrome on this Mac).
+- **Result cards and shareable links:** every tool can save a Story or Post image of the result, drawn on the visitor's phone (nothing uploaded). Shared links carry the inputs (e.g. `/planner?budget=10000`) plus UTM tags so you can see shares in analytics; the page's Google address stays clean.
+- **Hook Finder:** songs are analysed inside the visitor's browser and never uploaded. To test it, open dhunlabs.studio/tools/hook-finder (or the local preview), drop in one of your own songs, and check that the suggested sections match where you'd cut your ad. If it often prefers the wrong part, the balance can be tuned in `WEIGHTS` (ask Claude).
+- **TODO notes:** anything shown as `[TODO: …]` on a page is waiting for your input. The build lists them, so nothing ships by accident.

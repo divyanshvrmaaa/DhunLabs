@@ -18,7 +18,7 @@ export function ToolsStrip() {
               {homeToolsStrip.title}
             </h2>
           </div>
-          <SmartLink href="/tools" className="inline-flex min-h-11 items-center gap-1.5 text-[0.95rem] font-medium text-muted hover:text-ink">
+          <SmartLink href="/tools" className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap text-[0.95rem] font-medium text-muted hover:text-ink">
             See all tools <span aria-hidden>→</span>
           </SmartLink>
         </Reveal>
