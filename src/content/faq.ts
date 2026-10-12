@@ -55,7 +55,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: "I just want my song on your playlists. How do I submit?",
-    a: "Send it through the track submission form. We listen to every submission personally, and if your track fits one of our playlists, we'll get in touch.",
-    links: [{ label: "Submit your track", href: "https://forms.gle/pobacpCdQizm8nQ29" }],
+    a: "Send it through the track submission form on our site. We listen to every submission personally, and if your track fits one of our playlists, we'll get in touch.",
+    links: [{ label: "Submit your track", href: "/submit-track" }],
   },
 ];

@@ -110,6 +110,22 @@ const staticPages: PageSeo[] = [
     crumbs: [crumbs.playlists],
   },
 
+  // ── Forms ──
+  {
+    path: "/contact",
+    title: "Book a Strategy Audit | DhunLabs",
+    description:
+      "Tell us about your music and your next release, and we'll WhatsApp you to set up a short strategy call. Meta ads and Spotify playlisting for artists.",
+    crumbs: [{ name: "Book a Strategy Audit", path: "/contact" }],
+  },
+  {
+    path: "/submit-track",
+    title: "Submit Your Track for Playlist Review | DhunLabs",
+    description:
+      "Send your song to the DhunLabs playlist network. Every track is heard by a person and considered for the playlist that fits. Bot-free, never guaranteed.",
+    crumbs: [{ name: "Submit Your Track", path: "/submit-track" }],
+  },
+
   // ── Work ──
   {
     path: "/work",

@@ -1,7 +1,6 @@
 import { useRef, type ReactNode, type PointerEvent } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { SmartLink } from "./SmartLink";
-import { site } from "../../content/site";
 import { trackFormClick, type FormKind } from "../../lib/analytics";
 import { useFinePointer } from "../../lib/useMedia";
 
@@ -12,7 +11,7 @@ interface Props {
   children: ReactNode;
   /** Route, URL or mailto. Ignored when `form` is set. */
   href?: string;
-  /** Opens one of the Google Forms in a new tab and records the click. */
+  /** Goes to one of the on-site forms (/contact or /submit-track) and records the click. */
   form?: FormKind;
   /** Where on the site this button sits (for analytics). */
   location?: string;
@@ -75,7 +74,7 @@ export function Button({
     y.set(0);
   };
 
-  const target = form ? (form === "onboarding" ? site.onboardingForm : site.trackSubmitForm) : href;
+  const target = form ? (form === "onboarding" ? "/contact" : "/submit-track") : href;
   const handleClick = () => {
     if (form) trackFormClick(form, location);
     onClick?.();

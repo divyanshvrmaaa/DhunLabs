@@ -17,7 +17,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
       { label: "Meta Ads", href: "/services/meta-ads" },
       { label: "Spotify Playlisting", href: "/services/spotify-playlisting" },
       { label: "Our playlists", href: "/playlists" },
-      { label: "Submit your track", href: site.trackSubmitForm },
+      { label: "Submit your track", href: "/submit-track" },
     ],
   },
   {
@@ -28,6 +28,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
       { label: "Learn: video lessons", href: "/learn" },
       { label: "FAQ", href: "/#faq" },
       { label: "About", href: "/#about" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {

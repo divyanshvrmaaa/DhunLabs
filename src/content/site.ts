@@ -7,13 +7,17 @@ export const site = {
   location: "Delhi, India",
   siteUrl: "https://dhunlabs.studio",
 
-  /** "Book a Strategy Audit", "Get Started", "Contact us". Short link for buttons. */
+  // The site's own forms are at /contact and /submit-track (questions in src/content/forms.ts);
+  // their answers are sent into these Google Forms. The links below are kept as a backup
+  // that visitors see only if sending fails.
+
+  /** Onboarding / strategy audit Google Form. */
   onboardingForm: "https://forms.gle/gpPcddPTHNCw5Koe9",
   /** Full address of the same form, used to embed it inside the page. */
   onboardingFormEmbed:
     "https://docs.google.com/forms/d/e/1FAIpQLSdhQatzyTV_o4tMhrhBHvzvLW0lxgKjxCMp-kz_QYSvpBkJHw/viewform?embedded=true",
 
-  /** "Submit Your Track". Short link for buttons. */
+  /** Track submission Google Form. */
   trackSubmitForm: "https://forms.gle/pobacpCdQizm8nQ29",
   /** Full address of the same form, used to embed it inside the page. */
   trackSubmitFormEmbed:

@@ -4,7 +4,7 @@ import { AnimatedNumber } from "../components/ui/AnimatedNumber";
 import { SmartLink } from "../components/ui/SmartLink";
 import { NumberField, Chips, Segmented } from "../components/planner/Fields";
 import { PlanCard } from "../components/planner/PlanCard";
-import { PlanForms } from "../components/planner/PlanForms";
+import { PlanForms, budgetBracket } from "../components/planner/PlanForms";
 import { ShareActions } from "../components/planner/ShareActions";
 import { EstimateNote, FOOTNOTE } from "../components/planner/EstimateNote";
 import { MobileResultBar } from "../components/planner/MobileResultBar";
@@ -213,7 +213,14 @@ export default function Planner() {
         </div>
 
         <GuideJumpLinks />
-        <PlanForms plan={plan} location="planner" />
+        <PlanForms
+          plan={plan}
+          location="planner"
+          prefill={{
+            budget: budgetBracket(budget),
+            ...(status === "released" ? { releaseStatus: "The track is already out (I want to revive/scale current momentum)" } : {}),
+          }}
+        />
         <ToolGuide g={plannerGuide} />
         <MobileResultBar
           targetId="planner-result"

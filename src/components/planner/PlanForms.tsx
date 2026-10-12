@@ -1,38 +1,44 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import type { PlanId } from "../../lib/estimate";
-import type { FormKind } from "../../lib/analytics";
-import { FormEmbed } from "./FormEmbed";
+import { onboardingForm, trackForm, type SiteFormDef } from "../../content/forms";
+import type { Answers } from "../../lib/googleForm";
+import { SiteForm } from "../forms/SiteForm";
 import { Button } from "../ui/Button";
 
 interface FormSpec {
-  kind: FormKind;
+  def: SiteFormDef;
   tab: string;
   title: string;
   subtitle: string;
 }
 
-const track: FormSpec = {
-  kind: "track",
-  tab: "Submit your track",
-  title: "Submit your track",
-  subtitle: "We listen to every submission personally.",
-};
-const contact: FormSpec = {
-  kind: "onboarding",
-  tab: "Contact us",
-  title: "Questions or want to talk first?",
-  subtitle: "Tell us about your music and we'll get back to you.",
-};
-const audit: FormSpec = {
-  kind: "onboarding",
-  tab: "Book a Strategy Audit",
-  title: "Book a Strategy Audit",
-  subtitle: "Tell us about your release and your goal. We'll set up a short call.",
-};
+const track: FormSpec = { def: trackForm, tab: "Submit your track", title: "Submit your track", subtitle: "We listen to every submission personally." };
+const contact: FormSpec = { def: onboardingForm, tab: "Contact us", title: "Questions or want to talk first?", subtitle: "Tell us about your music and we'll get back to you." };
+const audit: FormSpec = { def: onboardingForm, tab: "Book a Strategy Audit", title: "Book a Strategy Audit", subtitle: "Tell us about your release and your goal. We'll set up a short call." };
+
+/** The planner/estimator budget as the onboarding form's budget bracket (the visitor can change it). */
+export function budgetBracket(budget: number): string {
+  if (budget < 5000) return "Under ₹5,000";
+  if (budget <= 15000) return "₹5,000 to ₹15,000";
+  if (budget <= 30000) return "₹15,000 to ₹30,000";
+  return "₹30,000+";
+}
+
+function FormCard({ f, location, prefill }: { f: FormSpec; location: string; prefill?: Answers }) {
+  return (
+    <div>
+      <h3 className="font-heading text-lg font-semibold tracking-tight md:text-xl">{f.title}</h3>
+      <p className="mt-1 text-sm text-muted">{f.subtitle}</p>
+      <div className="mt-4">
+        <SiteForm def={f.def} location={location} initial={f.def.id === "onboarding" ? prefill : undefined} hideTitle />
+      </div>
+    </div>
+  );
+}
 
 /** The forms shown under a planner/estimator result: tabs on mobile, side by side on desktop. */
-export function PlanForms({ plan, location }: { plan: PlanId; location: string }) {
+export function PlanForms({ plan, location, prefill }: { plan: PlanId; location: string; prefill?: Answers }) {
   const forms = plan === "playlisting" ? [track, contact] : [audit, track];
   const [tab, setTab] = useState(0);
 
@@ -81,16 +87,16 @@ export function PlanForms({ plan, location }: { plan: PlanId; location: string }
           ))}
         </div>
         {forms.map((f, i) => (
-          <div key={f.tab} role="tabpanel" id={`${location}-panel-${i}`} aria-labelledby={`${location}-tab-${i}`} hidden={tab !== i} className="mt-4">
-            {tab === i && <FormEmbed kind={f.kind} title={f.title} subtitle={f.subtitle} location={location} />}
+          <div key={f.tab} role="tabpanel" id={`${location}-panel-${i}`} aria-labelledby={`${location}-tab-${i}`} hidden={tab !== i} className="mt-6">
+            {tab === i && <FormCard f={f} location={location} prefill={prefill} />}
           </div>
         ))}
       </div>
 
       {/* Desktop: side by side */}
-      <div className={`mt-10 hidden gap-5 md:grid ${plan === "combined" ? "md:grid-cols-[1.35fr_1fr]" : "md:grid-cols-2"}`}>
+      <div className="mt-10 hidden items-start gap-6 md:grid md:grid-cols-2">
         {forms.map((f) => (
-          <FormEmbed key={f.tab} kind={f.kind} title={f.title} subtitle={f.subtitle} location={location} />
+          <FormCard key={f.tab} f={f} location={location} prefill={prefill} />
         ))}
       </div>
     </section>

@@ -4,7 +4,7 @@ import { AnimatedNumber } from "../components/ui/AnimatedNumber";
 import { SmartLink } from "../components/ui/SmartLink";
 import { NumberField, Chips } from "../components/planner/Fields";
 import { PlanCard } from "../components/planner/PlanCard";
-import { PlanForms } from "../components/planner/PlanForms";
+import { PlanForms, budgetBracket } from "../components/planner/PlanForms";
 import { ShareActions } from "../components/planner/ShareActions";
 import { EstimateNote, FOOTNOTE } from "../components/planner/EstimateNote";
 import { MobileResultBar } from "../components/planner/MobileResultBar";
@@ -202,7 +202,7 @@ export default function Estimator() {
         </div>
 
         <GuideJumpLinks />
-        <PlanForms plan={plan} location="estimator" />
+        <PlanForms plan={plan} location="estimator" prefill={{ budget: budgetBracket(result.total.high) }} />
         <ToolGuide g={estimatorGuide} />
         <MobileResultBar targetId="estimator-result" title={plans[plan].name} value={`${formatRange(result.total.low, result.total.high, true)} est. budget`} />
       </div>

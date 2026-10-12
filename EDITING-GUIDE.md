@@ -16,6 +16,7 @@ You have two options for every change below:
 | I want to change… | Open this file |
 |---|---|
 | Email, Instagram, YouTube, Google Form links | `src/content/site.ts` |
+| Questions on the site's forms (/contact, /submit-track) | `src/content/forms.ts` |
 | The four numbers under the hero (~25K, 60K+, 500K+, 100%) | `src/content/stats.ts` |
 | The "Three Pillars" text and "How it works" steps | `src/content/pillars.ts` |
 | Case studies (Harman Sohi + the receipts), the /work and /work/harman-sohi pages | `src/content/caseStudies.ts` |
@@ -126,7 +127,7 @@ Or simply tell Claude: "Change X, show me the preview, then deploy."
 
 - **Images:** originals live in `assets-src/`; `npm run images` makes the small WebP versions in `public/`. Don't put huge photos straight into `public/`.
 - **Analytics:** Vercel Analytics only (privacy-friendly). Custom events record form-button clicks, planner/estimator results (plan name and a budget bucket only, never the exact amount) and tool usage. No Meta Pixel or other trackers.
-- **Forms:** the Google Forms are embedded on the planner and estimator, and each one also has a button that opens it in a new tab ("Submit your track for playlist review", "Book a strategy audit") for phones where embeds misbehave. The form links themselves live in `src/content/site.ts`.
+- **Forms:** the site has its own forms at /contact (Book a Strategy Audit) and /submit-track, and the same forms appear under the planner and estimator results. When someone submits, the answers are sent into your existing Google Forms in the background, so they land in the same Google Sheet as before (turn on "Get email notifications for new responses" in each Google Form's Responses tab to get an email for every new lead). The questions are in `src/content/forms.ts`: you can reword the labels there freely, but if you add, delete or change a question or an option in the Google Form itself, ask Claude to update the site form to match, or that answer won't be saved. The Google Form links in `src/content/site.ts` are only shown as a backup if sending fails.
 - **Share images:** `public/og-image.jpg` is what WhatsApp/Instagram show for most pages. Each tool and each video has its own image in `public/og/`; run `npm run og` to remake them (needs Google Chrome on this Mac).
 - **Result cards and shareable links:** every tool can save a Story or Post image of the result, drawn on the visitor's phone (nothing uploaded). Shared links carry the inputs (e.g. `/planner?budget=10000`) plus UTM tags so you can see shares in analytics; the page's Google address stays clean.
 - **Hook Finder:** songs are analysed inside the visitor's browser and never uploaded. To test it, open dhunlabs.studio/tools/hook-finder (or the local preview), drop in one of your own songs, and check that the suggested sections match where you'd cut your ad. If it often prefers the wrong part, the balance can be tuned in `WEIGHTS` (ask Claude).
