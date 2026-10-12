@@ -22,12 +22,21 @@ export function ToolsStrip() {
             See all tools <span aria-hidden>→</span>
           </SmartLink>
         </Reveal>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((c, i) => (
-            <Reveal key={c.href} delay={i * 0.06}>
+            <Reveal key={c.href} delay={(i % 3) * 0.06}>
               <ToolCardLink t={c} featured={i < 2} />
             </Reveal>
           ))}
+          <Reveal delay={0.12}>
+            <SmartLink
+              href="/tools"
+              className="card flex h-full min-h-40 flex-col justify-end p-6 transition-colors duration-500 hover:border-accent/40 md:p-7"
+            >
+              <span className="font-heading text-xl font-semibold tracking-tight md:text-[1.4rem]">All free tools</span>
+              <span className="mt-2 text-[0.95rem] text-muted">Every calculator and checker in one place.</span>
+            </SmartLink>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -89,7 +89,7 @@ export function ToolGuide({ g }: { g: ToolGuideContent }) {
       {/* 3. Method */}
       {g.method && (
         <section aria-labelledby="how-we-calculate" className="mt-16 border-t border-line pt-14">
-          <H2 id="how-we-calculate">How we calculate this</H2>
+          <H2 id="how-we-calculate">{g.method.title ?? "How we calculate this"}</H2>
           <P>{g.method.intro}</P>
           <ul className="mt-5 space-y-3">
             {g.method.points.map((pt) => (
@@ -129,6 +129,23 @@ export function ToolGuide({ g }: { g: ToolGuideContent }) {
           {g.method.outro && <P>{g.method.outro}</P>}
         </section>
       )}
+
+      {g.extraSections?.map((x) => (
+        <section key={x.id} aria-labelledby={x.id} className="mt-16 border-t border-line pt-14">
+          <H2 id={x.id}>{x.title}</H2>
+          {x.paragraphs?.map((p) => <P key={p.slice(0, 24)}>{p}</P>)}
+          {x.bullets && (
+            <ul className="mt-5 space-y-3">
+              {x.bullets.map((b) => (
+                <li key={b} className="flex gap-3 leading-relaxed text-ink/85">
+                  <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
 
       {/* 4. Benchmarks */}
       <section aria-labelledby="benchmarks" className="mt-16 border-t border-line pt-14">

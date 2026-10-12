@@ -51,7 +51,7 @@ const staticPages: PageSeo[] = [
     path: "/tools",
     title: "Free Music Marketing Tools for Artists | DhunLabs",
     description:
-      "Free tools for independent artists in India: a budget planner, a Spotify cost estimator, a royalty calculator and a cost-per-stream checker.",
+      "Free tools for independent artists in India: Hook Finder, budget planner, Spotify cost estimator, royalty calculator and cost-per-stream checker.",
     crumbs: [crumbs.tools],
   },
   {
@@ -89,6 +89,16 @@ const staticPages: PageSeo[] = [
     ogImage: "/og/cost-per-stream.jpg",
     crumbs: [crumbs.tools, { name: "Cost-Per-Stream Checker", path: "/tools/cost-per-stream" }],
     app: "Cost Per Stream Calculator for Music Ads",
+  },
+
+  {
+    path: "/tools/hook-finder",
+    title: "Hook Finder: Find Your Song's Best Ad Clip | DhunLabs",
+    description:
+      "Upload a song, get the 3 strongest 15 or 30-second sections to cut as Instagram and Meta ad clips. Runs in your browser; nothing is uploaded.",
+    ogImage: "/og/hook-finder.jpg",
+    crumbs: [crumbs.tools, { name: "Hook Finder", path: "/tools/hook-finder" }],
+    app: "Hook Finder",
   },
 
   // ── Playlists ──

@@ -12,11 +12,15 @@ export interface ToolGuideContent {
   howTo: { title: string; body: string }[];
   reading: { intro: string; bands: GuideBand[]; outro?: string };
   method?: {
+    /** Heading (default "How we calculate this"). */
+    title?: string;
     intro: string;
     points: string[];
     table?: { caption: string; head: string[]; rows: string[][] };
     outro?: string;
   };
+  /** Extra sections after the method (e.g. "What makes a good ad hook"). */
+  extraSections?: { id: string; title: string; paragraphs?: string[]; bullets?: string[] }[];
   benchmarks: {
     intro: string;
     /** Receipts from caseStudies.ts, by id. */

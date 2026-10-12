@@ -19,11 +19,20 @@ export const toolsHub = {
   title: "Free music marketing tools for independent artists.",
   sub: "Plan a campaign, see the budget a stream goal takes, find out what your streams earn and sanity-check past ad results. Everything runs in your browser, with no sign-up and nothing stored.",
   intro: [
-    "We built these tools for the questions artists ask us every week: how much should I spend, what will it get me, what do streams actually pay, and did that last campaign work? Each tool gives you an honest estimate based on our own campaign data and real royalty statements, not on what a sales page wants you to believe.",
-    "The planner and the estimator use the same model, one starting from your budget and one from your goal. The revenue calculator shows what reaches your pocket after distributors and splits, for Indian and global listeners. The cost-per-stream checker tells you whether a past campaign paid a fair price. Every result can be shared as a link or an image.",
+    "We built these tools for the questions artists ask us every week: which part of my song should the ad use, how much should I spend, what will it get me, what do streams actually pay, and did that last campaign work? Each tool gives you an honest estimate based on our own campaign data and real royalty statements, not on what a sales page wants you to believe.",
+    "The Hook Finder listens to your song in your browser and suggests the best clips for ads. The planner and the estimator use the same model, one starting from your budget and one from your goal. The revenue calculator shows what reaches your pocket after distributors and splits, for Indian and global listeners. The cost-per-stream checker tells you whether a past campaign paid a fair price. Every result can be shared as a link or an image.",
     "All of them are free, need no sign-up and work on your phone. Nothing you type leaves your browser.",
   ],
   cards: [
+    {
+      href: "/tools/hook-finder",
+      title: "Hook Finder",
+      benefit: "Upload your song. Get the 3 best 15 or 30-second clips for ads.",
+      description:
+        "Drop in your song and get the three strongest 15 or 30-second sections to cut as Instagram and Meta ad clips, with a waveform, play buttons and WAV downloads. It runs entirely in your browser, so unreleased tracks never leave your device.",
+      tag: "Song → ad clips",
+      isNew: true,
+    },
     {
       href: "/planner",
       title: "Campaign Planner",
@@ -62,5 +71,5 @@ export const toolsHub = {
 /** Home page strip: the hub cards in this order. */
 export const homeToolsStrip = {
   title: "Free tools for independent artists",
-  hrefs: ["/planner", "/estimator", "/tools/revenue-calculator", "/tools/cost-per-stream"],
+  hrefs: ["/tools/hook-finder", "/planner", "/estimator", "/tools/revenue-calculator", "/tools/cost-per-stream"],
 };
