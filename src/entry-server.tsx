@@ -7,6 +7,7 @@ import { AppRoutes } from "./App";
 // The build script (scripts/postbuild.mjs) reads the page list and structured data from here.
 export { pages, notFoundSeo, SITE_URL, OG_IMAGE } from "./content/seo";
 export { jsonLdFor } from "./lib/structuredData";
+export { videos } from "./content/videos";
 
 function app(url: string) {
   return (

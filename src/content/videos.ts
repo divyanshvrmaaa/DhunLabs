@@ -45,7 +45,7 @@ export interface Video {
   hook: string;
   /** English summary, one string per paragraph. */
   summary: string[];
-  /** true = shows "[TODO: review summary]" until Divyansh has checked it. */
+  /** true = Divyansh hasn't checked the summary yet. Not shown on the site; the build lists these videos. */
   summaryNeedsReview?: boolean;
   /** 4–6 key takeaways. */
   takeaways: string[];

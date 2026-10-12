@@ -13,7 +13,7 @@ import { pathToFileURL } from "node:url";
 const root = path.resolve(import.meta.dirname, "..");
 const dist = path.join(root, "dist");
 const template = await readFile(path.join(dist, "index.html"), "utf8");
-const { render, pages, notFoundSeo, SITE_URL, OG_IMAGE, jsonLdFor } = await import(
+const { render, pages, notFoundSeo, SITE_URL, OG_IMAGE, jsonLdFor, videos } = await import(
   pathToFileURL(path.join(root, "dist-ssr", "entry-server.js")).href
 );
 
@@ -82,4 +82,6 @@ const sitemap =
 await writeFile(path.join(dist, "sitemap.xml"), sitemap);
 
 console.log(`postbuild: ${pages.length} pages (${pages.length - NO_PRERENDER.size} pre-rendered) + shell.html + sitemap.xml`);
+const toReview = videos.filter((v) => v.summaryNeedsReview).map((v) => v.title);
+if (toReview.length) console.log(`postbuild: ${toReview.length} video summaries still to review (not shown on the site):\n  ${toReview.join("\n  ")}`);
 if (todos.length) console.log(`postbuild: ${todos.length} page(s) still have TODO markers:\n  ${todos.join("\n  ")}`);

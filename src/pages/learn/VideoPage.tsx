@@ -41,7 +41,6 @@ export default function VideoPage() {
           {v.summary.map((p) => (
             <p key={p.slice(0, 32)}>{p}</p>
           ))}
-          {v.summaryNeedsReview && <p className="text-sm text-gold">[TODO: review summary]</p>}
         </Prose>
       </Section>
 

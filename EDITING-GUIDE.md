@@ -77,7 +77,7 @@ Easiest: tell Claude "add this video: <YouTube link>". To do it yourself:
    - `related`: 2 or 3 links to matching tools or services (copy the format from another video).
    - Optional: `seoTitle` (under 60 characters) and `seoDescription` (under 155) for Google.
    - Want it listed on /learn but without a page of its own (the card goes straight to YouTube)? Add `noPage: true,`.
-   - Leave `summaryNeedsReview: true` until you've read the summary, then delete that line (it removes the "[TODO: review summary]" note).
+   - `summaryNeedsReview: true` is a private reminder (never shown on the site; the build lists these videos). Delete that line once you've checked the summary.
 3. Thumbnail: save `https://i.ytimg.com/vi/<ID>/maxresdefault.jpg` as `assets-src/thumbs/<ID>.jpg`, then run `npm run images` and `npm run og` (the second one makes the WhatsApp preview image).
 4. Optional transcript: save it as `src/content/transcripts/<ID>.txt` (or `.srt` subtitles). It shows on the video's page exactly as written.
 5. Check and publish (see "Put your change live"). The video's page, the /learn grid, the home page section, the sitemap and Google's video data all update by themselves.
