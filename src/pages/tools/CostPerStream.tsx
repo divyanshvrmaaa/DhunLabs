@@ -9,6 +9,8 @@ import { SUSPICIOUS_CPS_BELOW, TYPICAL_CPS_HIGH, TYPICAL_CPS_LOW } from "../../c
 import { verdictFor, type Tone } from "../../lib/cps";
 import { ToolGuide, GuideJumpLinks } from "../../components/guide/ToolGuide";
 import { costPerStreamGuide } from "../../content/guides/costPerStream";
+import { ShareCard } from "../../components/tools/ShareCard";
+import { numParam, shareUrl, useUrlInputs } from "../../lib/shareUrl";
 import { formatINR2, formatNumber } from "../../lib/format";
 import { track } from "../../lib/analytics";
 
@@ -28,6 +30,15 @@ export default function CostPerStream() {
   const [spent, setSpent] = useState(0);
   const [streams, setStreams] = useState(0);
   const [saves, setSaves] = useState(0);
+  // Shared links open pre-filled: ?spent=10000&streams=12000&saves=900
+  useUrlInputs((q) => {
+    const a = numParam(q, "spent", 0, 100_000_000);
+    if (a !== undefined) setSpent(a);
+    const b = numParam(q, "streams", 0, 1_000_000_000);
+    if (b !== undefined) setStreams(b);
+    const c = numParam(q, "saves", 0, 1_000_000_000);
+    if (c !== undefined) setSaves(c);
+  });
   const ready = spent > 0 && streams > 0;
   const cps = ready ? spent / streams : 0;
   const v = verdictFor(cps);
@@ -43,12 +54,13 @@ export default function CostPerStream() {
     return () => window.clearTimeout(t);
   }, [ready, v.tone]);
 
+  const link = shareUrl("/tools/cost-per-stream", { spent: spent || null, streams: streams || null, saves: saves || null }, "cost-per-stream");
   const text = ready
     ? [
         `Spent: ₹${formatNumber(spent)} · Streams: ${formatNumber(streams)}`,
         `Cost per stream: ${formatINR2(cps)} (${v.title.toLowerCase()})`,
         saveRate !== null ? `Save rate: ${saveRate.toFixed(1)}%` : null,
-        "Checked with dhunlabs.studio/tools/cost-per-stream",
+        `Check yours: ${link}`,
       ]
         .filter(Boolean)
         .join("\n")
@@ -134,6 +146,25 @@ export default function CostPerStream() {
               )}
               <div className="mt-6">
                 <CopyButton text={text} source="cost-per-stream" />
+              </div>
+              <div className="mt-4">
+                <ShareCard
+                  fileName="dhunlabs-cost-per-stream"
+                  link={link}
+                  text={`My cost per stream: ${formatINR2(cps)} (${v.title.toLowerCase()})`}
+                  spec={{
+                    tool: "Cost-Per-Stream Checker",
+                    lead: `₹${formatNumber(spent)} for ${formatNumber(streams)} streams =`,
+                    big: formatINR2(cps),
+                    tail: `per stream · ${v.title.toLowerCase()}`,
+                    inputs: [
+                      ["Money spent", `₹${formatNumber(spent)}`],
+                      ["Streams received", formatNumber(streams)],
+                      ...(saveRate !== null ? [["Save rate", `${saveRate.toFixed(1)}%`] as [string, string]] : []),
+                    ],
+                    url: "dhunlabs.studio/tools/cost-per-stream",
+                  }}
+                />
               </div>
             </div>
           ) : (

@@ -13,8 +13,9 @@ import { otherPlatformsNote, plans, youtubeSeparateNote } from "../content/plans
 import { budgetBucket, estimate, type Range } from "../lib/estimate";
 import { formatNumber, formatRange } from "../lib/format";
 import { track } from "../lib/analytics";
-import { site } from "../content/site";
 import { ToolGuide, GuideJumpLinks } from "../components/guide/ToolGuide";
+import { ShareCard } from "../components/tools/ShareCard";
+import { numParam, shareUrl, useUrlInputs } from "../lib/shareUrl";
 import { estimatorGuide } from "../content/guides/estimator";
 
 const MAX_GOAL = 10_000_000;
@@ -40,6 +41,13 @@ function RangeNumber({ r, className = "" }: { r: Range; className?: string }) {
 export default function Estimator() {
   const [streams, setStreams] = useState(ESTIMATOR_DEFAULT_STREAMS);
   const [views, setViews] = useState(0);
+  // Shared links open pre-filled: /estimator?streams=10000&views=50000
+  useUrlInputs((q) => {
+    const s = numParam(q, "streams", ESTIMATOR_MIN_STREAMS, MAX_GOAL);
+    if (s !== undefined) setStreams(s);
+    const v = numParam(q, "views", 0, MAX_GOAL);
+    if (v !== undefined) setViews(v);
+  });
   const result = useMemo(() => estimate(streams, views), [streams, views]);
   const plan = result.plan;
   const hasViews = views > 0;
@@ -56,6 +64,8 @@ export default function Estimator() {
     return () => window.clearTimeout(t);
   }, [plan, result.total.high, hasViews]);
 
+  const link = shareUrl("/estimator", { streams, views: views || null }, "estimator");
+  const totalText = formatRange(result.total.low, result.total.high, true);
   const summary = [
     "My DhunLabs stream goal",
     `Spotify streams wanted: ${formatNumber(streams)} → est. budget ${formatRange(result.spotify.low, result.spotify.high, true)}`,
@@ -63,7 +73,7 @@ export default function Estimator() {
     hasViews ? `Total estimated budget: ${formatRange(result.total.low, result.total.high, true)}` : null,
     `Plan: ${plans[plan].name}`,
     FOOTNOTE,
-    `Estimate yours: ${site.siteUrl}/estimator`,
+    `See this estimate: ${link}`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -139,6 +149,23 @@ export default function Estimator() {
                     <p className="rounded-xl border border-gold/30 bg-gold/[0.06] px-4 py-3 text-sm text-ink/90">{youtubeSeparateNote}</p>
                   )}
                   <ShareActions text={summary} source="estimator" />
+                  <ShareCard
+                    fileName="dhunlabs-stream-goal"
+                    link={link}
+                    text={`${formatNumber(streams)} Spotify streams ≈ ${totalText} est. budget`}
+                    spec={{
+                      tool: "Stream Estimator",
+                      lead: hasViews ? `${formatNumber(streams)} streams + ${formatNumber(views)} YouTube views would cost about` : `${formatNumber(streams)} Spotify streams would cost about`,
+                      big: totalText,
+                      tail: "estimated budget",
+                      inputs: [
+                        ["Recommended plan", plans[plan].name],
+                        ["Spotify budget", formatRange(result.spotify.low, result.spotify.high, true)],
+                        ...(hasViews ? [["YouTube budget", formatRange(result.youtube.low, result.youtube.high, true)] as [string, string]] : []),
+                      ],
+                      url: "dhunlabs.studio/estimator",
+                    }}
+                  />
                   <EstimateNote />
                 </div>
               }

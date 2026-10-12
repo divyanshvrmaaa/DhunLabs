@@ -24,6 +24,9 @@ import { formatNumber } from "../../lib/format";
 import { track } from "../../lib/analytics";
 import { ToolGuide, GuideJumpLinks } from "../../components/guide/ToolGuide";
 import { revenueGuide } from "../../content/guides/revenueCalculator";
+import { ShareCard } from "../../components/tools/ShareCard";
+import { numParam, shareUrl, useUrlInputs } from "../../lib/shareUrl";
+import { platforms } from "../../content/royalties";
 
 type Currency = "INR" | "USD";
 type Period = "total" | "monthly";
@@ -63,6 +66,32 @@ export default function RevenueCalculator() {
   const [currency, setCurrency] = useState<Currency>("INR");
   const [period, setPeriod] = useState<Period>("total");
 
+  // Shared links open pre-filled: ?region=india&spotify=100000&keep=85 …
+  useUrlInputs((q) => {
+    const region = q.get("region");
+    if (region === "india" || region === "global" || region === "mix") setAudience(region);
+    const share = numParam(q, "share", 0, 100);
+    if (share !== undefined) setIndiaShare(share);
+    const next: Partial<Record<PlatformId, number>> = {};
+    let any = false;
+    for (const p of platforms) {
+      const n = numParam(q, p.id, 0, 10_000_000_000);
+      if (n !== undefined) {
+        next[p.id] = n;
+        any = true;
+      }
+    }
+    if (any) setStreams(next);
+    const k = numParam(q, "keep", 0, 100);
+    if (k !== undefined) setKeep(k);
+    const yc = numParam(q, "ytcut", 0, 100);
+    if (yc !== undefined) setYoutubeExtraCut(yc);
+    const own = numParam(q, "own", 0, 100);
+    if (own !== undefined) setOwnership(own);
+    if (q.get("cur") === "usd") setCurrency("USD");
+    if (q.get("period") === "monthly") setPeriod("monthly");
+  });
+
   const visible = platformsFor(audience);
   const result = useMemo(
     () => calculateRevenue({ audience, indiaShare, streams, distributorKeep: keep, youtubeExtraCut, ownership }),
@@ -86,13 +115,28 @@ export default function RevenueCalculator() {
   }, [t.streams, audience]);
 
   const audienceLabel = audience === "mix" ? `Mix (${indiaShare}% India)` : `${audienceOptions.find((o) => o.value === audience)!.label} audience`;
+  const link = shareUrl(
+    "/tools/revenue-calculator",
+    {
+      region: audience,
+      share: audience === "mix" ? indiaShare : null,
+      ...Object.fromEntries(visible.map((p) => [p.id, streams[p.id] || null])),
+      keep: keep !== 100 ? keep : null,
+      ytcut: youtubeExtraCut || null,
+      own: ownership !== 100 ? ownership : null,
+      cur: currency === "USD" ? "usd" : null,
+      period: period === "monthly" ? "monthly" : null,
+    },
+    "revenue-calculator",
+  );
   const summary = [
     `My estimated streaming revenue${per} (${audienceLabel})`,
     ...result.rows.map((r) => `${r.name}: ${formatNumber(r.streams)} streams → ${money(r.you.typical)} (range ${money(r.you.low)}–${money(r.you.high)})`),
     `Take-home: ${money(t.you.typical)}${per} (range ${money(t.you.low)}–${money(t.you.high)})`,
     period === "monthly" ? `≈ ${money(t.you.typical * 12)} per year` : null,
     `Distributor keeps: ${money(t.distributor.typical)} · Co-owners/label: ${money(t.others.typical)}`,
-    "Estimates for the recording side only, before tax. Calculated at dhunlabs.studio/tools/revenue-calculator",
+    "Estimates for the recording side only, before tax.",
+    `See this calculation: ${link}`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -385,6 +429,27 @@ export default function RevenueCalculator() {
             <div className="relative mt-7 flex flex-wrap gap-2">
               <CopyButton text={summary} source="revenue-calculator" />
             </div>
+            {t.streams > 0 && (
+              <div className="relative mt-4">
+                <ShareCard
+                  fileName="dhunlabs-streaming-revenue"
+                  link={link}
+                  text={`${formatNumber(t.streams)} streams${per} ≈ ${money(t.you.typical)} take-home`}
+                  spec={{
+                    tool: "Streaming Revenue Calculator",
+                    lead: `${formatNumber(t.streams)} streams${period === "monthly" ? " a month" : ""} could earn`,
+                    big: money(t.you.typical),
+                    tail: `estimated take-home${per}`,
+                    inputs: [
+                      ["Listeners", audience === "mix" ? `${indiaShare}% India, ${100 - indiaShare}% abroad` : audience === "india" ? "India" : "Global"],
+                      ["Likely range", `${money(t.you.low)}–${money(t.you.high)}`],
+                      ["You keep after distributor", `${keep}%`],
+                    ],
+                    url: "dhunlabs.studio/tools/revenue-calculator",
+                  }}
+                />
+              </div>
+            )}
 
             <div className="relative mt-6 border-t border-line pt-5 text-xs leading-relaxed text-muted">
               <p>

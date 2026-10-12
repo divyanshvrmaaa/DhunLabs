@@ -20,13 +20,22 @@ import { customPlanLine, plans, songStatusOptions, type SongStatus } from "../co
 import { budgetBucket, costPerStreamForBudget, planForBudget, streamsForBudget } from "../lib/estimate";
 import { formatINR, formatINR2, formatNumber, formatRange } from "../lib/format";
 import { track } from "../lib/analytics";
-import { site } from "../content/site";
 import { ToolGuide, GuideJumpLinks } from "../components/guide/ToolGuide";
+import { ShareCard } from "../components/tools/ShareCard";
+import { numParam, shareUrl, useUrlInputs } from "../lib/shareUrl";
 import { plannerGuide } from "../content/guides/planner";
 
 export default function Planner() {
   const [budget, setBudget] = useState(PLANNER_DEFAULT);
   const [status, setStatus] = useState<SongStatus | null>(null);
+
+  // Shared links open pre-filled: /planner?budget=10000&status=released
+  useUrlInputs((q) => {
+    const b = numParam(q, "budget", PLANNER_MIN, PLANNER_MAX);
+    if (b !== undefined) setBudget(b);
+    const st = q.get("status");
+    if (songStatusOptions.some((o) => o.value === st)) setStatus(st as SongStatus);
+  });
 
   const streams = useMemo(() => streamsForBudget(budget), [budget]);
   const cps = useMemo(() => costPerStreamForBudget(budget), [budget]);
@@ -47,6 +56,9 @@ export default function Planner() {
     return () => window.clearTimeout(t);
   }, [plan, budget]);
 
+  const link = shareUrl("/planner", { budget, status }, "planner");
+  const streamsText = single ? "~" + formatNumber(streams.low) : formatRange(streams.low, streams.high);
+  const cpsText = Math.abs(cps.low - cps.high) < 0.005 ? formatINR2(cps.low) : `${formatINR2(cps.low)}–${formatINR2(cps.high)}`;
   const summary = [
     "My DhunLabs campaign plan",
     `Budget: ${formatINR(budget)}`,
@@ -54,7 +66,7 @@ export default function Planner() {
     `Estimated streams: ${single ? "~" + formatNumber(streams.low) : formatRange(streams.low, streams.high)}`,
     status ? `Song: ${songStatusOptions.find((o) => o.value === status)!.label}` : null,
     FOOTNOTE,
-    `Plan yours: ${site.siteUrl}/planner`,
+    `See this plan: ${link}`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -145,6 +157,23 @@ export default function Planner() {
                     </p>
                   )}
                   <ShareActions text={summary} source="planner" />
+                  <ShareCard
+                    fileName="dhunlabs-campaign-plan"
+                    link={link}
+                    text={`My budget: ${formatINR(budget)} → ${streamsText} est. streams`}
+                    spec={{
+                      tool: "Campaign Planner",
+                      lead: `My budget: ${formatINR(budget)} →`,
+                      big: streamsText,
+                      tail: "estimated Spotify streams",
+                      inputs: [
+                        ["Recommended plan", plans[plan].name],
+                        ["Est. cost per stream", cpsText],
+                        ...(status ? [["Song", songStatusOptions.find((o) => o.value === status)!.label] as [string, string]] : []),
+                      ],
+                      url: "dhunlabs.studio/planner",
+                    }}
+                  />
                   <EstimateNote />
                 </div>
               }

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BlurImg } from "../ui/BlurImg";
 import { placeholderFor } from "../../lib/placeholder";
-import { track } from "../../lib/analytics";
 
 /**
  * A fast YouTube embed: shows the thumbnail first and loads the real (privacy-enhanced)
@@ -22,10 +21,7 @@ export function YouTubeLite({ id, title, className = "" }: { id: string; title: 
       ) : (
         <button
           type="button"
-          onClick={() => {
-            setPlay(true);
-            track("video_play", { video: id });
-          }}
+          onClick={() => setPlay(true)}
           className="group relative block w-full text-left"
         >
           <BlurImg

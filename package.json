@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "images": "node scripts/optimize-images.mjs",
-    "check": "node scripts/check-site.mjs"
+    "check": "node scripts/check-site.mjs",
+    "og": "node scripts/og-images.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
