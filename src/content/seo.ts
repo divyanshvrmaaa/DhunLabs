@@ -163,14 +163,13 @@ const learnPages: PageSeo[] = [
     path: "/learn",
     title: "Learn Music Marketing: Free Video Lessons | DhunLabs",
     description:
-      "Free music marketing lessons in Hindi: Meta ads for songs, the Spotify Popularity Index, campaign breakdowns and playlist experiments, with English summaries.",
+      "Free music marketing lessons in Hindi: Meta ads for songs, the Spotify Popularity Index, campaign breakdowns and experiments. English summaries.",
     crumbs: [crumbs.learn],
   },
   ...videoPages,
 ];
 
-export const pages: PageSeo[] = [...staticPages, ...playlistPages];
-void learnPages; // added in phase 4
+export const pages: PageSeo[] = [...staticPages, ...playlistPages, ...learnPages];
 
 export const notFoundSeo: PageSeo = {
   path: "/404",

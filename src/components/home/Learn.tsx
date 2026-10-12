@@ -1,25 +1,34 @@
-import { channelCard, learnIntro, videoUrl, videos } from "../../content/videos";
-import { site } from "../../content/site";
+import { learnIntro, videosByDate } from "../../content/videos";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Reveal } from "../ui/Reveal";
 import { SmartLink } from "../ui/SmartLink";
 import { BlurImg } from "../ui/BlurImg";
 import { placeholderFor } from "../../lib/placeholder";
 import { track } from "../../lib/analytics";
+import { ChannelCard, thumbFor } from "../content/VideoBits";
 
+/** Home page summary of /learn: the 4 newest videos, each linking to its own page. */
 export function Learn() {
+  const latest = videosByDate().slice(0, 4);
   return (
     <section id="learn" aria-labelledby="learn-title" className="border-t border-line py-24 md:py-36">
       <div className="container-x">
-        <SectionHeader id="learn-title" eyebrow={learnIntro.eyebrow} title={learnIntro.title} body={learnIntro.body} />
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeader id="learn-title" eyebrow={learnIntro.eyebrow} title={learnIntro.title} body={learnIntro.body} />
+          <Reveal className="shrink-0">
+            <SmartLink href="/learn" className="inline-flex min-h-11 items-center gap-1.5 text-[0.95rem] font-medium text-muted hover:text-ink">
+              See all video lessons <span aria-hidden>→</span>
+            </SmartLink>
+          </Reveal>
+        </div>
 
         <div className="mt-14 grid gap-x-5 gap-y-10 md:mt-20 md:grid-cols-2">
-          {videos.map((v, i) => (
+          {latest.map((v, i) => (
             <Reveal key={v.id} delay={(i % 2) * 0.08}>
-              <SmartLink href={videoUrl(v.id)} className="group block" onClick={() => track("video_click", { video: v.id })}>
+              <article className="group relative">
                 <div className="relative overflow-hidden rounded-[var(--radius-lg)] border border-line">
                   <BlurImg
-                    src={`/thumbs/${v.id}.webp`}
+                    src={thumbFor(v.id)}
                     placeholder={placeholderFor(`/thumbs/${v.id}.webp`)}
                     alt=""
                     width={640}
@@ -27,37 +36,21 @@ export function Learn() {
                     wrapperClassName="aspect-video"
                     className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-brand)] group-hover:scale-[1.03]"
                   />
-                  <span className="absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium backdrop-blur-md">
-                    Watch on YouTube ↗
-                  </span>
+                  <span className="num absolute bottom-3 right-3 rounded-md bg-black/75 px-2 py-1 text-xs font-medium">{v.duration}</span>
                 </div>
                 <h3 className="mt-5 font-heading text-xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-accent md:text-2xl">
-                  {v.title}
+                  <SmartLink href={`/learn/${v.slug}`} onClick={() => track("video_click", { video: v.id })} className="after:absolute after:inset-0 after:content-['']">
+                    {v.title}
+                  </SmartLink>
                 </h3>
                 <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{v.hook}</p>
-              </SmartLink>
+              </article>
             </Reveal>
           ))}
         </div>
 
         <Reveal className="mt-12">
-          <SmartLink
-            href={site.youtube}
-            className="group card flex flex-col gap-4 p-6 transition-colors duration-500 hover:border-gold/40 sm:flex-row sm:items-center sm:justify-between md:p-8"
-          >
-            <div className="flex items-center gap-4">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ff0033] text-white" aria-hidden>
-                <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5">
-                  <path d="M8 5v14l11-7z" fill="currentColor" />
-                </svg>
-              </span>
-              <div>
-                <p className="font-heading text-xl font-semibold tracking-tight">{channelCard.handle}</p>
-                <p className="text-sm text-muted">{channelCard.line}</p>
-              </div>
-            </div>
-            <span className="text-[0.95rem] font-medium text-gold">{channelCard.cta}</span>
-          </SmartLink>
+          <ChannelCard />
         </Reveal>
       </div>
     </section>

@@ -2,6 +2,7 @@
 // into the <head> of every pre-rendered page.
 import { SITE_URL, type PageSeo } from "../content/seo";
 import { faqs } from "../content/faq";
+import { isoDuration, videos } from "../content/videos";
 
 const abs = (path: string) => (path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`);
 
@@ -37,6 +38,23 @@ export function jsonLdFor(page: PageSeo): object[] {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    });
+  }
+
+  // Video pages: VideoObject (only fields we have verified)
+  const video = videos.find((v) => page.path === `/learn/${v.slug}`);
+  if (video) {
+    out.push({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: video.title,
+      description: video.summary[0],
+      thumbnailUrl: [`${SITE_URL}/thumbs/${video.id}.webp`, `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`],
+      uploadDate: video.published,
+      duration: isoDuration(video.duration),
+      embedUrl: `https://www.youtube.com/embed/${video.id}`,
+      inLanguage: "hi",
+      publisher: { "@id": `${SITE_URL}/#org` },
     });
   }
 

@@ -22,6 +22,8 @@ const WorkIndex = lazy(() => import("./pages/work/WorkIndex"));
 const CaseHarman = lazy(() => import("./pages/work/CaseHarman"));
 const ServicesHub = lazy(() => import("./pages/services/ServicesHub"));
 const MetaAds = lazy(() => import("./pages/services/MetaAds"));
+const LearnHub = lazy(() => import("./pages/learn/LearnHub"));
+const VideoPage = lazy(() => import("./pages/learn/VideoPage"));
 const SpotifyPlaylisting = lazy(() => import("./pages/services/SpotifyPlaylisting"));
 
 function useSmoothScroll() {
@@ -94,6 +96,8 @@ export function AppRoutes() {
             <Route path="playlists/:slug" element={<PlaylistPage />} />
             <Route path="work" element={<WorkIndex />} />
             <Route path="work/harman-sohi" element={<CaseHarman />} />
+            <Route path="learn" element={<LearnHub />} />
+            <Route path="learn/:slug" element={<VideoPage />} />
             <Route path="services" element={<ServicesHub />} />
             <Route path="services/meta-ads" element={<MetaAds />} />
             <Route path="services/spotify-playlisting" element={<SpotifyPlaylisting />} />
