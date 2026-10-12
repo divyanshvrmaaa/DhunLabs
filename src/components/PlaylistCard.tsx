@@ -55,7 +55,11 @@ export function PlaylistCard({ p, large, headingLevel = "h3" }: Props) {
         </span>
       </div>
       <div className="flex flex-1 flex-col px-2 pb-2 pt-5">
-        <H className={`font-heading font-semibold leading-tight tracking-tight ${large ? "text-2xl" : "text-xl"}`}>{p.name}</H>
+        <H className={`font-heading font-semibold leading-tight tracking-tight ${large ? "text-2xl" : "text-xl"}`}>
+          <SmartLink href={`/playlists/${p.slug}`} className="underline decoration-transparent underline-offset-4 transition-colors hover:text-accent hover:decoration-accent">
+            {p.name}
+          </SmartLink>
+        </H>
         <p className="mt-2 text-sm leading-relaxed text-muted">{p.vibe}</p>
         <p className="mt-5 flex items-baseline gap-2">
           <span className="num text-2xl font-semibold">{formatNumber(p.followers)}</span>

@@ -17,6 +17,12 @@ const ToolsHub = lazy(() => import("./pages/ToolsHub"));
 const CostPerStream = lazy(() => import("./pages/tools/CostPerStream"));
 const RevenueCalculator = lazy(() => import("./pages/tools/RevenueCalculator"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const PlaylistPage = lazy(() => import("./pages/playlists/PlaylistPage"));
+const WorkIndex = lazy(() => import("./pages/work/WorkIndex"));
+const CaseHarman = lazy(() => import("./pages/work/CaseHarman"));
+const ServicesHub = lazy(() => import("./pages/services/ServicesHub"));
+const MetaAds = lazy(() => import("./pages/services/MetaAds"));
+const SpotifyPlaylisting = lazy(() => import("./pages/services/SpotifyPlaylisting"));
 
 function useSmoothScroll() {
   useEffect(() => {
@@ -85,6 +91,12 @@ export function AppRoutes() {
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="playlists" element={<Playlists />} />
+            <Route path="playlists/:slug" element={<PlaylistPage />} />
+            <Route path="work" element={<WorkIndex />} />
+            <Route path="work/harman-sohi" element={<CaseHarman />} />
+            <Route path="services" element={<ServicesHub />} />
+            <Route path="services/meta-ads" element={<MetaAds />} />
+            <Route path="services/spotify-playlisting" element={<SpotifyPlaylisting />} />
             <Route path="planner" element={<Planner />} />
             <Route path="estimator" element={<Estimator />} />
             <Route path="tools" element={<ToolsHub />} />

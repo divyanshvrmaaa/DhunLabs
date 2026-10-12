@@ -2,6 +2,13 @@
 // Every page on the site is listed here. The build turns this list into the
 // page titles, Google descriptions, share images, breadcrumbs and the sitemap.
 // Keep titles under 60 characters and descriptions under 155 where possible.
+//
+// Playlist pages and video pages are added automatically from playlists.ts and
+// videos.ts, so you never list those here by hand.
+
+import { playlists } from "./playlists";
+import { videos } from "./videos";
+import { formatNumber } from "../lib/format";
 
 export interface Crumb {
   name: string;
@@ -89,12 +96,81 @@ const staticPages: PageSeo[] = [
     path: "/playlists",
     title: "Spotify Playlists by DhunLabs | Punjabi, Indie & Hindi Rap",
     description:
-      "Explore the DhunLabs Spotify playlist network: Punjabi bangers, indie rock, late-night indie and Hindi rap. Bot-free playlists. Submit your track for review.",
+      "Explore the DhunLabs Spotify playlists: Punjabi bangers, indie rock, late-night indie and Hindi rap. All bot-free. Submit your track for review.",
     crumbs: [crumbs.playlists],
+  },
+
+  // ── Work ──
+  {
+    path: "/work",
+    title: "Our Work: Music Campaign Results | DhunLabs",
+    description:
+      "Real, dated results from our music campaigns: the Harman Sohi case study, a ₹15,000 playlist experiment and receipts from our own Meta and Google Ads.",
+    crumbs: [crumbs.work],
+  },
+  {
+    path: "/work/harman-sohi",
+    title: "Harman Sohi Case Study: 0 to 25K Listeners | DhunLabs",
+    description:
+      "How Punjabi artist Harman Sohi went from 0 to about 25K monthly Spotify listeners in 30 days: hook-first Meta ads, tracking and playlist placement.",
+    crumbs: [crumbs.work, { name: "Harman Sohi", path: "/work/harman-sohi" }],
+  },
+
+  // ── Services ──
+  {
+    path: "/services",
+    title: "Music Promotion Services for Artists in India | DhunLabs",
+    description:
+      "Meta ad campaigns, a bot-free Spotify playlist network and free education for independent artists in India. No bots, no guarantees, honest estimates.",
+    crumbs: [crumbs.services],
+  },
+  {
+    path: "/services/meta-ads",
+    title: "Meta Ads for Music Promotion in India | DhunLabs",
+    description:
+      "Instagram and Facebook ads built around your song's hook, with conversion tracking on every step. See our receipts and what to prepare.",
+    crumbs: [crumbs.services, { name: "Meta Ads", path: "/services/meta-ads" }],
+  },
+  {
+    path: "/services/spotify-playlisting",
+    title: "Spotify Playlist Promotion, Bot-Free | DhunLabs",
+    description:
+      "How our Spotify playlist review works: every track heard by a person, considered for the one best-fit playlist. Bot-free, never guaranteed.",
+    crumbs: [crumbs.services, { name: "Spotify Playlisting", path: "/services/spotify-playlisting" }],
   },
 ];
 
-export const pages: PageSeo[] = [...staticPages];
+/** Adds the optional ending only if the description stays within 155 characters. */
+const fit155 = (main: string, extra: string) => ([...(main + extra)].length <= 155 ? main + extra : main);
+
+const playlistPages: PageSeo[] = playlists.map((p) => ({
+  path: `/playlists/${p.slug}`,
+  title: `${p.h1.length <= 46 ? p.h1 : p.name} | DhunLabs`,
+  description: fit155(`${p.name}: a bot-free Spotify playlist of ${p.mood}. ${formatNumber(p.followers)} followers as of 7 Oct 2026.`, " Submit your track."),
+  crumbs: [crumbs.playlists, { name: p.name, path: `/playlists/${p.slug}` }],
+}));
+
+const videoPages: PageSeo[] = videos.map((v) => ({
+  path: `/learn/${v.slug}`,
+  title: v.seoTitle ?? `${v.title} | DhunLabs`,
+  description: v.seoDescription ?? v.hook,
+  ogImage: `/og/video-${v.id}.jpg`,
+  crumbs: [crumbs.learn, { name: v.title, path: `/learn/${v.slug}` }],
+}));
+
+const learnPages: PageSeo[] = [
+  {
+    path: "/learn",
+    title: "Learn Music Marketing: Free Video Lessons | DhunLabs",
+    description:
+      "Free music marketing lessons in Hindi: Meta ads for songs, the Spotify Popularity Index, campaign breakdowns and playlist experiments, with English summaries.",
+    crumbs: [crumbs.learn],
+  },
+  ...videoPages,
+];
+
+export const pages: PageSeo[] = [...staticPages, ...playlistPages];
+void learnPages; // added in phase 4
 
 export const notFoundSeo: PageSeo = {
   path: "/404",

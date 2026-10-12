@@ -7,6 +7,16 @@ export type PlaylistCategory = "Punjabi" | "Indie" | "Hindi Rap";
 
 export interface Playlist {
   id: string;
+  /** Web address of this playlist's own page: dhunlabs.studio/playlists/<slug>. */
+  slug: string;
+  /** Main heading on the playlist's page. */
+  h1: string;
+  /** Short mood phrase used in sentences ("… for {mood}"). */
+  mood: string;
+  /** One or two sentences about the playlist (its page). */
+  about: string;
+  /** The kind of tracks that fit (its page). */
+  fits: string[];
   emoji: string;
   name: string;
   vibe: string;
@@ -19,11 +29,17 @@ export interface Playlist {
   glow: string;
 }
 
-export const followersAsOf = "as of Oct 2026";
+export const followersAsOf = "as of 7 Oct 2026";
 
 export const playlists: Playlist[] = [
   {
     id: "6Tfy76YzQlMr3VeaKdAN0V",
+    slug: "ki-scene-aa",
+    h1: "Ki Scene Aa? Punjabi Spotify Playlist",
+    mood: "high-energy Punjabi bangers for car drives",
+    about:
+      "Ki Scene Aa? is our Punjabi playlist for high-energy bangers: the songs you turn up on a car drive. It's the biggest playlist in our network, grown with real listeners through our own Meta ad campaigns (Receipt A on our Work page).",
+    fits: ["High-energy Punjabi tracks", "Songs built for car drives and turning the volume up", "A hook that lands early"],
     emoji: "🚗",
     name: "Ki Scene Aa?",
     vibe: "Punjabi bangers · High energy · Car drives",
@@ -35,6 +51,11 @@ export const playlists: Playlist[] = [
   },
   {
     id: "60Xq0z3ygSNBiLj1bddXYL",
+    slug: "indie-rock-2026",
+    h1: "Indie Rock | 2026 Spotify Playlist",
+    mood: "fresh, guitar-driven 2026 indie rock",
+    about: "Indie Rock | 2026 collects fresh, guitar-driven indie rock from this year's releases. If guitars lead your song and it came out in 2026, this is the playlist to aim for.",
+    fits: ["Guitar-driven indie rock", "Songs released in 2026", "Fresh sounds over throwbacks"],
     emoji: "🎸",
     name: "Indie Rock | 2026",
     vibe: "Fresh indie rock · Guitar-driven · 2026 releases",
@@ -46,6 +67,11 @@ export const playlists: Playlist[] = [
   },
   {
     id: "1DW0cAxjba9Qaq2GR2ZXXr",
+    slug: "everything-feels-a-little-too-much",
+    h1: "everything feels a little too much: Late-Night Indie Playlist",
+    mood: "late-night indie, soft pop and lofi",
+    about: "everything feels a little too much is for late nights: soft vocals, quiet indie, gentle pop and lofi discoveries. It suits songs that feel personal and unhurried.",
+    fits: ["Late-night indie and soft vocal pop", "Lofi and mellow discoveries", "Quiet, intimate songs over loud ones"],
     emoji: "🌙",
     name: "everything feels a little too much",
     vibe: "Late-night indie · Soft vocal pop · Lofi discoveries",
@@ -57,6 +83,11 @@ export const playlists: Playlist[] = [
   },
   {
     id: "22P74epP4Yhf71eftCqgVp",
+    slug: "asli-dhh",
+    h1: "Asli DHH: Best of Hindi Rap Spotify Playlist",
+    mood: "Desi hip-hop with heavy 808s",
+    about: "Asli DHH is our Hindi rap playlist: real Desi hip-hop with heavy 808s, underground heat and street anthems.",
+    fits: ["Hindi rap and Desi hip-hop", "Heavy 808s", "Underground cuts and street anthems"],
     emoji: "🎙️",
     name: "Asli DHH | Best of Hindi Rap",
     vibe: "असली देसी हिप-हॉप · Heavy 808s · Underground heat · Street anthems",

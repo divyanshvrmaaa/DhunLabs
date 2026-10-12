@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/postbuild.mjs",
     "preview": "vite preview",
     "test": "vitest run",
-    "images": "node scripts/optimize-images.mjs"
+    "images": "node scripts/optimize-images.mjs",
+    "check": "node scripts/check-site.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -170,7 +170,7 @@ function Experiment() {
 const toneText: Record<Receipt["tone"], string> = { meta: "text-meta", youtube: "text-gold", playlist: "text-accent" };
 const toneBorder: Record<Receipt["tone"], string> = { meta: "hover:border-meta/40", youtube: "hover:border-gold/40", playlist: "hover:border-accent/40" };
 
-function ReceiptCard({ r }: { r: Receipt }) {
+export function ReceiptCard({ r }: { r: Receipt }) {
   return (
     <article className={`card group relative flex h-full flex-col p-6 transition-colors duration-500 md:p-8 ${toneBorder[r.tone]}`}>
       <div className="flex items-center justify-between gap-3">
