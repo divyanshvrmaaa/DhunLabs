@@ -52,7 +52,8 @@ export function FormEmbed({ kind, title, subtitle, location, eager }: Props) {
           onClick={() => trackFormClick(kind, `${location}-newtab`)}
           className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-full border border-line-strong px-4 text-sm font-medium transition-colors hover:border-white/30 hover:bg-white/5"
         >
-          Open form in a new tab <span aria-hidden>↗</span>
+          {kind === "track" ? "Submit your track for playlist review" : title === "Book a Strategy Audit" ? "Book a strategy audit (Google Form)" : "Open the DhunLabs contact form"}{" "}
+          <span aria-hidden>↗</span>
         </a>
       </div>
       <div className="relative bg-[#f8f8f8]" data-lenis-prevent>

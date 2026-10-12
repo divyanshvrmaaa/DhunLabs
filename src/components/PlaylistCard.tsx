@@ -68,7 +68,10 @@ export function PlaylistCard({ p, large, headingLevel = "h3" }: Props) {
             onClick={() => track("playlist_open", { playlist: p.name })}
             className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-semibold text-bg transition-colors hover:bg-accent"
           >
-            <SpotifyIcon /> {large ? "Explore Playlist" : "Open on Spotify"}
+            <SpotifyIcon />
+            <span>
+              Open <span className="sr-only">{p.name} </span>on Spotify
+            </span>
           </SmartLink>
           {large && !player && (
             <button
@@ -82,7 +85,7 @@ export function PlaylistCard({ p, large, headingLevel = "h3" }: Props) {
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                 <path d="M8 5v14l11-7z" fill="currentColor" />
               </svg>
-              Preview here
+              Preview<span className="sr-only"> {p.name}</span> here
             </button>
           )}
         </div>

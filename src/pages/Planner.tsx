@@ -21,6 +21,8 @@ import { budgetBucket, costPerStreamForBudget, planForBudget, streamsForBudget }
 import { formatINR, formatINR2, formatNumber, formatRange } from "../lib/format";
 import { track } from "../lib/analytics";
 import { site } from "../content/site";
+import { ToolGuide, GuideJumpLinks } from "../components/guide/ToolGuide";
+import { plannerGuide } from "../content/guides/planner";
 
 export default function Planner() {
   const [budget, setBudget] = useState(PLANNER_DEFAULT);
@@ -61,12 +63,13 @@ export default function Planner() {
     <>
       <PageHeader
         compact
-        badge="CAMPAIGN PLANNER"
+        badge="FREE TOOL · CAMPAIGN PLANNER"
         title={
           <>
-            Plan your campaign in <span className="text-accent">30 seconds.</span>
+            Music Promotion <span className="text-accent">Budget Planner</span>
           </>
         }
+        kicker="Plan your campaign in 30 seconds."
         sub="Enter your promotion budget. Get an honest plan, an estimated stream range and the right next step."
       />
 
@@ -180,7 +183,9 @@ export default function Planner() {
           </section>
         </div>
 
+        <GuideJumpLinks />
         <PlanForms plan={plan} location="planner" />
+        <ToolGuide g={plannerGuide} />
         <MobileResultBar
           targetId="planner-result"
           title={plans[plan].name}

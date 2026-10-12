@@ -5,24 +5,12 @@ import { CopyButton } from "../../components/tools/CopyButton";
 import { NumberField } from "../../components/planner/Fields";
 import { Button } from "../../components/ui/Button";
 import { AnimatedNumber } from "../../components/ui/AnimatedNumber";
-import { EXPENSIVE_CPS_FACTOR, SUSPICIOUS_CPS_BELOW, TYPICAL_CPS_HIGH, TYPICAL_CPS_LOW } from "../../content/pricing";
+import { SUSPICIOUS_CPS_BELOW, TYPICAL_CPS_HIGH, TYPICAL_CPS_LOW } from "../../content/pricing";
+import { verdictFor, type Tone } from "../../lib/cps";
+import { ToolGuide, GuideJumpLinks } from "../../components/guide/ToolGuide";
+import { costPerStreamGuide } from "../../content/guides/costPerStream";
 import { formatINR2, formatNumber } from "../../lib/format";
 import { track } from "../../lib/analytics";
-
-type Tone = "warn" | "good" | "ok" | "high" | "bad";
-
-function verdictFor(cps: number): { tone: Tone; title: string; line: string } {
-  if (cps < SUSPICIOUS_CPS_BELOW)
-    return {
-      tone: "warn",
-      title: "Worth a closer look",
-      line: "Streams this cheap often come from low-quality or artificial sources, which platforms can penalise. Worth checking where they came from.",
-    };
-  if (cps < TYPICAL_CPS_LOW) return { tone: "good", title: "Better than our typical range", line: "That's a lower cost per stream than our campaigns usually see. Nice work." };
-  if (cps <= TYPICAL_CPS_HIGH) return { tone: "ok", title: "Within our typical range", line: "That's in line with what our campaigns usually see." };
-  if (cps <= TYPICAL_CPS_HIGH * EXPENSIVE_CPS_FACTOR) return { tone: "high", title: "A bit above our typical range", line: "You paid somewhat more per stream than our campaigns usually see." };
-  return { tone: "bad", title: "Well above our typical range", line: "You paid a lot more per stream than our campaigns usually see. There's likely room to bring this down." };
-}
 
 const toneClass: Record<Tone, string> = {
   warn: "text-gold",
@@ -71,9 +59,11 @@ export default function CostPerStream() {
       badge="FREE TOOL · COST PER STREAM"
       title={
         <>
-          Did you pay a fair price <span className="text-accent">per stream?</span>
+          Cost Per Stream Calculator <span className="text-accent">for Music Ads</span>
         </>
       }
+      kicker="Did you pay a fair price per stream?"
+      guide={<ToolGuide g={costPerStreamGuide} />}
       sub="Enter what a past campaign cost and the streams it brought. See your cost per stream and how it compares with what our campaigns usually see."
       cta={
         <div className="md:flex md:items-center md:justify-between md:gap-10">
@@ -151,6 +141,7 @@ export default function CostPerStream() {
           )}
         </section>
       </div>
+      <GuideJumpLinks />
     </ToolShell>
   );
 }

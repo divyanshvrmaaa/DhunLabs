@@ -14,6 +14,8 @@ import { budgetBucket, estimate, type Range } from "../lib/estimate";
 import { formatNumber, formatRange } from "../lib/format";
 import { track } from "../lib/analytics";
 import { site } from "../content/site";
+import { ToolGuide, GuideJumpLinks } from "../components/guide/ToolGuide";
+import { estimatorGuide } from "../content/guides/estimator";
 
 const MAX_GOAL = 10_000_000;
 
@@ -70,12 +72,13 @@ export default function Estimator() {
     <>
       <PageHeader
         compact
-        badge="STREAM ESTIMATOR"
+        badge="FREE TOOL · STREAM ESTIMATOR"
         title={
           <>
-            Know your goal? <span className="text-accent">See the budget.</span>
+            Spotify Promotion <span className="text-accent">Cost Estimator</span>
           </>
         }
+        kicker="Know your goal? See the budget."
         sub="Enter how many Spotify streams or YouTube views you want. Get an estimated budget range and the plan that fits."
       />
 
@@ -171,7 +174,9 @@ export default function Estimator() {
           </section>
         </div>
 
+        <GuideJumpLinks />
         <PlanForms plan={plan} location="estimator" />
+        <ToolGuide g={estimatorGuide} />
         <MobileResultBar targetId="estimator-result" title={plans[plan].name} value={`${formatRange(result.total.low, result.total.high, true)} est. budget`} />
       </div>
     </>

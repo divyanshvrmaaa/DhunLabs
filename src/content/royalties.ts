@@ -115,6 +115,16 @@ export const platforms: Platform[] = [
   },
 ];
 
+/**
+ * DhunLabs' own Indian distributor statement (April–June 2026): ₹ earned per
+ * 1,000 streams/uses, before the distributor's share. Shown on the revenue
+ * calculator page as a real-world benchmark.
+ */
+export const ownStatement = {
+  period: "April–June 2026",
+  per1000: { spotify: 54.2, youtube: 24.71, meta: 1.26 },
+};
+
 /** ₹ per US$ (XE mid-market, 8 Oct 2026). Update occasionally. */
 export const USD_TO_INR = 96.8;
 export const USD_TO_INR_AS_OF = "8 Oct 2026";

@@ -22,6 +22,8 @@ import {
 import { calculateRevenue, formatMoney, per1000, platformsFor, rateFor } from "../../lib/royalties";
 import { formatNumber } from "../../lib/format";
 import { track } from "../../lib/analytics";
+import { ToolGuide, GuideJumpLinks } from "../../components/guide/ToolGuide";
+import { revenueGuide } from "../../content/guides/revenueCalculator";
 
 type Currency = "INR" | "USD";
 type Period = "total" | "monthly";
@@ -100,9 +102,11 @@ export default function RevenueCalculator() {
       badge="FREE TOOL · STREAMING REVENUE"
       title={
         <>
-          What are your streams <span className="text-accent">actually worth?</span>
+          Spotify &amp; YouTube Royalty Calculator <span className="text-accent">(India)</span>
         </>
       }
+      kicker="What are your streams actually worth?"
+      guide={<ToolGuide g={revenueGuide} />}
       sub="Enter your streams on each platform, choose where your listeners are and what your distributor takes. See an honest estimate of what reaches your pocket."
       sources={royaltySources}
       cta={
@@ -391,6 +395,7 @@ export default function RevenueCalculator() {
           </div>
         </section>
       </div>
+      <GuideJumpLinks />
       <MobileResultBar targetId="revenue-result" title={`Your estimated take-home${per}`} value={money(t.you.typical)} cta="See breakdown" />
     </ToolShell>
   );
