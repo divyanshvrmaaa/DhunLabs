@@ -31,13 +31,16 @@ export const site = {
 
 export const mailto = `mailto:${site.email}`;
 
-/** Main navigation. "anchor" items scroll on the home page; "route" items go to their own page. */
-export const nav: { label: string; anchor?: string; route?: string }[] = [
-  { label: "Services", anchor: "services" },
-  { label: "Work", anchor: "work" },
-  { label: "Network", anchor: "network" },
-  { label: "Tools", route: "/tools" },
-  { label: "Learn", anchor: "learn" },
+/**
+ * Main navigation. "route" items go to their own page; "anchor" items scroll on the home page.
+ * "match" lists other pages that should highlight the item (e.g. the planner lights up "Tools").
+ */
+export const nav: { label: string; anchor?: string; route?: string; match?: string[] }[] = [
+  { label: "Services", route: "/services" },
+  { label: "Work", route: "/work" },
+  { label: "Playlists", route: "/playlists" },
+  { label: "Tools", route: "/tools", match: ["/planner", "/estimator"] },
+  { label: "Learn", route: "/learn" },
   { label: "About", anchor: "about" },
 ];
 

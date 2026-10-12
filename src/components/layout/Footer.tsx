@@ -1,19 +1,51 @@
-import { mailto, nav, site } from "../../content/site";
+import { mailto, site } from "../../content/site";
+import { toolsHub } from "../../content/tools";
 import { SmartLink } from "../ui/SmartLink";
 import { Logo } from "../ui/Logo";
 
-const more = [
-  { label: "Playlists", href: "/playlists" },
-  { label: "Campaign Planner", href: "/planner" },
-  { label: "Stream Estimator", href: "/estimator" },
-  { label: "FAQ", href: "/#faq" },
+type FooterLink = { label: string; href: string };
+
+const columns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Tools",
+    links: [...toolsHub.cards.map((t) => ({ label: t.title, href: t.href })), { label: "All free tools", href: "/tools" }],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "All services", href: "/services" },
+      { label: "Meta Ads", href: "/services/meta-ads" },
+      { label: "Spotify Playlisting", href: "/services/spotify-playlisting" },
+      { label: "Our playlists", href: "/playlists" },
+      { label: "Submit your track", href: site.trackSubmitForm },
+    ],
+  },
+  {
+    title: "Work & Learn",
+    links: [
+      { label: "Work", href: "/work" },
+      { label: "Harman Sohi case study", href: "/work/harman-sohi" },
+      { label: "Learn: video lessons", href: "/learn" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "About", href: "/#about" },
+    ],
+  },
+  {
+    title: "Follow",
+    links: [
+      { label: `Instagram · ${site.instagramHandle}`, href: site.instagram },
+      { label: `YouTube · ${site.youtubeHandle}`, href: site.youtube },
+      { label: "Spotify", href: site.spotifyProfile },
+      { label: "Email us", href: mailto },
+    ],
+  },
 ];
 
 export function Footer() {
   return (
     <footer className="relative border-t border-line">
-      <div className="container-x grid gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr] md:py-20">
-        <div>
+      <div className="container-x grid grid-cols-2 gap-x-6 gap-y-10 py-16 md:py-20 lg:grid-cols-[1.3fr_repeat(4,1fr)] lg:gap-8">
+        <div className="col-span-2 lg:col-span-1">
           <SmartLink href="/" aria-label="DhunLabs home" className="inline-block">
             <Logo />
           </SmartLink>
@@ -25,39 +57,20 @@ export function Footer() {
           </a>
         </div>
 
-        <nav aria-label="Footer">
-          <p className="eyebrow mb-4">Explore</p>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-1 text-[0.95rem]">
-            {[...nav.map((n) => ({ label: n.label, href: n.route ?? `/#${n.anchor}` })), ...more].map((l) => (
-              <li key={l.label}>
-                <SmartLink href={l.href} className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-ink">
-                  {l.label}
-                </SmartLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div>
-          <p className="eyebrow mb-4">Follow</p>
-          <ul className="space-y-1 text-[0.95rem]">
-            <li>
-              <SmartLink href={site.instagram} className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-ink">
-                Instagram · {site.instagramHandle}
-              </SmartLink>
-            </li>
-            <li>
-              <SmartLink href={site.youtube} className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-ink">
-                YouTube · {site.youtubeHandle}
-              </SmartLink>
-            </li>
-            <li>
-              <SmartLink href={site.spotifyProfile} className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-ink">
-                Spotify
-              </SmartLink>
-            </li>
-          </ul>
-        </div>
+        {columns.map((c) => (
+          <nav key={c.title} aria-label={`Footer: ${c.title}`}>
+            <p className="eyebrow mb-3">{c.title}</p>
+            <ul className="space-y-0.5 text-[0.95rem]">
+              {c.links.map((l) => (
+                <li key={l.href + l.label}>
+                  <SmartLink href={l.href} className="inline-flex min-h-11 items-center py-1 leading-snug text-muted transition-colors hover:text-ink">
+                    {l.label}
+                  </SmartLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
       </div>
       <div className="container-x flex flex-col gap-2 border-t border-line py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>

@@ -12,7 +12,7 @@ export function Network() {
           <SectionHeader id="network-title" eyebrow={networkIntro.eyebrow} title={networkIntro.title} body={networkIntro.body} />
           <Reveal className="shrink-0">
             <Button href="/playlists" variant="secondary" size="lg" arrow>
-              Explore Playlists
+              Explore all our playlists
             </Button>
           </Reveal>
         </div>

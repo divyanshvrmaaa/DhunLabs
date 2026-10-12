@@ -49,7 +49,7 @@ export function Nav() {
   const items = nav.map((n) => ({
     label: n.label,
     href: n.route ?? `/#${n.anchor}`,
-    isActive: n.route ? pathname.startsWith(n.route) : active === n.anchor,
+    isActive: n.route ? [n.route, ...(n.match ?? [])].some((r) => pathname === r || pathname.startsWith(`${r}/`)) : active === n.anchor,
   }));
 
   return (
