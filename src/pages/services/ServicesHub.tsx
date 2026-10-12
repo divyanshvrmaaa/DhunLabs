@@ -20,7 +20,7 @@ const ytReceipt = receipts.find((r) => r.id === "youtube-views");
 export default function ServicesHub() {
   return (
     <>
-      <PageHeader badge={servicesHub.badge} title={servicesHub.h1} kicker={pillarsIntro.title} sub={pillarsIntro.body} />
+      <PageHeader badge={servicesHub.badge} lines={servicesHub.h1Lines} kicker={pillarsIntro.title} sub={pillarsIntro.body} />
 
       <div className="container-x pb-16 md:pb-24">
         <ul className="grid gap-4 md:grid-cols-3 md:gap-5">
@@ -61,7 +61,7 @@ export default function ServicesHub() {
             </p>
           )}
           <p>
-            <SmartLink href="/estimator" className="underline decoration-line-strong underline-offset-4 hover:text-ink hover:decoration-accent">
+            <SmartLink href="/tools/youtube-views-estimator" className="underline decoration-line-strong underline-offset-4 hover:text-ink hover:decoration-accent">
               Estimate the budget for your YouTube view goal
             </SmartLink>
           </p>

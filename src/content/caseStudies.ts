@@ -118,40 +118,9 @@ export const receiptsAsOf = "Data as of Oct 2026";
 // ─── WORK PAGE (/work) ──────────────────────────────────────────────────────
 export const workPage = {
   badge: "WORK",
-  h1: "Our Work: Real Music Campaign Results",
+  h1Lines: ["Our Work:", "Real Music Campaign Results"],
   kicker: "The numbers don't lie.",
   sub: "A featured artist campaign, an open experiment and three dated receipts from our own ad accounts. Every figure is labelled with the metric it measures and the date it was taken.",
   metricExplainer:
     "A tracked visit is a person who clicked an ad and landed on the playlist or song page, measured with the Meta Pixel ViewContent event on that landing step. It is not the same as a stream: not every visit becomes a stream, and streams also come from the playlist itself afterwards.",
-};
-
-// ─── HARMAN SOHI CASE STUDY PAGE (/work/harman-sohi) ────────────────────────
-// Facts only. Anything marked [TODO …] needs Divyansh's numbers before launch.
-export const harmanPage = {
-  slug: "harman-sohi",
-  h1: "Harman Sohi: 0 to About 25K Monthly Listeners in 30 Days",
-  kicker: "How a Punjabi independent artist found real listeners.",
-  sub: "The starting point, the method and the result of our featured campaign, with the full breakdown video.",
-  starting: [
-    "Harman Sohi is a Punjabi independent artist. When the campaign started, Harman had 0 monthly listeners on Spotify.",
-    "[TODO: Divyansh to confirm the track name and its release date]",
-  ],
-  goal: ["[TODO: Divyansh to confirm the goal agreed at the start, for example a listener or stream target]"],
-  did: [
-    {
-      title: "Meta ads built around the track's hook",
-      body: "We built Instagram and Facebook ads around the strongest hook in the song, so the first seconds of every ad were the part most likely to stop someone scrolling. The ads were aimed at people likely to save the song, replay it and keep streaming.",
-    },
-    {
-      title: "Conversion tracking on every step",
-      body: "Every step was tracked, from the ad to the listener landing on the song, so we could see what each rupee did and which ads were working.",
-    },
-    {
-      title: "Placement in our playlist network",
-      body: "The track went into our playlist network, so ads and playlists boosted each other: the ads found new listeners, and the playlists kept them streaming.",
-    },
-  ],
-  result: "Within 30 days Harman went from 0 to about 25K monthly listeners on Spotify.",
-  moreNumbers: "[TODO: Divyansh to confirm ad spend, total streams, saves, new followers and cost per listener for this campaign]",
-  promise: "Every song is different. This is an example of what our method can do, not a promise of what it will do for your song.",
 };

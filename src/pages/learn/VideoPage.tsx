@@ -4,14 +4,14 @@ import { Button } from "../../components/ui/Button";
 import { SmartLink } from "../../components/ui/SmartLink";
 import { YouTubeLite } from "../../components/content/YouTubeLite";
 import { CtaPanel, Prose, RelatedLinks, Section } from "../../components/content/Blocks";
-import { formatDate, videoUrl, videos, videosByDate } from "../../content/videos";
+import { formatDate, videoHref, videoUrl, videos, videosByDate } from "../../content/videos";
 import { transcriptFor } from "../../lib/transcripts";
 import NotFound from "../NotFound";
 
 export default function VideoPage() {
   const { slug } = useParams();
   const v = videos.find((x) => x.slug === slug);
-  if (!v) return <NotFound />;
+  if (!v || v.noPage) return <NotFound />;
   const transcript = transcriptFor(v.id, v.transcript);
   const more = videosByDate()
     .filter((x) => x.id !== v.id)
@@ -98,7 +98,7 @@ export default function VideoPage() {
         </Button>
       </CtaPanel>
 
-      <RelatedLinks title="More free lessons" links={more.map((m) => ({ href: `/learn/${m.slug}`, label: m.title, note: `${m.duration} · ${formatDate(m.published)}` }))} />
+      <RelatedLinks title="More free lessons" links={more.map((m) => ({ href: videoHref(m), label: m.title, note: `${m.duration} · ${formatDate(m.published)}` }))} />
     </>
   );
 }

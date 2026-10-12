@@ -101,6 +101,16 @@ const staticPages: PageSeo[] = [
     app: "Hook Finder",
   },
 
+  {
+    path: "/tools/youtube-views-estimator",
+    title: "YouTube Promotion Cost Estimator (Free) | DhunLabs",
+    description:
+      "How many YouTube views will your budget buy, or what will 1,00,000 views cost? Estimates from our own Google Ads video campaigns. Free, no sign-up.",
+    ogImage: "/og/youtube-views-estimator.jpg",
+    crumbs: [crumbs.tools, { name: "YouTube Views Estimator", path: "/tools/youtube-views-estimator" }],
+    app: "YouTube Promotion Cost Estimator",
+  },
+
   // ── Playlists ──
   {
     path: "/playlists",
@@ -133,13 +143,6 @@ const staticPages: PageSeo[] = [
     description:
       "Real, dated results from our music campaigns: the Harman Sohi case study, a ₹15,000 playlist experiment and receipts from our own Meta and Google Ads.",
     crumbs: [crumbs.work],
-  },
-  {
-    path: "/work/harman-sohi",
-    title: "Harman Sohi Case Study: 0 to 25K Listeners | DhunLabs",
-    description:
-      "How Punjabi artist Harman Sohi went from 0 to about 25K monthly Spotify listeners in 30 days: hook-first Meta ads, tracking and playlist placement.",
-    crumbs: [crumbs.work, { name: "Harman Sohi", path: "/work/harman-sohi" }],
   },
 
   // ── Services ──
@@ -176,7 +179,7 @@ const playlistPages: PageSeo[] = playlists.map((p) => ({
   crumbs: [crumbs.playlists, { name: p.name, path: `/playlists/${p.slug}` }],
 }));
 
-const videoPages: PageSeo[] = videos.map((v) => ({
+const videoPages: PageSeo[] = videos.filter((v) => !v.noPage).map((v) => ({
   path: `/learn/${v.slug}`,
   title: v.seoTitle ?? `${v.title} | DhunLabs`,
   description: v.seoDescription ?? v.hook,

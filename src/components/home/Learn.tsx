@@ -1,4 +1,4 @@
-import { learnIntro, videosByDate } from "../../content/videos";
+import { learnIntro, videoHref, videosByDate } from "../../content/videos";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Reveal } from "../ui/Reveal";
 import { SmartLink } from "../ui/SmartLink";
@@ -39,7 +39,7 @@ export function Learn() {
                   <span className="num absolute bottom-3 right-3 rounded-md bg-black/75 px-2 py-1 text-xs font-medium">{v.duration}</span>
                 </div>
                 <h3 className="mt-5 font-heading text-xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-accent md:text-2xl">
-                  <SmartLink href={`/learn/${v.slug}`} onClick={() => track("video_click", { video: v.id })} className="after:absolute after:inset-0 after:content-['']">
+                  <SmartLink href={videoHref(v)} onClick={() => track("video_click", { video: v.id })} className="after:absolute after:inset-0 after:content-['']">
                     {v.title}
                   </SmartLink>
                 </h3>

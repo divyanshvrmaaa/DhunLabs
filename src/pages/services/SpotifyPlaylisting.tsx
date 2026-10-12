@@ -7,17 +7,15 @@ import { plans } from "../../content/plans";
 import { playlistingPage } from "../../content/services";
 import { followersAsOf, playlists } from "../../content/playlists";
 import { receipts, receiptsAsOf, experiment } from "../../content/caseStudies";
-import { videos } from "../../content/videos";
 import { formatNumber } from "../../lib/format";
 
 const spotify = pillars.find((p) => p.id === "spotify")!;
 const engine = receipts.find((r) => r.id === "playlist-engine");
-const expVideo = videos.find((v) => v.id === experiment.video.id);
 
 export default function SpotifyPlaylisting() {
   return (
     <>
-      <PageHeader badge={playlistingPage.badge} title={playlistingPage.h1} kicker={spotify.subtitle} sub={spotify.body}>
+      <PageHeader badge={playlistingPage.badge} lines={playlistingPage.h1Lines} kicker={spotify.subtitle} sub={spotify.body}>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button form="track" location="playlisting-hero" size="lg" arrow>
             Submit Your Track
@@ -32,7 +30,7 @@ export default function SpotifyPlaylisting() {
         <Steps steps={playlistingPage.review} />
       </Section>
 
-      <Section id="bot-free" eyebrow="Our policy" title="Bot-free, always. Never guaranteed.">
+      <Section id="bot-free" eyebrow="Our policy" title={<>Bot-free, always.<br />Never guaranteed.</>}>
         <Prose>
           <p>{playlistingPage.botFree}</p>
           <p>
@@ -76,15 +74,13 @@ export default function SpotifyPlaylisting() {
             <p>
               {engine.context} {engine.big} {engine.bigLabel}, {engine.facts.map((f) => `${f.value} ${f.label}`).join(", ")}. {engine.metricNote}. {receiptsAsOf}.
             </p>
-            {expVideo && (
-              <p>
-                We also ran an open experiment: {experiment.title}.{" "}
-                <SmartLink href={`/learn/${expVideo.slug}`} className="underline decoration-line-strong underline-offset-4 hover:text-ink hover:decoration-accent">
-                  Watch the ₹15,000 playlist experiment
-                </SmartLink>
-                .
-              </p>
-            )}
+            <p>
+              We also ran an open experiment: {experiment.title}.{" "}
+              <SmartLink href={experiment.video.url} className="underline decoration-line-strong underline-offset-4 hover:text-ink hover:decoration-accent">
+                Watch the ₹15,000 playlist experiment on YouTube
+              </SmartLink>
+              .
+            </p>
           </Prose>
         </Section>
       )}

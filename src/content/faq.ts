@@ -51,7 +51,7 @@ export const faqs: FaqItem[] = [
   {
     q: "How long does it take to see results?",
     a: "It depends on the song and the budget. Our featured campaign took a Punjabi artist from zero to about 25K monthly listeners in 30 days. Every song is different, so treat that as an example, not a promise.",
-    links: [{ label: "Read the Harman Sohi case study", href: "/work/harman-sohi" }],
+    links: [{ label: "See our campaign results", href: "/work" }],
   },
   {
     q: "I just want my song on your playlists. How do I submit?",

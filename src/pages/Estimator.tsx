@@ -137,6 +137,13 @@ export default function Estimator() {
               </div>
             </div>
 
+            <p className="mt-4 text-sm text-muted">
+              Only want YouTube views?{" "}
+              <SmartLink href="/tools/youtube-views-estimator" className="underline decoration-line-strong underline-offset-4 hover:text-ink">
+                Use the YouTube Views Estimator
+              </SmartLink>
+              .
+            </p>
             <p className="mt-8 rounded-xl border border-line bg-surface-2 px-4 py-3 text-sm leading-relaxed text-muted">{otherPlatformsNote}</p>
           </section>
 

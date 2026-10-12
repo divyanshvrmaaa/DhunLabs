@@ -26,7 +26,7 @@ export const learnIntro = {
 
 export const learnPage = {
   badge: "LEARN · FREE VIDEO LESSONS",
-  h1: "Learn Music Marketing: Free Video Lessons",
+  h1Lines: ["Learn Music Marketing:", "Free Video Lessons"],
   kicker: "Learn our systems. For free.",
   sub: "Campaign breakdowns, Spotify algorithm deep dives and the exact Meta ad setups we use for clients. All videos are in Hindi, with an English summary on each page.",
 };
@@ -51,6 +51,8 @@ export interface Video {
   takeaways: string[];
   /** Matching tools and services, with descriptive link text. */
   related: { label: string; href: string }[];
+  /** true = listed on /learn and the home page, but links straight to YouTube (no page of its own). */
+  noPage?: boolean;
   /** Optional transcript file name in src/content/transcripts/ (defaults to <id>.txt or <id>.srt). */
   transcript?: string;
   /** Optional: Google title (under 60 characters) and description (under 155). */
@@ -80,7 +82,7 @@ export const videos: Video[] = [
       "The final results: streams, saves, followers and listeners",
     ],
     related: [
-      { label: "Read the Harman Sohi case study", href: "/work/harman-sohi" },
+      { label: "See our campaign results", href: "/work" },
       { label: "Meta ads for music promotion", href: "/services/meta-ads" },
       { label: "Music Promotion Budget Planner", href: "/planner" },
     ],
@@ -119,6 +121,7 @@ export const videos: Video[] = [
   {
     id: "_buZHdVwI1E",
     slug: "15000-spotify-playlist-experiment",
+    noPage: true,
     title: "I Spent ₹15,000 to Promote a Spotify Playlist So You Don't Have To",
     published: "2026-07-17",
     duration: "10:12",
@@ -206,6 +209,9 @@ export const channelCard = {
 };
 
 export const videoUrl = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+
+/** Where a video card links: its own page, or YouTube for videos without one. */
+export const videoHref = (v: Video) => (v.noPage ? videoUrl(v.id) : `/learn/${v.slug}`);
 
 /** Newest first. */
 export const videosByDate = () => [...videos].sort((a, b) => b.published.localeCompare(a.published));

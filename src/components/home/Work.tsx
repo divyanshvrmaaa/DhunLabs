@@ -5,10 +5,7 @@ import { SmartLink } from "../ui/SmartLink";
 import { BlurImg } from "../ui/BlurImg";
 import { placeholderFor } from "../../lib/placeholder";
 import { SpotifyIcon } from "../PlaylistCard";
-import { Button } from "../ui/Button";
-import { videos } from "../../content/videos";
 
-const experimentSlug = videos.find((v) => v.id === ex.video.id)?.slug;
 
 const breakdownId = new URL(fc.breakdown.url).searchParams.get("v");
 
@@ -55,11 +52,6 @@ function Featured() {
           )}
 
           <p className="mt-8 text-xs text-muted">{fc.asOf}</p>
-          <div className="mt-6">
-            <Button href="/work/harman-sohi" variant="secondary" arrow>
-              Read the full case study
-            </Button>
-          </div>
         </div>
 
         <div className="relative border-t border-line p-6 sm:p-8 md:p-12 lg:border-l lg:border-t-0">
@@ -132,7 +124,7 @@ function Experiment() {
     <article className="card group relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute -right-40 top-0 h-[26rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(29,185,84,0.14),transparent)] blur-3xl" />
       <div className="relative grid items-center lg:grid-cols-[1.1fr_1fr]">
-        <SmartLink href={experimentSlug ? `/learn/${experimentSlug}` : ex.video.url} className="block p-3 sm:p-4 lg:p-5" aria-label={ex.video.label}>
+        <SmartLink href={ex.video.url} className="block p-3 sm:p-4 lg:p-5" aria-label={`${ex.video.label} on YouTube`}>
           <div className="relative overflow-hidden rounded-[var(--radius-md)] border border-line">
             <BlurImg
               src={`/thumbs/${ex.video.id}.webp`}
@@ -165,10 +157,10 @@ function Experiment() {
             ))}
           </ul>
           <SmartLink
-            href={experimentSlug ? `/learn/${experimentSlug}` : ex.video.url}
+            href={ex.video.url}
             className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-bg transition-colors hover:bg-accent"
           >
-            Watch the ₹15,000 playlist experiment <span aria-hidden>→</span>
+            Watch the ₹15,000 playlist experiment on YouTube <span aria-hidden>↗</span>
           </SmartLink>
         </div>
       </div>

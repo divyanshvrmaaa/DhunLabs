@@ -7,6 +7,7 @@ const icons: Record<string, string> = {
   "/tools/cost-per-stream": "M7 5h10M7 9h10M7 5c4 0 6 1.5 6 4s-2 4-6 4l7 6",
   "/tools/revenue-calculator": "M3 17l5-5 4 4 8-8M15 8h5v5",
   "/tools/hook-finder": "M3 12h2m3-5v10m4-13v16m4-11v6m4-3h1",
+  "/tools/youtube-views-estimator": "M4 6h16v12H4zM10 9.5l4.5 2.5-4.5 2.5z",
 };
 
 /**

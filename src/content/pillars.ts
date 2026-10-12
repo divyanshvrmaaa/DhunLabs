@@ -3,6 +3,8 @@
 export const pillarsIntro = {
   eyebrow: "What we do",
   title: "Three Pillars. One Growth Engine.",
+  /** The same title split into the two lines shown on the home page. */
+  titleLines: ["Three Pillars.", "One Growth Engine."],
   body: "Everything we run has one goal: getting Spotify, YouTube and Instagram to recommend your music to listeners who will keep coming back to it.",
 };
 

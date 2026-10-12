@@ -17,10 +17,10 @@ const ToolsHub = lazy(() => import("./pages/ToolsHub"));
 const CostPerStream = lazy(() => import("./pages/tools/CostPerStream"));
 const RevenueCalculator = lazy(() => import("./pages/tools/RevenueCalculator"));
 const HookFinder = lazy(() => import("./pages/tools/HookFinder"));
+const YouTubeEstimator = lazy(() => import("./pages/tools/YouTubeEstimator"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PlaylistPage = lazy(() => import("./pages/playlists/PlaylistPage"));
 const WorkIndex = lazy(() => import("./pages/work/WorkIndex"));
-const CaseHarman = lazy(() => import("./pages/work/CaseHarman"));
 const ServicesHub = lazy(() => import("./pages/services/ServicesHub"));
 const MetaAds = lazy(() => import("./pages/services/MetaAds"));
 const ContactPage = lazy(() => import("./pages/forms/ContactPage"));
@@ -98,7 +98,6 @@ export function AppRoutes() {
             <Route path="playlists" element={<Playlists />} />
             <Route path="playlists/:slug" element={<PlaylistPage />} />
             <Route path="work" element={<WorkIndex />} />
-            <Route path="work/harman-sohi" element={<CaseHarman />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="submit-track" element={<SubmitTrackPage />} />
             <Route path="learn" element={<LearnHub />} />
@@ -112,6 +111,7 @@ export function AppRoutes() {
             <Route path="tools/cost-per-stream" element={<CostPerStream />} />
             <Route path="tools/revenue-calculator" element={<RevenueCalculator />} />
             <Route path="tools/hook-finder" element={<HookFinder />} />
+            <Route path="tools/youtube-views-estimator" element={<YouTubeEstimator />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

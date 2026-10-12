@@ -24,7 +24,6 @@ const columns: { title: string; links: FooterLink[] }[] = [
     title: "Work & Learn",
     links: [
       { label: "Work", href: "/work" },
-      { label: "Harman Sohi case study", href: "/work/harman-sohi" },
       { label: "Learn: video lessons", href: "/learn" },
       { label: "FAQ", href: "/#faq" },
       { label: "About", href: "/#about" },

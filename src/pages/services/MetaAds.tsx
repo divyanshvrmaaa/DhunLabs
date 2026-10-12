@@ -46,8 +46,8 @@ export default function MetaAds() {
         </div>
         <p className="mt-6 text-sm text-muted">
           {receiptsAsOf}. Results vary by song, genre and audience; we never guarantee streams.{" "}
-          <SmartLink href="/work/harman-sohi" className="underline decoration-line-strong underline-offset-4 hover:text-ink">
-            See the Harman Sohi case study
+          <SmartLink href="/work" className="underline decoration-line-strong underline-offset-4 hover:text-ink">
+            See our featured case study
           </SmartLink>
           .
         </p>

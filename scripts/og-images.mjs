@@ -19,6 +19,7 @@ const tools = [
   { slug: "estimator", a: "Spotify Promotion", b: "Cost Estimator", kicker: "Know your goal? See the budget.", url: "dhunlabs.studio/estimator" },
   { slug: "revenue-calculator", a: "Spotify & YouTube", b: "Royalty Calculator", kicker: "What are your streams actually worth?", url: "dhunlabs.studio/tools/revenue-calculator" },
   { slug: "cost-per-stream", a: "Cost Per Stream", b: "Calculator", kicker: "Did you pay a fair price per stream?", url: "dhunlabs.studio/tools/cost-per-stream" },
+  { slug: "youtube-views-estimator", a: "YouTube Promotion", b: "Cost Estimator", kicker: "How many views will your budget buy?", url: "dhunlabs.studio/tools/youtube-views-estimator" },
   { slug: "hook-finder", a: "Hook", b: "Finder", kicker: "Find the best 15 or 30 seconds of your song for ads.", url: "dhunlabs.studio/tools/hook-finder" },
 ];
 

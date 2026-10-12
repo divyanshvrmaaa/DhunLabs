@@ -100,5 +100,5 @@ export const estimatorGuide: ToolGuideContent = {
       a: "No. These are estimates from our recent campaigns. We never guarantee streams or playlist placement.",
     },
   ],
-  related: ["/planner", "/tools/revenue-calculator", "/tools/cost-per-stream", "/tools/hook-finder"],
+  related: ["/tools/youtube-views-estimator", "/planner", "/tools/revenue-calculator", "/tools/hook-finder"],
 };

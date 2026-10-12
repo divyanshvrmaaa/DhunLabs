@@ -4,16 +4,16 @@ import { Button } from "../../components/ui/Button";
 import { BlurImg } from "../../components/ui/BlurImg";
 import { ReceiptCard } from "../../components/home/Work";
 import { CtaPanel, RelatedLinks, Section, Prose } from "../../components/content/Blocks";
-import { experiment, featuredCase as fc, harmanPage, receipts, receiptsAsOf, workPage } from "../../content/caseStudies";
+import { experiment, featuredCase as fc, receipts, receiptsAsOf, workPage } from "../../content/caseStudies";
 import { videos } from "../../content/videos";
 import { placeholderFor } from "../../lib/placeholder";
 
-const experimentVideo = videos.find((v) => v.id === experiment.video.id);
+const breakdownVideo = videos.find((v) => v.id === new URL(fc.breakdown.url).searchParams.get("v"));
 
 export default function WorkIndex() {
   return (
     <>
-      <PageHeader badge={workPage.badge} title={workPage.h1} kicker={workPage.kicker} sub={workPage.sub} />
+      <PageHeader badge={workPage.badge} lines={workPage.h1Lines} kicker={workPage.kicker} sub={workPage.sub} />
 
       <Section id="featured-case" eyebrow="Featured case study" title={fc.title}>
         <Reveal>
@@ -56,8 +56,8 @@ export default function WorkIndex() {
               </ul>
               <p className="mt-6 text-xs text-muted">{fc.asOf}</p>
               <div className="mt-6">
-                <Button href={`/work/${harmanPage.slug}`} arrow>
-                  Read the Harman Sohi case study
+                <Button href={breakdownVideo ? `/learn/${breakdownVideo.slug}` : fc.breakdown.url} arrow>
+                  Watch the full breakdown
                 </Button>
               </div>
             </div>
@@ -77,11 +77,9 @@ export default function WorkIndex() {
           ))}
         </ul>
         <div className="mt-8 flex flex-wrap gap-3">
-          {experimentVideo && (
-            <Button href={`/learn/${experimentVideo.slug}`} variant="secondary">
-              Watch the ₹15,000 playlist experiment
-            </Button>
-          )}
+          <Button href={experiment.video.url} variant="secondary">
+            Watch the ₹15,000 playlist experiment on YouTube
+          </Button>
         </div>
       </Section>
 

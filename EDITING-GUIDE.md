@@ -19,7 +19,7 @@ You have two options for every change below:
 | Questions on the site's forms (/contact, /submit-track) | `src/content/forms.ts` |
 | The four numbers under the hero (~25K, 60K+, 500K+, 100%) | `src/content/stats.ts` |
 | The "Three Pillars" text and "How it works" steps | `src/content/pillars.ts` |
-| Case studies (Harman Sohi + the receipts), the /work and /work/harman-sohi pages | `src/content/caseStudies.ts` |
+| Case studies (Harman Sohi + the receipts) and the /work page | `src/content/caseStudies.ts` |
 | Playlists (names, vibe lines, follower counts, each playlist's own page) | `src/content/playlists.ts` |
 | YouTube videos: /learn, each video's page, the home "Learn" section | `src/content/videos.ts` |
 | Video transcripts (optional) | `src/content/transcripts/` (see the README inside) |
@@ -76,6 +76,7 @@ Easiest: tell Claude "add this video: <YouTube link>". To do it yourself:
    - `hook`: one line for the cards. `summary`: the English summary (one string per paragraph). `takeaways`: 4 to 6 short points.
    - `related`: 2 or 3 links to matching tools or services (copy the format from another video).
    - Optional: `seoTitle` (under 60 characters) and `seoDescription` (under 155) for Google.
+   - Want it listed on /learn but without a page of its own (the card goes straight to YouTube)? Add `noPage: true,`.
    - Leave `summaryNeedsReview: true` until you've read the summary, then delete that line (it removes the "[TODO: review summary]" note).
 3. Thumbnail: save `https://i.ytimg.com/vi/<ID>/maxresdefault.jpg` as `assets-src/thumbs/<ID>.jpg`, then run `npm run images` and `npm run og` (the second one makes the WhatsApp preview image).
 4. Optional transcript: save it as `src/content/transcripts/<ID>.txt` (or `.srt` subtitles). It shows on the video's page exactly as written.
@@ -110,7 +111,7 @@ Open `src/content/royalties.ts`. Spotify for Indian listeners is set at ₹0.10 
 ## Put your change live
 
 1. **See it locally first:** open Terminal in this folder and run `npm run dev`, then open http://localhost:5173.
-2. **Check nothing broke:** `npm test` (automatic tests), `npm run build` (ends with "postbuild: 23 pages (23 pre-rendered) + shell.html + sitemap.xml", and lists any pages that still have `[TODO` notes), then `npm run check` (checks every page's heading, title, description, Google data and links; should say "No problems found.").
+2. **Check nothing broke:** `npm test` (automatic tests), `npm run build` (ends with "postbuild: 24 pages (24 pre-rendered) + shell.html + sitemap.xml", and lists any pages that still have `[TODO` notes), then `npm run check` (checks every page's heading, title, description, Google data and links; should say "No problems found.").
 3. **Save a version:** `git add -A` then `git commit -m "Describe your change"`.
 4. **Publish:** `git push`. Vercel deploys automatically:
    - pushing to a **branch** (like `redesign-v2`) creates a **preview link** you can check first;

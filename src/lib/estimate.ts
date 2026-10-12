@@ -77,6 +77,12 @@ export function budgetForViews(views: number): Range {
   return { low: round100(views * YT_CPV_LOW), high: round100(views * YT_CPV_HIGH) };
 }
 
+/** YouTube budget → views range (rounded to 100). Cheapest cost per view gives the high end. */
+export function viewsForBudget(budget: number): Range {
+  if (budget <= 0) return { low: 0, high: 0 };
+  return { low: round100(budget / YT_CPV_HIGH), high: round100(budget / YT_CPV_LOW) };
+}
+
 /** Which plan a budget points to. */
 export function planForBudget(budget: number): PlanId {
   return budget >= ADS_THRESHOLD ? "combined" : "playlisting";

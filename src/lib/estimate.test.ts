@@ -91,3 +91,12 @@ describe("rounding and display", () => {
     expect(formatRange(5000, 8700, true)).toBe("₹5,000–₹8,700");
   });
 });
+
+describe("YouTube views for a budget", () => {
+  it("uses the cheapest and dearest cost per view from our campaigns", async () => {
+    const { viewsForBudget } = await import("./estimate");
+    // ₹10,000 ÷ ₹0.21 = 47,619 → 47,600; ₹10,000 ÷ ₹0.11 = 90,909 → 90,900
+    expect(viewsForBudget(10000)).toEqual({ low: 47600, high: 90900 });
+    expect(viewsForBudget(0)).toEqual({ low: 0, high: 0 });
+  });
+});

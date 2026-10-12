@@ -3,7 +3,7 @@ import { Reveal } from "../../components/ui/Reveal";
 import { SmartLink } from "../../components/ui/SmartLink";
 import { BlurImg } from "../../components/ui/BlurImg";
 import { RelatedLinks } from "../../components/content/Blocks";
-import { formatDate, learnPage, videosByDate } from "../../content/videos";
+import { formatDate, learnPage, videoHref, videosByDate } from "../../content/videos";
 import { ChannelCard, thumbFor } from "../../components/content/VideoBits";
 import { placeholderFor } from "../../lib/placeholder";
 
@@ -11,7 +11,7 @@ export default function LearnHub() {
   const list = videosByDate();
   return (
     <>
-      <PageHeader badge={learnPage.badge} title={learnPage.h1} kicker={learnPage.kicker} sub={learnPage.sub} />
+      <PageHeader badge={learnPage.badge} lines={learnPage.h1Lines} kicker={learnPage.kicker} sub={learnPage.sub} />
       <div className="container-x pb-16 md:pb-24">
         <ul className="grid gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {list.map((v, i) => (
@@ -30,7 +30,7 @@ export default function LearnHub() {
                   <span className="num absolute bottom-3 right-3 rounded-md bg-black/75 px-2 py-1 text-xs font-medium">{v.duration}</span>
                 </div>
                 <h2 className="mt-5 font-heading text-xl font-semibold leading-snug tracking-tight">
-                  <SmartLink href={`/learn/${v.slug}`} className="after:absolute after:inset-0 after:content-[''] group-hover:text-accent">
+                  <SmartLink href={videoHref(v)} className="after:absolute after:inset-0 after:content-[''] group-hover:text-accent">
                     {v.title}
                   </SmartLink>
                 </h2>

@@ -3,7 +3,7 @@
 
 export const servicesHub = {
   badge: "SERVICES",
-  h1: "Music Promotion Services for Independent Artists",
+  h1Lines: ["Music Promotion Services", "for Independent Artists"],
   youtubeCampaigns: {
     title: "YouTube video campaigns",
     body: "Want YouTube views as well? We run Google Ads video campaigns for music videos as a separate campaign. Our own campaigns averaged the cost per view shown in Receipt C.",
@@ -33,7 +33,7 @@ export const metaAdsPage = {
 
 export const playlistingPage = {
   badge: "SERVICE · SPOTIFY PLAYLISTING",
-  h1: "Spotify Playlist Promotion for Independent Artists",
+  h1Lines: ["Spotify Playlist Promotion", "for Independent Artists"],
   review: [
     { title: "Send us your track", body: "Use the track submission form. It takes a couple of minutes." },
     { title: "We listen personally", body: "Every submission is listened to by a person, not filtered by an algorithm." },

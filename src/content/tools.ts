@@ -16,7 +16,7 @@ export interface ToolCard {
 
 export const toolsHub = {
   badge: "FREE TOOLS",
-  title: "Free music marketing tools for independent artists.",
+  titleLines: ["Free music marketing tools", "for independent artists."],
   sub: "Plan a campaign, see the budget a stream goal takes, find out what your streams earn and sanity-check past ad results. Everything runs in your browser, with no sign-up and nothing stored.",
   intro: [
     "We built these tools for the questions artists ask us every week: which part of my song should the ad use, how much should I spend, what will it get me, what do streams actually pay, and did that last campaign work? Each tool gives you an honest estimate based on our own campaign data and real royalty statements, not on what a sales page wants you to believe.",
@@ -48,6 +48,15 @@ export const toolsHub = {
       description:
         "Know how many Spotify streams or YouTube views you want? Enter the goal and see the estimated budget range and the plan that fits. Same model as the planner, run in reverse.",
       tag: "Goal → budget",
+    },
+    {
+      href: "/tools/youtube-views-estimator",
+      title: "YouTube Views Estimator",
+      benefit: "Enter a budget or a view goal. See the YouTube views or budget it takes.",
+      description:
+        "See how many YouTube views your budget could buy, or what a view goal could cost, based on what our own Google Ads video campaigns paid per view. Works both ways, in rupees.",
+      tag: "₹ ↔ views",
+      isNew: true,
     },
     {
       href: "/tools/revenue-calculator",
