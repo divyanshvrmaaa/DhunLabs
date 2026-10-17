@@ -5,11 +5,81 @@ import { BlurImg } from "../../components/ui/BlurImg";
 import { ReceiptCard } from "../../components/home/Work";
 import { ProofStrip } from "../../components/home/ProofStrip";
 import { CtaPanel, RelatedLinks, Section, Prose } from "../../components/content/Blocks";
-import { experiment, featuredCase as fc, receipts, receiptsAsOf, workPage } from "../../content/caseStudies";
+import { experiment, featuredCases, receipts, receiptsAsOf, workPage, type FeaturedCase } from "../../content/caseStudies";
 import { videos } from "../../content/videos";
 import { placeholderFor } from "../../lib/placeholder";
+import { SmartLink } from "../../components/ui/SmartLink";
 
-const breakdownVideo = videos.find((v) => v.id === new URL(fc.breakdown.url).searchParams.get("v"));
+function FeaturedSection({ fc }: { fc: FeaturedCase }) {
+  const breakdownId = new URL(fc.breakdown.url).searchParams.get("v");
+  const breakdownVideo = videos.find((v) => v.id === breakdownId);
+  const videoHref = breakdownVideo && !breakdownVideo.noPage ? `/learn/${breakdownVideo.slug}` : fc.breakdown.url;
+  return (
+    <Section id={fc.id} eyebrow="Featured case study" title={fc.title}>
+      <Reveal>
+        <article className="card relative grid overflow-hidden md:grid-cols-[1fr_1.2fr]">
+          {fc.artistPhoto ? (
+            <BlurImg
+              src={fc.artistPhoto}
+              placeholder={placeholderFor(fc.artistPhoto)}
+              alt={`${fc.artist}, ${fc.descriptor}`}
+              width={640}
+              height={747}
+              wrapperClassName="aspect-[4/3] md:aspect-auto md:h-full"
+              className="h-full w-full object-cover object-[50%_22%]"
+            />
+          ) : (
+            breakdownId && (
+              <SmartLink href={videoHref} className="group flex items-center p-3 sm:p-4 md:p-6" aria-label={`${fc.breakdown.label}: ${fc.artist}`}>
+                <BlurImg
+                  src={`/thumbs/${breakdownId}.webp`}
+                  placeholder={placeholderFor(`/thumbs/${breakdownId}.webp`)}
+                  alt=""
+                  width={640}
+                  height={360}
+                  wrapperClassName="aspect-video w-full overflow-hidden rounded-[var(--radius-md)] border border-line"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-brand)] group-hover:scale-[1.03]"
+                />
+              </SmartLink>
+            )
+          )}
+          <div className="p-6 sm:p-8 md:p-10">
+            <p className="text-muted">
+              {fc.artist} · {fc.descriptor}
+            </p>
+            <div className="mt-6 flex items-end gap-6">
+              <div>
+                <p className="num text-5xl font-semibold leading-none text-muted/70">{fc.start.value}</p>
+                <p className="mt-2 max-w-[9rem] text-xs text-muted">{fc.start.label}</p>
+              </div>
+              <span aria-hidden className="mb-6 text-accent">
+                →
+              </span>
+              <div>
+                <p className="num text-5xl font-semibold leading-none text-accent">{fc.result.value}</p>
+                <p className="mt-2 max-w-[11rem] text-xs text-muted">{fc.result.label}</p>
+              </div>
+            </div>
+            <ul className="mt-8 space-y-2">
+              {fc.method.map((m) => (
+                <li key={m} className="flex gap-3 text-[0.98rem]">
+                  <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  {m}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-xs text-muted">{fc.asOf}</p>
+            <div className="mt-6">
+              <Button href={videoHref} arrow>
+                {fc.breakdown.label}
+              </Button>
+            </div>
+          </div>
+        </article>
+      </Reveal>
+    </Section>
+  );
+}
 
 export default function WorkIndex() {
   return (
@@ -17,55 +87,9 @@ export default function WorkIndex() {
       <PageHeader badge={workPage.badge} lines={workPage.h1Lines} kicker={workPage.kicker} sub={workPage.sub} />
       <ProofStrip showMarquee={false} />
 
-      <Section id="featured-case" eyebrow="Featured case study" title={fc.title}>
-        <Reveal>
-          <article className="card relative grid overflow-hidden md:grid-cols-[1fr_1.2fr]">
-            {fc.artistPhoto && (
-              <BlurImg
-                src={fc.artistPhoto}
-                placeholder={placeholderFor(fc.artistPhoto)}
-                alt={`${fc.artist}, ${fc.descriptor}`}
-                width={640}
-                height={747}
-                wrapperClassName="aspect-[4/3] md:aspect-auto md:h-full"
-                className="h-full w-full object-cover object-[50%_22%]"
-              />
-            )}
-            <div className="p-6 sm:p-8 md:p-10">
-              <p className="text-muted">
-                {fc.artist} · {fc.descriptor}
-              </p>
-              <div className="mt-6 flex items-end gap-6">
-                <div>
-                  <p className="num text-5xl font-semibold leading-none text-muted/70">{fc.start.value}</p>
-                  <p className="mt-2 max-w-[9rem] text-xs text-muted">{fc.start.label}</p>
-                </div>
-                <span aria-hidden className="mb-6 text-accent">
-                  →
-                </span>
-                <div>
-                  <p className="num text-5xl font-semibold leading-none text-accent">{fc.result.value}</p>
-                  <p className="mt-2 max-w-[11rem] text-xs text-muted">{fc.result.label}</p>
-                </div>
-              </div>
-              <ul className="mt-8 space-y-2">
-                {fc.method.map((m) => (
-                  <li key={m} className="flex gap-3 text-[0.98rem]">
-                    <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {m}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-xs text-muted">{fc.asOf}</p>
-              <div className="mt-6">
-                <Button href={breakdownVideo ? `/learn/${breakdownVideo.slug}` : fc.breakdown.url} arrow>
-                  Watch the full breakdown
-                </Button>
-              </div>
-            </div>
-          </article>
-        </Reveal>
-      </Section>
+      {featuredCases.map((fc) => (
+        <FeaturedSection key={fc.id} fc={fc} />
+      ))}
 
       <Section id="experiment" eyebrow={experiment.label} title={experiment.title}>
         <Prose>
@@ -85,11 +109,11 @@ export default function WorkIndex() {
         </div>
       </Section>
 
-      <Section id="receipts" eyebrow="Receipts" title="Dated results from our own campaigns">
+      <Section id="receipts" eyebrow="Receipts" title="Dated results from our own ad accounts">
         <Prose>
           <p>{workPage.metricExplainer}</p>
         </Prose>
-        <div className={`mt-10 grid gap-5 md:grid-cols-2 ${receipts.length % 3 === 0 ? "lg:grid-cols-3" : ""}`}>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {receipts.map((r, i) => (
             <Reveal key={r.id} delay={i * 0.06}>
               <ReceiptCard r={r} />

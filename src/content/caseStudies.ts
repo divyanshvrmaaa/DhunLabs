@@ -8,30 +8,74 @@ export const workIntro = {
   footer: "More campaigns are live right now. We don't publish client lists, to protect our artists' data.",
 };
 
-export const featuredCase = {
-  label: "Featured campaign",
-  title: "Harman Sohi: 0 → ~25K monthly listeners in 30 days",
-  artist: "Harman Sohi",
-  descriptor: "Punjabi independent artist",
-  start: { value: "0", label: "monthly listeners at the start" },
-  result: { value: "~25K", label: "monthly listeners within 30 days" },
-  method: [
-    "Meta ads built around the track's hook",
-    "Conversion tracking on every step",
-    "Placement in our playlist network",
-  ],
-  /** Path to a photo in /public/images, e.g. "/images/harman.webp". null = hidden. */
-  artistPhoto: "/images/harman-sohi.webp" as string | null,
-  /** Harman's Spotify artist link. null = hidden. */
-  spotifyArtistUrl: "https://open.spotify.com/artist/122Lfw8OKRD099oLm11Xds" as string | null,
-  /** A short quote from Harman. null = hidden. */
-  quote: null as string | null,
-  breakdown: {
-    label: "Watch the full breakdown",
-    url: "https://www.youtube.com/watch?v=VA5XiZy0GCw",
+export interface FeaturedCase {
+  /** Anchor on the /work page (dhunlabs.studio/work#<id>). */
+  id: string;
+  label: string;
+  title: string;
+  artist: string;
+  descriptor: string;
+  start: { value: string; label: string };
+  result: { value: string; label: string };
+  method: string[];
+  /** Path to a photo in /public/images, e.g. "/images/harman.webp". null = the video thumbnail is shown instead. */
+  artistPhoto: string | null;
+  /** The artist's Spotify link. null = hidden. */
+  spotifyArtistUrl: string | null;
+  /** A short quote from the artist. null = hidden. */
+  quote: string | null;
+  breakdown: { label: string; url: string };
+  asOf: string;
+}
+
+/** Featured campaigns, shown in this order on the home page and /work. */
+export const featuredCases: FeaturedCase[] = [
+  {
+    id: "featured-case",
+    label: "Featured campaign",
+    title: "Harman Sohi: 0 → ~25K monthly listeners in 30 days",
+    artist: "Harman Sohi",
+    descriptor: "Punjabi independent artist",
+    start: { value: "0", label: "monthly listeners at the start" },
+    result: { value: "~25K", label: "monthly listeners within 30 days" },
+    method: [
+      "Meta ads built around the track's hook",
+      "Conversion tracking on every step",
+      "Placement in our playlist network",
+    ],
+    artistPhoto: "/images/harman-sohi.webp",
+    spotifyArtistUrl: "https://open.spotify.com/artist/122Lfw8OKRD099oLm11Xds",
+    quote: null,
+    breakdown: {
+      label: "Watch the full breakdown",
+      url: "https://www.youtube.com/watch?v=VA5XiZy0GCw",
+    },
+    asOf: "Data as of Oct 2026",
   },
-  asOf: "Data as of Oct 2026",
-};
+  {
+    // From the video breakdown (LYLt1syar5I): Spotify for Artists data shared with Jashan's permission.
+    id: "featured-case-debut-single",
+    label: "Featured campaign",
+    title: "Jashan Sandhu: a debut single to 20.7K+ streams in a month",
+    artist: "Jashan Sandhu",
+    descriptor: "Punjabi independent artist · debut single ONE HOPE",
+    start: { value: "0", label: "streams at release, on a first-ever song" },
+    result: { value: "20.7K+", label: "Spotify streams in about a month, 96% from Spotify's algorithm" },
+    method: [
+      "Meta ads on a small budget, testing two creatives",
+      "Retargeting listeners who engaged, to find true fans",
+      "Ads on the YouTube music video as well",
+    ],
+    artistPhoto: null,
+    spotifyArtistUrl: null,
+    quote: null,
+    breakdown: {
+      label: "Watch the full breakdown",
+      url: "https://www.youtube.com/watch?v=LYLt1syar5I",
+    },
+    asOf: "Data as of Oct 2026",
+  },
+];
 
 /** Video case study shown right after the featured campaign. */
 export const experiment = {
@@ -56,8 +100,6 @@ export interface Receipt {
   size: "large" | "small";
   /** Service colour: meta = blue, youtube = yellow, playlist = green. */
   tone: "meta" | "youtube" | "playlist";
-  /** Optional link under the card (e.g. the video breakdown). */
-  link?: { label: string; href: string };
 }
 
 const META_METRIC = "Metric: tracked visits (Meta Pixel ViewContent)";
@@ -113,25 +155,6 @@ export const receipts: Receipt[] = [
     size: "large",
     tone: "youtube",
   },
-  {
-    // From the video breakdown (LYLt1syar5I), Spotify for Artists data shared with Jashan's permission.
-    id: "debut-single",
-    tag: "Receipt D",
-    title: "A debut song, picked up by the algorithm",
-    big: "20,700+",
-    bigLabel: "Spotify streams in about a month",
-    facts: [
-      { value: "16,600", label: "listeners" },
-      { value: "603", label: "saves" },
-      { value: "96%", label: "of streams from Spotify's algorithm" },
-      { value: "₹4 to ₹5", label: "per conversion (best creative)" },
-    ],
-    context: "Jashan Sandhu's debut single ONE HOPE, promoted with Meta ads on a small budget. Popularity Index 30 on a first song.",
-    metricNote: "Source: Spotify for Artists, shared with the artist's permission",
-    size: "small",
-    tone: "meta",
-    link: { label: "Watch the full breakdown", href: "/learn/debut-punjabi-song-20k-streams-meta-ads" },
-  },
 ];
 
 export const receiptsAsOf = "Data as of Oct 2026";
@@ -141,7 +164,7 @@ export const workPage = {
   badge: "WORK",
   h1Lines: ["Our Work:", "Real Music Campaign Results"],
   kicker: "The numbers don't lie.",
-  sub: "A featured artist campaign, an open experiment and four dated receipts from our own campaigns. Every figure is labelled with the metric it measures and the date it was taken.",
+  sub: "Two featured artist campaigns, an open experiment and three dated receipts from our own ad accounts. Every figure is labelled with the metric it measures and the date it was taken.",
   metricExplainer:
     "A tracked visit is a person who clicked an ad and landed on the playlist or song page, measured with the Meta Pixel ViewContent event on that landing step. It is not the same as a stream: not every visit becomes a stream, and streams also come from the playlist itself afterwards.",
 };

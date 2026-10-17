@@ -1,4 +1,4 @@
-import { experiment as ex, featuredCase as fc, receipts, receiptsAsOf, workIntro, type Receipt } from "../../content/caseStudies";
+import { experiment as ex, featuredCases, receipts, receiptsAsOf, workIntro, type FeaturedCase, type Receipt } from "../../content/caseStudies";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Reveal } from "../ui/Reveal";
 import { SmartLink } from "../ui/SmartLink";
@@ -6,10 +6,8 @@ import { BlurImg } from "../ui/BlurImg";
 import { placeholderFor } from "../../lib/placeholder";
 import { SpotifyIcon } from "../PlaylistCard";
 
-
-const breakdownId = new URL(fc.breakdown.url).searchParams.get("v");
-
-function Featured() {
+function Featured({ fc }: { fc: FeaturedCase }) {
+  const breakdownId = new URL(fc.breakdown.url).searchParams.get("v");
   return (
     <article className="card relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute -left-40 top-1/3 h-[28rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(29,185,84,0.16),transparent)] blur-3xl" />
@@ -192,11 +190,6 @@ export function ReceiptCard({ r }: { r: Receipt }) {
         ))}
       </dl>
       <p className="mt-6 text-[0.95rem] leading-relaxed text-muted">{r.context}</p>
-      {r.link && (
-        <SmartLink href={r.link.href} className="mt-4 inline-flex min-h-11 items-center gap-1.5 self-start text-[0.95rem] font-medium text-ink hover:text-accent">
-          {r.link.label} <span aria-hidden>→</span>
-        </SmartLink>
-      )}
       <div className="mt-auto pt-6 text-xs text-muted">
         {r.metricNote && <p>{r.metricNote}</p>}
         <p className="mt-1">{receiptsAsOf}</p>
@@ -211,9 +204,11 @@ export function Work() {
     <section id="work" aria-labelledby="work-title" className="border-t border-line py-24 md:py-36">
       <div className="container-x">
         <SectionHeader id="work-title" eyebrow={workIntro.eyebrow} title={workIntro.title} />
-        <Reveal className="mt-14 md:mt-20">
-          <Featured />
-        </Reveal>
+        {featuredCases.map((fc, i) => (
+          <Reveal key={fc.id} className={i === 0 ? "mt-14 md:mt-20" : "mt-5"}>
+            <Featured fc={fc} />
+          </Reveal>
+        ))}
         <Reveal className="mt-5">
           <Experiment />
         </Reveal>

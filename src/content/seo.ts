@@ -141,7 +141,7 @@ const staticPages: PageSeo[] = [
     path: "/work",
     title: "Our Work: Music Campaign Results | DhunLabs",
     description:
-      "Real, dated results from our music campaigns: the Harman Sohi case study, a ₹15,000 playlist experiment and receipts from our own Meta and Google Ads.",
+      "Real, dated results from our music campaigns: Harman Sohi and Jashan Sandhu case studies, a ₹15,000 playlist experiment and Meta and Google Ads receipts.",
     crumbs: [crumbs.work],
   },
 
