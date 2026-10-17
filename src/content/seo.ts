@@ -6,7 +6,7 @@
 // Playlist pages and video pages are added automatically from playlists.ts and
 // videos.ts, so you never list those here by hand.
 
-import { playlists } from "./playlists";
+import { followersAsOf, playlists } from "./playlists";
 import { videos } from "./videos";
 import { formatNumber } from "../lib/format";
 
@@ -175,7 +175,7 @@ const fit155 = (main: string, extra: string) => ([...(main + extra)].length <= 1
 const playlistPages: PageSeo[] = playlists.map((p) => ({
   path: `/playlists/${p.slug}`,
   title: `${p.h1.length <= 46 ? p.h1 : p.name} | DhunLabs`,
-  description: fit155(`${p.name}: a bot-free Spotify playlist of ${p.mood}. ${formatNumber(p.followers)} followers as of 7 Oct 2026.`, " Submit your track."),
+  description: fit155(`${p.name}: a bot-free Spotify playlist of ${p.mood}. ${formatNumber(p.followers)} followers ${followersAsOf}.`, " Submit your track."),
   crumbs: [crumbs.playlists, { name: p.name, path: `/playlists/${p.slug}` }],
 }));
 

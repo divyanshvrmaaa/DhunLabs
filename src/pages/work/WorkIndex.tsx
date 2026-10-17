@@ -85,11 +85,11 @@ export default function WorkIndex() {
         </div>
       </Section>
 
-      <Section id="receipts" eyebrow="Receipts" title="Dated results from our own ad accounts">
+      <Section id="receipts" eyebrow="Receipts" title="Dated results from our own campaigns">
         <Prose>
           <p>{workPage.metricExplainer}</p>
         </Prose>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className={`mt-10 grid gap-5 md:grid-cols-2 ${receipts.length % 3 === 0 ? "lg:grid-cols-3" : ""}`}>
           {receipts.map((r, i) => (
             <Reveal key={r.id} delay={i * 0.06}>
               <ReceiptCard r={r} />

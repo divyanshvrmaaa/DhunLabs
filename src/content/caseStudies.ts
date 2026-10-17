@@ -56,6 +56,8 @@ export interface Receipt {
   size: "large" | "small";
   /** Service colour: meta = blue, youtube = yellow, playlist = green. */
   tone: "meta" | "youtube" | "playlist";
+  /** Optional link under the card (e.g. the video breakdown). */
+  link?: { label: string; href: string };
 }
 
 const META_METRIC = "Metric: tracked visits (Meta Pixel ViewContent)";
@@ -71,7 +73,7 @@ export const receipts: Receipt[] = [
       { value: "3.78M", label: "impressions" },
       { value: "29,501", label: "tracked visits" },
       { value: "₹1.53", label: "per tracked visit" },
-      { value: "~20.9K", label: "playlist followers now" },
+      { value: "~21.2K", label: "playlist followers now" },
     ],
     context: "How we grew our Punjabi playlist Ki Scene Aa? with about ₹45,200 of Meta ads.",
     metricNote: META_METRIC,
@@ -111,6 +113,25 @@ export const receipts: Receipt[] = [
     size: "large",
     tone: "youtube",
   },
+  {
+    // From the video breakdown (LYLt1syar5I), Spotify for Artists data shared with Jashan's permission.
+    id: "debut-single",
+    tag: "Receipt D",
+    title: "A debut song, picked up by the algorithm",
+    big: "20,700+",
+    bigLabel: "Spotify streams in about a month",
+    facts: [
+      { value: "16,600", label: "listeners" },
+      { value: "603", label: "saves" },
+      { value: "96%", label: "of streams from Spotify's algorithm" },
+      { value: "₹4 to ₹5", label: "per conversion (best creative)" },
+    ],
+    context: "Jashan Sandhu's debut single ONE HOPE, promoted with Meta ads on a small budget. Popularity Index 30 on a first song.",
+    metricNote: "Source: Spotify for Artists, shared with the artist's permission",
+    size: "small",
+    tone: "meta",
+    link: { label: "Watch the full breakdown", href: "/learn/debut-punjabi-song-20k-streams-meta-ads" },
+  },
 ];
 
 export const receiptsAsOf = "Data as of Oct 2026";
@@ -120,7 +141,7 @@ export const workPage = {
   badge: "WORK",
   h1Lines: ["Our Work:", "Real Music Campaign Results"],
   kicker: "The numbers don't lie.",
-  sub: "A featured artist campaign, an open experiment and three dated receipts from our own ad accounts. Every figure is labelled with the metric it measures and the date it was taken.",
+  sub: "A featured artist campaign, an open experiment and four dated receipts from our own campaigns. Every figure is labelled with the metric it measures and the date it was taken.",
   metricExplainer:
     "A tracked visit is a person who clicked an ad and landed on the playlist or song page, measured with the Meta Pixel ViewContent event on that landing step. It is not the same as a stream: not every visit becomes a stream, and streams also come from the playlist itself afterwards.",
 };

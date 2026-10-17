@@ -192,6 +192,11 @@ export function ReceiptCard({ r }: { r: Receipt }) {
         ))}
       </dl>
       <p className="mt-6 text-[0.95rem] leading-relaxed text-muted">{r.context}</p>
+      {r.link && (
+        <SmartLink href={r.link.href} className="mt-4 inline-flex min-h-11 items-center gap-1.5 self-start text-[0.95rem] font-medium text-ink hover:text-accent">
+          {r.link.label} <span aria-hidden>→</span>
+        </SmartLink>
+      )}
       <div className="mt-auto pt-6 text-xs text-muted">
         {r.metricNote && <p>{r.metricNote}</p>}
         <p className="mt-1">{receiptsAsOf}</p>

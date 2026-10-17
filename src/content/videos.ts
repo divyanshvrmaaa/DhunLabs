@@ -62,6 +62,35 @@ export interface Video {
 
 export const videos: Video[] = [
   {
+    id: "LYLt1syar5I",
+    slug: "debut-punjabi-song-20k-streams-meta-ads",
+    title: "How We Got 20K+ Streams on a Debut Punjabi Song | Meta Ads",
+    published: "2026-10-17",
+    duration: "10:05",
+    hook: "A debut Punjabi single, a small Meta ads budget and 20,700+ streams in about a month, 96% of them from Spotify's algorithm.",
+    summary: [
+      "Everyone tells new artists to release ten songs before promoting any of them. This case study shows why one song is enough: the exact Meta ads campaign we ran for Jashan Sandhu's debut single ONE HOPE, on a very small budget, with real Spotify for Artists data on screen.",
+      "In about a month the song reached 20,700+ streams, 16,600 listeners, 603 saves and 356 playlist adds, with a Spotify Popularity Index of 30. 96% of the streams came from Spotify's algorithm, not from paid traffic. The video covers why a popularity score above 25 unlocks algorithmic streams, the super listeners who played the song around 27 times each, retargeting moderate listeners, running ads on the YouTube music video, and the two ad creatives we tested, where a simple 2D animation reached ₹4 to ₹5 per conversion. The video is in Hindi.",
+    ],
+    summaryNeedsReview: true,
+    takeaways: [
+      "One song is enough to start: you don't need ten releases before you promote",
+      "Why a Spotify Popularity Index above 25 unlocks algorithmic streams",
+      "The real numbers: 20,700+ streams, 16,600 listeners, 603 saves, 356 playlist adds",
+      "96% of streams came from Spotify's algorithm, not from the ads",
+      "Super listeners and retargeting: how Meta ads find true fans",
+      "The two ad creatives we tested, and why a 2D animation hit ₹4 to ₹5 per conversion",
+    ],
+    related: [
+      { label: "Meta ads for music promotion", href: "/services/meta-ads" },
+      { label: "Submit your song to Ki Scene Aa?", href: "/playlists/ki-scene-aa" },
+      { label: "Music Promotion Budget Planner", href: "/planner" },
+    ],
+    seoTitle: "Debut Punjabi Song: 20K+ Streams With Meta Ads | DhunLabs",
+    seoDescription:
+      "Case study (in Hindi): how a debut Punjabi single reached 20,700+ streams in a month with Meta ads, 96% of them algorithmic. English summary inside.",
+  },
+  {
     id: "VA5XiZy0GCw",
     slug: "punjabi-artist-zero-to-25k-listeners",
     title: "I Took a Punjabi Artist From Zero to 25K Listeners in 30 Days",

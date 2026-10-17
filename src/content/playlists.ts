@@ -1,5 +1,5 @@
 // ─── SPOTIFY PLAYLIST NETWORK ───────────────────────────────────────────────
-// Follower counts as of 7 Oct 2026. To update a count, change "followers".
+// Follower counts as of Oct 2026 (Ki Scene Aa? and everything feels updated 18 Oct 2026). To update a count, change "followers".
 // To add a playlist: copy one block, change the fields, and put its cover
 // image in assets-src/covers/ then run `npm run images` (see EDITING-GUIDE.md).
 
@@ -29,7 +29,7 @@ export interface Playlist {
   glow: string;
 }
 
-export const followersAsOf = "as of 7 Oct 2026";
+export const followersAsOf = "as of Oct 2026";
 
 export const playlists: Playlist[] = [
   {
@@ -44,7 +44,7 @@ export const playlists: Playlist[] = [
     name: "Ki Scene Aa?",
     vibe: "Punjabi bangers · High energy · Car drives",
     url: "https://open.spotify.com/playlist/6Tfy76YzQlMr3VeaKdAN0V",
-    followers: 20955,
+    followers: 21155,
     category: "Punjabi",
     cover: "/covers/ki-scene-aa.webp",
     glow: "rgba(245,200,66,0.22)",
@@ -76,7 +76,7 @@ export const playlists: Playlist[] = [
     name: "everything feels a little too much",
     vibe: "Late-night indie · Soft vocal pop · Lofi discoveries",
     url: "https://open.spotify.com/playlist/1DW0cAxjba9Qaq2GR2ZXXr",
-    followers: 16318,
+    followers: 16418,
     category: "Indie",
     cover: "/covers/everything-feels.webp",
     glow: "rgba(76,141,255,0.22)",
