@@ -97,6 +97,7 @@ export default function SpotifyPlaylisting() {
       <RelatedLinks
         links={[
           { href: "/services/meta-ads", label: "Meta ads for music promotion", note: "Find new listeners and send them to your song." },
+          { href: "/learn/music-promotion-mistakes", label: "5 promotion mistakes to fix first", note: "Why bot playlists and fake streams hurt your song, in Hindi." },
           { href: "/tools/cost-per-stream", label: "Cost Per Stream Calculator", note: "Check whether a past campaign paid a fair price." },
           { href: "/work", label: "See our campaign results", note: "Dated receipts from our own ad accounts." },
         ]}

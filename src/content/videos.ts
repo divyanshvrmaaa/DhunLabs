@@ -92,6 +92,36 @@ export const videos: Video[] = [
       "Free masterclass (in Hindi): the 4 stages from 0 to 50K+ monthly Spotify listeners and what to do at each one. English summary and key takeaways.",
   },
   {
+    // Added 26 Oct 2026; summary written from the video's auto-captions.
+    id: "PLg3sownK58",
+    slug: "music-promotion-mistakes",
+    title: "Don’t Promote Your Song Until You Fix These 5 Mistakes | Hindi",
+    published: "2026-10-22",
+    duration: "9:38",
+    hook: "An artist spent ₹20,000 on promotion and got 312 streams. The 5 mistakes behind results like that, and what to do instead.",
+    summary: [
+      "An artist sent us a screenshot: ₹20,000 spent on music promotion, 312 streams. The song wasn't bad and the budget wasn't small. The problem was a set of mistakes we see in almost every independent artist's DMs. This video breaks down the five biggest ones and what to do instead.",
+      "Mistake 1 is promoting an unfinished song: ads amplify a good song, they can't rescue a weak mix, so check that it meets industry standard and sounds right on cheap earphones, a Bluetooth speaker and studio monitors. Mistake 2 is treating the release date as the starting line instead of planning before it: test vertical creatives on Instagram, know your audience and research playlist curators, because the first week matters most. Mistake 3 is buying fake streams or botted playlists, which can get songs removed and stop Spotify linking you to similar artists. Mistake 4 is pressing Instagram's Boost button and calling it marketing, with no control over audience, budget, creatives or placements. Mistake 5 is not releasing consistently: batch-make 3 to 4 songs and release at least one every six weeks or so. The video is in Hindi.",
+    ],
+    summaryNeedsReview: true,
+    takeaways: [
+      "Ads amplify a good song; they can't fix a weak mix or production",
+      "Check your song on cheap earphones, a Bluetooth speaker and studio monitors",
+      "Plan before release: test vertical creatives and define your audience early",
+      "Fake streams and botted playlists can get your song removed and stop Spotify recommending you",
+      "Instagram's Boost button gives you almost no control; a proper Meta campaign costs less per result",
+      "Release consistently: batch 3 to 4 songs so fans you win don't forget you",
+    ],
+    related: [
+      { label: "Watch the full Meta ads guide", href: "/learn/meta-ads-for-music-promotion-guide" },
+      { label: "Find your song's hook with Hook Finder", href: "/tools/hook-finder" },
+      { label: "Meta ads for music promotion", href: "/services/meta-ads" },
+    ],
+    seoTitle: "5 Music Promotion Mistakes to Fix First | DhunLabs",
+    seoDescription:
+      "Why ₹20,000 of promotion got one artist 312 streams: 5 mistakes independent artists make before promoting a song, and the fixes. In Hindi, English summary.",
+  },
+  {
     id: "LYLt1syar5I",
     slug: "debut-punjabi-song-20k-streams-meta-ads",
     title: "How We Got 20K+ Streams on a Debut Punjabi Song | Meta Ads",
