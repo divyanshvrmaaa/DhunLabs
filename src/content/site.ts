@@ -26,8 +26,8 @@ export const site = {
   email: "contactdhunlabs@gmail.com",
   instagram: "https://instagram.com/dhunlabs",
   instagramHandle: "@dhunlabs",
-  youtube: "https://youtube.com/@dhunlabsnetwork",
-  youtubeHandle: "@dhunlabsnetwork",
+  youtube: "https://www.youtube.com/@DhunLabsNetwork",
+  youtubeHandle: "@DhunLabsNetwork",
   spotifyProfile: "https://open.spotify.com/user/31o2cneefwyomdhd3q22u3mq67fu",
 
   copyrightYear: 2026,

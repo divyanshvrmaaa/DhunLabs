@@ -93,7 +93,7 @@ function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
               <img
                 key={pl.id}
                 src={pl.cover}
-                alt=""
+                alt={`Cover of the playlist ${pl.name}`}
                 width={56}
                 height={56}
                 loading="lazy"
@@ -110,7 +110,7 @@ function PillarCard({ p, big }: { p: Pillar; big?: boolean }) {
             <img
               key={v.id}
               src={`/thumbs/${v.id}.webp`}
-              alt=""
+              alt={`Video thumbnail: ${v.title}`}
               width={320}
               height={180}
               loading="lazy"

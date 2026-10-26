@@ -44,7 +44,7 @@ export default function SpotifyPlaylisting() {
         <ul className="grid gap-3 sm:grid-cols-2">
           {playlists.map((p) => (
             <li key={p.id} className="card flex items-start gap-4 p-5">
-              {p.cover && <img src={p.cover} alt="" width={64} height={64} loading="lazy" className="h-16 w-16 shrink-0 rounded-lg object-cover" />}
+              {p.cover && <img src={p.cover} alt={`Cover of the playlist ${p.name}`} width={64} height={64} loading="lazy" className="h-16 w-16 shrink-0 rounded-lg object-cover" />}
               <div>
                 <SmartLink href={`/playlists/${p.slug}`} className="font-heading text-lg font-semibold tracking-tight underline decoration-line-strong underline-offset-4 hover:text-accent">
                   {p.name}

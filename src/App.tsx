@@ -21,6 +21,7 @@ const YouTubeEstimator = lazy(() => import("./pages/tools/YouTubeEstimator"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PlaylistPage = lazy(() => import("./pages/playlists/PlaylistPage"));
 const WorkIndex = lazy(() => import("./pages/work/WorkIndex"));
+const CaseStudyPage = lazy(() => import("./pages/work/CaseStudyPage"));
 const ServicesHub = lazy(() => import("./pages/services/ServicesHub"));
 const MetaAds = lazy(() => import("./pages/services/MetaAds"));
 const ContactPage = lazy(() => import("./pages/forms/ContactPage"));
@@ -28,6 +29,7 @@ const SubmitTrackPage = lazy(() => import("./pages/forms/SubmitTrackPage"));
 const LearnHub = lazy(() => import("./pages/learn/LearnHub"));
 const VideoPage = lazy(() => import("./pages/learn/VideoPage"));
 const SpotifyPlaylisting = lazy(() => import("./pages/services/SpotifyPlaylisting"));
+const YouTubePromotion = lazy(() => import("./pages/services/YouTubePromotion"));
 
 function useSmoothScroll() {
   useEffect(() => {
@@ -98,6 +100,7 @@ export function AppRoutes() {
             <Route path="playlists" element={<Playlists />} />
             <Route path="playlists/:slug" element={<PlaylistPage />} />
             <Route path="work" element={<WorkIndex />} />
+            <Route path="work/:slug" element={<CaseStudyPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="submit-track" element={<SubmitTrackPage />} />
             <Route path="learn" element={<LearnHub />} />
@@ -105,6 +108,7 @@ export function AppRoutes() {
             <Route path="services" element={<ServicesHub />} />
             <Route path="services/meta-ads" element={<MetaAds />} />
             <Route path="services/spotify-playlisting" element={<SpotifyPlaylisting />} />
+            <Route path="services/youtube-promotion" element={<YouTubePromotion />} />
             <Route path="planner" element={<Planner />} />
             <Route path="estimator" element={<Estimator />} />
             <Route path="tools" element={<ToolsHub />} />

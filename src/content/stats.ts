@@ -21,11 +21,11 @@ export const stats: Stat[] = [
     note: "Harman Sohi campaign · as of Oct 2026",
   },
   {
-    // 21,155 + 19,844 + 16,418 + 3,699 = 61,116 followers (Ki Scene Aa? and everything feels updated 18 Oct 2026)
-    value: 60,
+    // 22,958 + 21,138 + 17,935 + 3,687 = 65,718 followers (read from Spotify 26 Oct 2026)
+    value: 65,
     suffix: "K+",
     label: "combined followers across our 4 Spotify playlists",
-    note: "21,155 + 19,844 + 16,418 + 3,699 · as of Oct 2026",
+    note: "22,958 + 21,138 + 17,935 + 3,687 · as of Oct 2026",
   },
   {
     value: 500,

@@ -61,6 +61,10 @@ export default function ServicesHub() {
             </p>
           )}
           <p>
+            <SmartLink href="/services/youtube-promotion" className="underline decoration-line-strong underline-offset-4 hover:text-ink hover:decoration-accent">
+              How our YouTube video campaigns work
+            </SmartLink>
+            {" · "}
             <SmartLink href="/tools/youtube-views-estimator" className="underline decoration-line-strong underline-offset-4 hover:text-ink hover:decoration-accent">
               Estimate the budget for your YouTube view goal
             </SmartLink>
@@ -87,7 +91,8 @@ export default function ServicesHub() {
 
       <RelatedLinks
         links={[
-          { href: "/work", label: "See our campaign results", note: "A featured case study and dated receipts." },
+          { href: "/learn/spotify-growth-plan-independent-artists", label: "Which stage is your music at?", note: "Our free Spotify growth plan: 4 stages from 0 to 50K+ listeners." },
+          { href: "/work", label: "See our campaign results", note: "Featured case studies and dated receipts." },
           { href: "/playlists", label: "Browse our Spotify playlists", note: "Four bot-free playlists, one per mood or scene." },
           { href: "/tools", label: "Free music marketing tools", note: "Planner, estimator, royalty calculator and more." },
         ]}

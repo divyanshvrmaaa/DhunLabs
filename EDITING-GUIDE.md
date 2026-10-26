@@ -19,11 +19,11 @@ You have two options for every change below:
 | Questions on the site's forms (/contact, /submit-track) | `src/content/forms.ts` |
 | The four numbers under the hero (~25K, 60K+, 500K+, 100%) | `src/content/stats.ts` |
 | The "Three Pillars" text and "How it works" steps | `src/content/pillars.ts` |
-| Case studies (Harman Sohi + the receipts) and the /work page | `src/content/caseStudies.ts` |
+| Case studies (Harman Sohi, Jashan Sandhu + the receipts), the /work page and each case study's own page (/work/harman-sohi, /work/jashan-sandhu) | `src/content/caseStudies.ts` |
 | Playlists (names, vibe lines, follower counts, each playlist's own page) | `src/content/playlists.ts` |
 | YouTube videos: /learn, each video's page, the home "Learn" section | `src/content/videos.ts` |
 | Video transcripts (optional) | `src/content/transcripts/` (see the README inside) |
-| Services pages (/services, /services/meta-ads, /services/spotify-playlisting) | `src/content/services.ts` (plus `pillars.ts`, `plans.ts`) |
+| Services pages (/services, /services/meta-ads, /services/spotify-playlisting, /services/youtube-promotion) | `src/content/services.ts` (plus `pillars.ts`, `plans.ts`) |
 | The written guide under each tool (how to use, FAQ…) | `src/content/guides/` (one file per tool) |
 | "My Story" text, chips, photo | `src/content/founder.ts` |
 | Plan names and what each plan includes | `src/content/plans.ts` |

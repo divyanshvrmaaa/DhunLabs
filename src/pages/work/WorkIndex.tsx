@@ -10,12 +10,12 @@ import { videos } from "../../content/videos";
 import { placeholderFor } from "../../lib/placeholder";
 import { SmartLink } from "../../components/ui/SmartLink";
 
-function FeaturedSection({ fc }: { fc: FeaturedCase }) {
+/** The case study's results card. Shown on /work (with a link to its own page) and on /work/<slug>. */
+export function CaseCard({ fc, linkToPage = false }: { fc: FeaturedCase; linkToPage?: boolean }) {
   const breakdownId = new URL(fc.breakdown.url).searchParams.get("v");
   const breakdownVideo = videos.find((v) => v.id === breakdownId);
   const videoHref = breakdownVideo && !breakdownVideo.noPage ? `/learn/${breakdownVideo.slug}` : fc.breakdown.url;
   return (
-    <Section id={fc.id} eyebrow="Featured case study" title={fc.title}>
       <Reveal>
         <article className="card relative grid overflow-hidden md:grid-cols-[1fr_1.2fr]">
           {fc.artistPhoto ? (
@@ -34,7 +34,7 @@ function FeaturedSection({ fc }: { fc: FeaturedCase }) {
                 <BlurImg
                   src={`/thumbs/${breakdownId}.webp`}
                   placeholder={placeholderFor(`/thumbs/${breakdownId}.webp`)}
-                  alt=""
+                  alt={`Video thumbnail: ${fc.artist} campaign breakdown on YouTube`}
                   width={640}
                   height={360}
                   wrapperClassName="aspect-video w-full overflow-hidden rounded-[var(--radius-md)] border border-line"
@@ -69,14 +69,32 @@ function FeaturedSection({ fc }: { fc: FeaturedCase }) {
               ))}
             </ul>
             <p className="mt-6 text-xs text-muted">{fc.asOf}</p>
-            <div className="mt-6">
-              <Button href={videoHref} arrow>
-                {fc.breakdown.label}
-              </Button>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {linkToPage ? (
+                <>
+                  <Button href={`/work/${fc.slug}`} arrow>
+                    Read the {fc.artist} case study
+                  </Button>
+                  <Button href={videoHref} variant="secondary">
+                    {fc.breakdown.label}
+                  </Button>
+                </>
+              ) : (
+                <Button href={videoHref} arrow>
+                  {fc.breakdown.label}
+                </Button>
+              )}
             </div>
           </div>
         </article>
       </Reveal>
+  );
+}
+
+function FeaturedSection({ fc }: { fc: FeaturedCase }) {
+  return (
+    <Section id={fc.id} eyebrow="Featured case study" title={fc.title}>
+      <CaseCard fc={fc} linkToPage />
     </Section>
   );
 }

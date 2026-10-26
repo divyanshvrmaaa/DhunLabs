@@ -43,3 +43,21 @@ export const playlistingPage = {
   botFree:
     "Every playlist in our network is bot-free and always has been. Followers are real listeners who chose to follow a mood or a scene. We never use bots or fake streams: platforms penalise them, and they never turn into fans.",
 };
+
+export const youtubePage = {
+  badge: "SERVICE · YOUTUBE VIDEO CAMPAIGNS",
+  h1Lines: ["YouTube Promotion", "for Music Videos"],
+  kicker: "Views from people who chose to watch.",
+  sub: "Google Ads video campaigns for your music video or lyric video, run as a separate campaign next to (or instead of) Meta ads, with the cost per view tracked from the first day.",
+  flow: [
+    { title: "Your music video", body: "Send us the YouTube link of your music video or lyric video. It should already be live on your channel." },
+    { title: "Google Ads video campaign", body: "We run the video as a YouTube ad aimed at people who listen to your kind of music, so views come from viewers likely to enjoy it." },
+    { title: "Tracked cost per view", body: "Views, spend and cost per view come straight from the campaign, so you can see what each rupee did." },
+    { title: "Fans, not just views", body: "YouTube viewers who stay tend to become your most loyal fans. We look at who keeps watching, not only the view count, and never compare YouTube views with Spotify listeners." },
+  ],
+  prepare: [
+    "Your music video or lyric video, live on YouTube.",
+    "Who it's for: the genre, language and region of your listeners.",
+    "A view goal or a budget. The YouTube Views Estimator turns one into the other.",
+  ],
+};

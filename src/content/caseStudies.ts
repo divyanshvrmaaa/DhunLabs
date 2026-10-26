@@ -11,6 +11,13 @@ export const workIntro = {
 export interface FeaturedCase {
   /** Anchor on the /work page (dhunlabs.studio/work#<id>). */
   id: string;
+  /** Web address of this case study's own page: dhunlabs.studio/work/<slug>. */
+  slug: string;
+  /** Opening paragraph on its own page (also used as the Google description if it fits). */
+  intro: string;
+  /** Google title (under 60 characters) and description (under 155). */
+  seoTitle: string;
+  seoDescription: string;
   label: string;
   title: string;
   artist: string;
@@ -32,6 +39,12 @@ export interface FeaturedCase {
 export const featuredCases: FeaturedCase[] = [
   {
     id: "featured-case",
+    slug: "harman-sohi",
+    intro:
+      "Harman Sohi is a Punjabi independent artist who started this campaign with zero monthly listeners on Spotify. In about 30 days, Meta ads built around the track's hook, conversion tracking on every step and placement in our playlist network took him to around 25K monthly listeners.",
+    seoTitle: "Harman Sohi Case Study: 0 to 25K Listeners | DhunLabs",
+    seoDescription:
+      "How Punjabi artist Harman Sohi went from 0 to about 25K monthly Spotify listeners in 30 days with Meta ads and bot-free playlisting. Real, dated data.",
     label: "Featured campaign",
     title: "Harman Sohi: 0 → ~25K monthly listeners in 30 days",
     artist: "Harman Sohi",
@@ -55,6 +68,12 @@ export const featuredCases: FeaturedCase[] = [
   {
     // From the video breakdown (LYLt1syar5I): Spotify for Artists data shared with Jashan's permission.
     id: "featured-case-debut-single",
+    slug: "jashan-sandhu",
+    intro:
+      "ONE HOPE was Jashan Sandhu's first-ever release. With Meta ads on a small budget, retargeting the listeners who engaged and ads on the YouTube music video, it reached 20,700+ Spotify streams in about a month, and 96% of those streams came from Spotify's own algorithm.",
+    seoTitle: "Jashan Sandhu Case Study: Debut Single, 20.7K+ Streams",
+    seoDescription:
+      "How Jashan Sandhu's debut single ONE HOPE reached 20,700+ Spotify streams in a month with small-budget Meta ads, 96% of them algorithmic. Real data.",
     label: "Featured campaign",
     title: "Jashan Sandhu: a debut single to 20.7K+ streams in a month",
     artist: "Jashan Sandhu",
@@ -115,7 +134,7 @@ export const receipts: Receipt[] = [
       { value: "3.78M", label: "impressions" },
       { value: "29,501", label: "tracked visits" },
       { value: "₹1.53", label: "per tracked visit" },
-      { value: "~21.2K", label: "playlist followers now" },
+      { value: "~23K", label: "playlist followers now" },
     ],
     context: "How we grew our Punjabi playlist Ki Scene Aa? with about ₹45,200 of Meta ads.",
     metricNote: META_METRIC,

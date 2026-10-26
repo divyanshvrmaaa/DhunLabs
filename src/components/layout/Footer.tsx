@@ -16,6 +16,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
       { label: "All services", href: "/services" },
       { label: "Meta Ads", href: "/services/meta-ads" },
       { label: "Spotify Playlisting", href: "/services/spotify-playlisting" },
+      { label: "YouTube Promotion", href: "/services/youtube-promotion" },
       { label: "Our playlists", href: "/playlists" },
       { label: "Submit your track", href: "/submit-track" },
     ],

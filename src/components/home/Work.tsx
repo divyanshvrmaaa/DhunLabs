@@ -49,7 +49,12 @@ function Featured({ fc }: { fc: FeaturedCase }) {
             </blockquote>
           )}
 
-          <p className="mt-8 text-xs text-muted">{fc.asOf}</p>
+          <p className="mt-8">
+            <SmartLink href={`/work/${fc.slug}`} className="inline-flex min-h-11 items-center gap-1.5 text-[0.95rem] font-medium underline decoration-line-strong underline-offset-4 hover:decoration-accent">
+              Read the {fc.artist} case study <span aria-hidden>→</span>
+            </SmartLink>
+          </p>
+          <p className="mt-4 text-xs text-muted">{fc.asOf}</p>
         </div>
 
         <div className="relative border-t border-line p-6 sm:p-8 md:p-12 lg:border-l lg:border-t-0">
@@ -88,7 +93,7 @@ function Featured({ fc }: { fc: FeaturedCase }) {
                 <BlurImg
                   src={`/thumbs/${breakdownId}.webp`}
                   placeholder={placeholderFor(`/thumbs/${breakdownId}.webp`)}
-                  alt=""
+                  alt={`Video thumbnail: ${fc.artist} campaign breakdown on YouTube`}
                   width={640}
                   height={360}
                   wrapperClassName="aspect-video"
@@ -127,7 +132,7 @@ function Experiment() {
             <BlurImg
               src={`/thumbs/${ex.video.id}.webp`}
               placeholder={placeholderFor(`/thumbs/${ex.video.id}.webp`)}
-              alt=""
+              alt={`Video thumbnail: ${ex.title}`}
               width={640}
               height={360}
               wrapperClassName="aspect-video"

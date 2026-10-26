@@ -11,5 +11,6 @@ export const placeholders: Record<string, string> = {
   "thumb:A_D18IaKgPw": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAQCdASoQAAkAA4BaJYgCdADHmPZlsgD+volic8q0xBoM6R6r7yxcpP7Z752TvNdSOHF/NkuyUJpN4C10gvC7Lb7AAtFr/GzHeHlDu0aNUSAWet8MqR0sIeW85PabT/FrdnggAAA=",
   "thumb:LYLt1syar5I": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAQCdASoQAAkAA4BaJYgCdADxM7USkAD9U+DmNcgwIQDuXNE7cvWSMPvmtLCGxwQ7aAzBvxhtCFOWcSc+I41G0kFgax6ZdfcFwDqfH87e6dA7sdXARZNhcQxV68ZmkAQW1wAA",
   "thumb:VA5XiZy0GCw": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQAAkAA4BaJZACdADpLDxdICQAAP7useXmml2YEIxwGEFDkiZ5kLwdtNakAnkzDjgZKBg9jSVwmwGhlun+tNwGBiRzct+t2/Xwrvc8GR/FHSwA",
-  "thumb:_buZHdVwI1E": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABwAgCdASoQAAkAA4BaJZgCdAYrn25r88MeAaVAAP7vjxZvNoOUQO5aTsseh0SBQ24iKfxA+LYpMK/sf9TomTO609GZyd4k/nu/X2c3BNzlYjK8Y6O9LtS9noQS+6GqV0Kre0IeyMI4KmeoAAA="
+  "thumb:_buZHdVwI1E": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABwAgCdASoQAAkAA4BaJZgCdAYrn25r88MeAaVAAP7vjxZvNoOUQO5aTsseh0SBQ24iKfxA+LYpMK/sf9TomTO609GZyd4k/nu/X2c3BNzlYjK8Y6O9LtS9noQS+6GqV0Kre0IeyMI4KmeoAAA=",
+  "thumb:g_uDuMbJLho": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoQAAkAA4BaJYgCdAEO4/d3LAAA/DIP1akbBz8a52TyQwi8Dhpc7GjY5Mfj10TBs/eBPKXj0CrnOfmx5LXJeWTihcD1DcBHFtxwEjHLyrVoOCn+9oZJYAAA"
 };

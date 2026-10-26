@@ -3,11 +3,12 @@
 // page titles, Google descriptions, share images, breadcrumbs and the sitemap.
 // Keep titles under 60 characters and descriptions under 155 where possible.
 //
-// Playlist pages and video pages are added automatically from playlists.ts and
-// videos.ts, so you never list those here by hand.
+// Case study, playlist and video pages are added automatically from caseStudies.ts,
+// playlists.ts and videos.ts, so you never list those here by hand.
 
 import { followersAsOf, playlists } from "./playlists";
 import { videos } from "./videos";
+import { featuredCases } from "./caseStudies";
 import { formatNumber } from "../lib/format";
 
 export interface Crumb {
@@ -167,6 +168,13 @@ const staticPages: PageSeo[] = [
       "How our Spotify playlist review works: every track heard by a person, considered for the one best-fit playlist. Bot-free, never guaranteed.",
     crumbs: [crumbs.services, { name: "Spotify Playlisting", path: "/services/spotify-playlisting" }],
   },
+  {
+    path: "/services/youtube-promotion",
+    title: "YouTube Promotion for Music Videos in India | DhunLabs",
+    description:
+      "Google Ads video campaigns for your music video or lyric video, with the cost per view tracked from day one. See our YouTube receipts and what to prepare.",
+    crumbs: [crumbs.services, { name: "YouTube Promotion", path: "/services/youtube-promotion" }],
+  },
 ];
 
 /** Adds the optional ending only if the description stays within 155 characters. */
@@ -177,6 +185,13 @@ const playlistPages: PageSeo[] = playlists.map((p) => ({
   title: `${p.h1.length <= 46 ? p.h1 : p.name} | DhunLabs`,
   description: fit155(`${p.name}: a bot-free Spotify playlist of ${p.mood}. ${formatNumber(p.followers)} followers ${followersAsOf}.`, " Submit your track."),
   crumbs: [crumbs.playlists, { name: p.name, path: `/playlists/${p.slug}` }],
+}));
+
+const casePages: PageSeo[] = featuredCases.map((c) => ({
+  path: `/work/${c.slug}`,
+  title: c.seoTitle,
+  description: c.seoDescription,
+  crumbs: [crumbs.work, { name: c.artist, path: `/work/${c.slug}` }],
 }));
 
 const videoPages: PageSeo[] = videos.filter((v) => !v.noPage).map((v) => ({
@@ -198,7 +213,7 @@ const learnPages: PageSeo[] = [
   ...videoPages,
 ];
 
-export const pages: PageSeo[] = [...staticPages, ...playlistPages, ...learnPages];
+export const pages: PageSeo[] = [...staticPages, ...casePages, ...playlistPages, ...learnPages];
 
 export const notFoundSeo: PageSeo = {
   path: "/404",

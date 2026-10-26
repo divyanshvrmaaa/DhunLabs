@@ -62,6 +62,36 @@ export interface Video {
 
 export const videos: Video[] = [
   {
+    // Added 26 Oct 2026 from the YouTube upload; summary written from the video's chapters and on-screen notes.
+    id: "g_uDuMbJLho",
+    slug: "spotify-growth-plan-independent-artists",
+    title: "The Complete Spotify Growth Plan for Independent Artists",
+    published: "2026-10-26",
+    duration: "32:40",
+    hook: "The 4 stages every independent artist goes through, from 0 to 50K+ monthly listeners, and what to do (and skip) at each one.",
+    summary: [
+      "Two artists can spend the same budget with the same methods and get completely different results: one goes viral, the other can't get past 10K listeners. The difference is knowing which stage you're in. This free masterclass lays out the full artist development plan we use, split into four stages by monthly listeners.",
+      "Stage 1, Foundation (0 to 1K), is about the basics: a properly mixed song with the hook in the first 30 seconds, a real artist profile, pitching Spotify editorial 7+ days before a Friday release, and niche playlist curators. Stage 2, Signal (1K to 10K), is where Meta ads start: saves and repeat listens matter more than raw streams, you test 3 to 5 creatives and move budget to the winner, and you trust Spotify for Artists over Meta's numbers. Stage 3, Scale (10K to 50K), adds retargeting, always-on ads, lookalike audiences, collaborations and YouTube ads for the music video. Stage 4, Business (50K+), covers royalties, IPRS registration and reading a label contract before you sign. The video is in Hindi.",
+    ],
+    summaryNeedsReview: true,
+    takeaways: [
+      "Find your stage first: Foundation (0 to 1K), Signal (1K to 10K), Scale (10K to 50K), Business (50K+)",
+      "Under 1K monthly listeners, fix the song, profile and release plan before running ads",
+      "Saves and repeat listens trigger Spotify's push, not raw stream volume",
+      "Test 3 to 5 ad creatives, put most of the budget on the winner and keep winners running",
+      "At 10K+, retarget people who already know you before going after cold audiences",
+      "At 50K+, register with IPRS for extra royalties and read any label contract carefully",
+    ],
+    related: [
+      { label: "Music Promotion Budget Planner", href: "/planner" },
+      { label: "Find your song's hook with Hook Finder", href: "/tools/hook-finder" },
+      { label: "Submit your track to our playlists", href: "/submit-track" },
+    ],
+    seoTitle: "Spotify Growth Plan for Independent Artists | DhunLabs",
+    seoDescription:
+      "Free masterclass (in Hindi): the 4 stages from 0 to 50K+ monthly Spotify listeners and what to do at each one. English summary and key takeaways.",
+  },
+  {
     id: "LYLt1syar5I",
     slug: "debut-punjabi-song-20k-streams-meta-ads",
     title: "How We Got 20K+ Streams on a Debut Punjabi Song | Meta Ads",

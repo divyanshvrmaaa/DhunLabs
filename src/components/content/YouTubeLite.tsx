@@ -27,7 +27,7 @@ export function YouTubeLite({ id, title, className = "" }: { id: string; title: 
           <BlurImg
             src={`/thumbs/${id}.webp`}
             placeholder={placeholderFor(`/thumbs/${id}.webp`)}
-            alt=""
+            alt={`Video thumbnail: ${title}`}
             width={640}
             height={360}
             wrapperClassName="aspect-video"

@@ -21,7 +21,7 @@ export default function LearnHub() {
                   <BlurImg
                     src={thumbFor(v.id)}
                     placeholder={placeholderFor(`/thumbs/${v.id}.webp`)}
-                    alt=""
+                    alt={`Video thumbnail: ${v.title}`}
                     width={640}
                     height={360}
                     wrapperClassName="aspect-video"
